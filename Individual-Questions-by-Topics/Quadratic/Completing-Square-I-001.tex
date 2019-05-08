@@ -1,0 +1,30 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+\pgfmathdeclarerandomlist{varx}{{x}{y}}
+% \pgfmathdeclarerandomlist{varx}{{2}{3}}
+\pgfmathrandomitem{\varx}{varx}
+\edef\varx{\varx}
+
+\pgfmathtruncatemacro{\a}{1}
+\pgfmathtruncatemacro{\h}{random(1,4)}
+\pgfmathtruncatemacro{\b}{2*\a*\h}
+\pgfmathtruncatemacro{\B}{2*\h}
+\pgfmathtruncatemacro{\c}{random(2,4)}
+\pgfmathtruncatemacro{\k}{\a*\h^2+\c}
+
+
+Write the following quadratice polynomial in the form $a(\varx-h)^2+k$ form
+\[
+  \invisibleoneincoef{\a}\varx^2+\b\varx-\c.
+\]
+
+\begin{solution}
+\[
+\invisibleoneincoef{\a}\varx^2+\b\varx-\c
+=\invisibleoneincoef{\a}(\varx^2+\B\varx)-\c
+=\invisibleoneincoef{\a}(\varx+\h)^2-\ifnum\a=1 \h^2 \else \a\cdot\h^2\fi-\c
+=\invisibleoneincoef{\a}(\varx+\h)^2-\k.
+\]
+\end{solution}

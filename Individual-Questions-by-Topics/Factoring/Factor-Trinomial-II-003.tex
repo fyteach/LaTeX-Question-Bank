@@ -1,0 +1,124 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+\pgfmathdeclarerandomlist{varx}{{x}{y}{s}{t}}
+% \pgfmathdeclarerandomlist{varx}{{x}{y}}
+\pgfmathrandomitem{\varx}{varx}
+\edef\varx{\varx}
+
+
+
+\pgfmathsetmacro{\mm}{int(random(1,5))}
+\pgfmathsetmacro{\initn}{int(random(2,5))}
+\pgfmathtruncatemacro{\nn}{\initn/gcd(\mm,\initn)}
+
+\pgfmathsetmacro{\aa}{int(1)}
+
+%%%%%% generate random b coprime with a %%%
+\pgfmathsetmacro{\bb}{int(random(1,2))}
+\pgfmathtruncatemacro{\bb}{ifthenelse(gcd(\aa, \bb)==1, \bb, \bb/gcd(\aa,\bb) )}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pgfmathsetmacro{\cc}{int(1)}
+
+
+ %%%%%% generate random d coprime c %%%
+\pgfmathsetmacro{\initd}{int(random(5,3))}
+\pgfmathtruncatemacro{\dd}{ifthenelse(gcd(\cc, \initd)==1, \initd, \initd/gcd(\cc,\initd) )}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+ \pgfmathtruncatemacro{\AA}{\aa*\cc}
+ \pgfmathtruncatemacro{\CC}{(\bb)*(-\dd)}
+ \pgfmathtruncatemacro{\bc}{(\bb)*\cc}
+ \pgfmathtruncatemacro{\ad}{\aa*(-\dd)}
+ \pgfmathtruncatemacro{\BB}{\ad+\bc}
+
+\pgfmathtruncatemacro{\MA}{\aa*\mm}
+\pgfmathtruncatemacro{\MB}{-\aa*\nn+\bb}
+
+\pgfmathtruncatemacro{\MC}{\cc*\mm}
+\pgfmathtruncatemacro{\MD}{-\cc*\nn-\dd}
+
+\pgfmathtruncatemacro{\MBC}{\MB*\MC}
+\pgfmathtruncatemacro{\MAD}{\MA*\MD}
+
+
+\pgfmathtruncatemacro{\SA}{\MA*\MC}
+\pgfmathtruncatemacro{\SB}{\MA*\MD+\MB*\MC}
+\pgfmathtruncatemacro{\SC}{\MB*\MD}
+
+
+Factor completely the following polynomial.
+\[\invisibleoneincoef{\AA} (\mm\varx-\nn)^2  \plusminus{\BB}(\mm\varx-\nn) \ifnum\CC>0 +\CC\else \CC\fi.\]
+
+\begin{solution}
+
+\begin{multicols}{2}
+
+\[
+\begin{split}
+  &\invisibleoneincoef{\AA} (\mm\varx-\nn)^2  \plusminus{\BB}(\mm\varx-\nn) \ifnum\CC>0 +\CC\else \CC\fi\\
+    =&(\invisibleoneincoef{\aa}(\mm\varx-\nn)+\bb)(\invisibleoneincoef{\cc}(\mm\varx-\nn)-\dd)\\
+    =&\ifnum\MB=0 \invisibleoneincoef{\MA}\varx \else(\invisibleoneincoef{\MA}\varx \constdisplay{\MB})\fi (\invisibleoneincoef{\MC}\varx \constdisplay{\MD}).
+\end{split}
+\]
+\columnbreak
+
+\begin{tikzpicture}
+ \matrix (m) [
+ matrix of math nodes,
+row sep=-\pgflinewidth,
+ column sep=-.5\pgflinewidth,
+ minimum width=2em,
+ ]
+ { A=\AA &{}&C=\CC & \\
+   \aa &{}&\bb & \\
+   \cc &{}&-\dd &  \\
+    \bc& + & \ad &=\BB=B\\
+ };
+ \path
+   (m-2-1) edge (m-3-3)
+   (m-2-3) edge (m-3-1); 
+ \draw[red] (m-4-1.north west) -- (m-4-4.north east);  
+\end{tikzpicture}
+\end{multicols}
+
+\end{solution}
+
+
+\begin{solution}
+This is another way to factor the polynomial. We simplify the polynomial first and then factor.
+% \begin{multicols}{2}
+
+\[
+\begin{split}
+  &\invisibleoneincoef{\AA} (\mm\varx-\nn)^2  \plusminus{\BB}(\mm\varx-\nn) \ifnum\CC>0 +\CC\else \CC\fi\\
+    =&\invisibleoneincoef{\SA}\varx^2  \ifnum\SB=0\else\constdisplay{\SB}\varx\fi \ifnum\SC=0\else\constdisplay{\SC} \fi\\
+    =&{\ifnum\MB=0 \invisibleoneincoef{\MA}\varx \else(\invisibleoneincoef{\MA}\varx \constdisplay{\MB})\fi} 
+      {\ifnum\MD=0 \invisibleoneincoef{\MC}\varx \else(\invisibleoneincoef{\MC}\varx \constdisplay{\MD})\fi}.
+\end{split}
+\]
+% \columnbreak
+
+% \begin{tikzpicture}
+%  \matrix (m) [
+%  matrix of math nodes,
+% row sep=-\pgflinewidth,
+%  column sep=-.5\pgflinewidth,
+%  minimum width=2em,
+%  ]
+%  { A=\SA &{}&C=\SC & \\
+%    \MA &{}&\MB & \\
+%    \MC &{}&\MD &  \\
+%     \display{\MBC} & + & \display{\MAD} &=\SB=B\\
+%  };
+%  \path
+%    (m-2-1) edge (m-3-3)
+%    (m-2-3) edge (m-3-1); 
+%  \draw[red] (m-4-1.north west) -- (m-4-4.north east);  
+% \end{tikzpicture}
+% \end{multicols}
+
+\end{solution}

@@ -1,0 +1,54 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+\pgfmathtruncatemacro{\a}{random(2,3)} 
+\pgfmathtruncatemacro{\b}{random(5,7)} 
+\pgfmathtruncatemacro{\c}{random(2,3)} 
+\pgfmathtruncatemacro{\d}{random(4,6)} 
+
+\pgfmathtruncatemacro{\ard}{\a/gcd(\a,\b)}
+\pgfmathtruncatemacro{\brd}{\b/gcd(\a,\b)}
+
+\pgfmathtruncatemacro{\crd}{\c/gcd(\c,\d)}
+\pgfmathtruncatemacro{\drd}{\d/gcd(\c,\d)}
+
+\pgfmathtruncatemacro{\ac}{\ard*\crd}
+\pgfmathtruncatemacro{\ad}{\ard*\drd}
+\pgfmathtruncatemacro{\bc}{\brd*\crd}
+\pgfmathtruncatemacro{\bd}{\brd*\drd}
+
+
+
+\pgfmathdeclarerandomlist{varxy}{{x}{m}}
+\pgfmathrandomitem{\varx}{varxy}
+\edef\varxy{\varx}
+
+\pgfmathdeclarerandomlist{varab}{{a}{p}}
+\pgfmathrandomitem{\vara}{varab}
+\edef\varab{\vara}
+
+\pgfmathdeclarerandomlist{varpq}{{b}{q}}
+\pgfmathrandomitem{\varb}{varpq}
+\edef\varpq{\varb}
+
+\pgfmathdeclarerandomlist{varmn}{{y}{n}}
+\pgfmathrandomitem{\vary}{varmn}
+\edef\varmn{\vary}
+
+
+
+
+Factor completely the following polynomial.
+\[\invisibleoneincoef{\ac}\varx\vara - \invisibleoneincoef{\ad}\varx\varb -\invisibleoneincoef{\bc}\vary\vara + 
+\invisibleoneincoef{\bd}\vary\varb.\]
+
+\begin{solution}
+\[\begin{split}
+&\invisibleoneincoef{\ac}\varx\vara -\invisibleoneincoef{\ad}\varx\varb -\invisibleoneincoef{\bc}\vary\vara +\invisibleoneincoef{\bd}\vary\varb\\
+=&(\invisibleoneincoef{\ac}\varx\vara -\invisibleoneincoef{\ad}\varx\varb) + (-\invisibleoneincoef{\bc}\vary\vara +\invisibleoneincoef{\bd}\vary\varb)\\
+=&\invisibleoneincoef{\ard}\varx(\invisibleoneincoef{\crd}\vara -\invisibleoneincoef{\drd}\varb)+ (-\invisibleoneincoef{\brd}\vary)(\invisibleoneincoef{\crd}\vara -\invisibleoneincoef{\drd}\varb)\\
+=&(\invisibleoneincoef{\ard}\varx - \invisibleoneincoef{\brd}\vary)(\invisibleoneincoef{\crd}\vara -\invisibleoneincoef{\drd}\varb)
+\end{split}
+\]
+\end{solution}

@@ -1,0 +1,86 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+%%%%%%%%%%%% Assume a<0, %%%%%%%%%%%%
+
+
+\pgfmathtruncatemacro{\a}{random(2,11)}
+\pgfmathtruncatemacro{\b}{random(8,2)-10}
+\pgfmathtruncatemacro{\c}{random(1,5)}
+
+
+%%%%%%% 
+\pgfmathtruncatemacro{\r}{1}   %%right bound
+\pgfmathtruncatemacro{\s}{-2} %%left bound
+
+
+
+\pgfmathtruncatemacro{\d}{\r+\a}
+\pgfmathtruncatemacro{\e}{\b*\s-\c}
+
+\pgfmathtruncatemacro{\f}{\d-\a}
+\pgfmathtruncatemacro{\g}{\e+\c}
+
+
+
+
+Solve the compound linear inequality and write the solution set in interval notation. 
+
+\[x+\a<\d \text{\quad\quad and\quad\quad} \b x-\c<\e.\]
+
+\begin{solution}
+\begin{center}
+\begin{align*}
+x+\a&<\d &&\text{and} & \b x-\c&<\e\\
+x&<\r &&  & \b x&<\g\\
+x&<\r  &&\text{and}  &  x&>\s
+\end{align*}
+\end{center}
+
+The solution set is $(\s, \r)$.
+
+\end{solution}
+
+
+
+% \ifnum\d>0
+% \[ \b x + \d \geq \a (x-\c).\]
+% \begin{solution}
+% \[\begin{split}
+% \b x +\d&\geq \a (x-\c) \\
+% \b x+\d&\leq \a x -\g \\
+% \e x&\leq \f \\
+% \ifnum\e>0
+% x&\leq \result \\
+% \else
+% x&\geq \result \\
+% \fi
+% \end{split}
+% \]
+% The solution set is \ifnum\e>0  $(-\infty, \result ]$ \else  $[\result , \infty)$ \fi.
+% \end{solution}
+
+
+
+% \else
+% \[ \b x \d \geq \a (x-\c). \]
+
+% \begin{solution}
+% \[\begin{split}
+% \b x \d&\geq \a (x-\c) \\
+% \b x \d&\leq \a x -\g \\
+% \e x&\leq \f \\
+% \ifnum\e>0
+% x&\leq \result \\
+% \else
+% x&\geq \result \\
+% \fi
+% \end{split}
+% \]
+% The solution set is \ifnum\e>0   $(-\infty, \result ]$ \else  $[\result , \infty)$  \fi.
+% \end{solution}
+
+% \fi
+
+
+% \end{ocg}

@@ -1,0 +1,63 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+\pgfmathtruncatemacro{\a}{random(2,8)} %%%% left bound 
+\pgfmathtruncatemacro{\b}{random(2,9)}    %%%% right bound
+\pgfmathtruncatemacro{\c}{random(5,8)}
+
+
+
+\pgfmathtruncatemacro{\d}{random(1,11) }
+\pgfmathtruncatemacro{\e}{-random(3,12)}
+
+
+
+
+\pgfmathtruncatemacro{\f}{-random(1,11)}
+\pgfmathtruncatemacro{\g}{random(2,5)}
+
+
+
+\pgfmathtruncatemacro{\lden}{\c/gcd((\a*\d-\b-\c*\f),\c)}
+\pgfmathtruncatemacro{\lnum}{(\a*\d-\b)/gcd((\a*\d-\b-\c*\f),\c)}
+
+
+
+\pgfmathtruncatemacro{\rden}{\c/gcd((\a*\e-\b-\c*\g),\c)}
+\pgfmathtruncatemacro{\rnum}{(\a*\e-\b)/gcd((\a*\e-\b-\c*\g),\c)}
+
+
+\pgfmathtruncatemacro{\lclear}{\lnum*\c/\lden}
+\pgfmathtruncatemacro{\rclear}{\rnum*\c/\rden}
+
+\pgfmathtruncatemacro{\ll}{\lclear+\b}
+\pgfmathtruncatemacro{\rr}{\rclear+\b}
+
+
+% \pgfmathtruncatemacro{\s}{\m-\d}
+% \pgfmathtruncatemacro{\t}{\n+\f}
+
+
+
+
+Solve the compound linear inequality 
+\[\ifnum\lden=1 \lnum \else \frac{\lnum}{\lden}\fi > \frac{\a x-\b}{\c} > \ifnum\rden=1 \rnum \else \frac{\rnum}{\rden}\fi.\]
+
+
+
+\begin{solution}
+\begin{center}
+\begin{alignat*}{2}
+\ifnum\lden=1 \lnum \else \frac{\lnum}{\lden}\fi
+ > &&\centermath{ \frac{\a x-\b}{\c} }& > 
+\ifnum\rden=1 \rnum \else \frac{\rnum}{\rden}\fi\\
+\lclear > && \centermath{ \a x-\b }& >\rclear \\
+\ll> &&\centermath{ \a x } & >\rr\\
+\d> &&\centermath{ x } & >\e \\
+\end{alignat*}
+\end{center}
+
+So the solution set is $(\e, \d)$.
+
+\end{solution}

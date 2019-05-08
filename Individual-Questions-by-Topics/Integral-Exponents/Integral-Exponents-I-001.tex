@@ -1,0 +1,77 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+
+
+\pgfmathtruncatemacro{\a}{-random(3,7)} 
+\pgfmathtruncatemacro{\b}{-random(1,5)+3}
+\pgfmathtruncatemacro{\c}{random(2,3)}
+
+% \newcommand{\display}[1]{\ifnum#1<0 (#1)\else #1\fi}
+
+
+
+
+
+\pgfmathtruncatemacro{\abc}{\a-\b-\c}
+\pgfmathtruncatemacro{\absabc}{abs(\a-\b-\c)}
+
+
+
+
+\pgfmathtruncatemacro{\m}{-random(1,3)} 
+\pgfmathtruncatemacro{\n}{2*random(1,3)}
+
+\pgfmathtruncatemacro{\absm}{abs(\m)}
+
+\pgfmathtruncatemacro{\mn}{\n*\m}
+\pgfmathtruncatemacro{\expx}{abs(\mn)}
+% \pgfmathtruncatemacro{\doublen}{2*\n}
+\pgfmathtruncatemacro{\expy}{2*\n}
+
+
+
+Simplify. \textbf{Write with positive exponents.}
+
+\begin{enumerate*}[label={(\arabic*)~~}]
+\item $\dfrac{-u^{\a}}{u^{\b}u^{\c}}$  \hspace{2cm}
+\item $\left(-x^{\m}(-y)^2\right)^\n$
+\end{enumerate*}
+
+
+\begin{solution}
+\begin{enumerate}[label={(\arabic*)~~}]
+\item 
+\[
+\dfrac{-u^{\a}}{u^{\b}u^{\c}}=-u^{\a-\display{\b}-\c}=
+\ifnum\abc=0 
+	-1
+\else 
+	\ifnum \abc=1
+		-u
+	\else 
+		\ifnum\abc>1
+			-u^{\absabc}
+		\else
+			\ifnum\abc=-1
+				-u^{\abc}=-\dfrac{1}{u}
+			\else
+				-u^{\abc}=-\dfrac{1}{u^{\absabc}}
+			\fi
+		\fi
+	\fi
+\fi	
+.	
+\]
+\item 
+\[
+\left(-x^{\m}(-y)^2\right)^{\n}
+% =\left(-\frac{y^2}{x^{\absm}}\right)^{\n}
+% =(-1)^{\n}\dfrac{y^{\expy}}{x^{\expx}}
+=(-1)^{\n}x^{\mn}(-1)^{\expy}y^{\expy}
+=x^{\mn}y^{\expy}
+=\dfrac{y^{\expy}}{x^{\expx}}.
+\]
+\end{enumerate}
+\end{solution}

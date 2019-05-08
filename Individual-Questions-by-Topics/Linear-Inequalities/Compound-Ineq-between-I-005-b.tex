@@ -1,0 +1,66 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+\pgfmathtruncatemacro{\coefx}{-random(2,8)} 
+\pgfmathtruncatemacro{\b}{random(2,9)} 
+% \pgfmathtruncatemacro{\c}{random(5,8)}
+\pgfmathtruncatemacro{\rbound}{random(2,7)}
+\pgfmathtruncatemacro{\lnumber}{-random(1,5)}
+
+\pgfmathtruncatemacro{\c}{\lnumber*\b-\coefx*\rbound}
+
+
+\pgfmathtruncatemacro{\rnumber}{random(6,13)}
+
+%%%%%solve for rbound
+
+\pgfmathtruncatemacro{\lclear}{\lnumber*\b}
+\pgfmathtruncatemacro{\rclear}{\rnumber*\b}
+
+\pgfmathtruncatemacro{\ll}{\lclear-\c}
+\pgfmathtruncatemacro{\rr}{\rclear-\c}
+
+
+\pgfmathsetmacro{\detr}{\rbound-\rr/\coefx} 
+%%%use to determine if the set is empty.
+
+
+% \pgfmathtruncatemacro{\s}{\m-\d}
+% \pgfmathtruncatemacro{\t}{\n+\f}
+
+
+
+
+Solve the compound linear inequality 
+\[\lnumber\leq \frac{\c \coefx x}{\b} < \rnumber.\]
+
+
+
+\begin{solution}
+% \begin{center}
+\begin{alignat*}{2}
+\lnumber\leq  &&
+				\centermath{ \frac{\c \coefx x}{\b}  }
+													& < \rnumber\\
+\lclear \leq  && 
+				\centermath{ \c \coefx x }
+										&<\rclear \\
+\ll\leq  &&
+			\centermath{ \coefx x } 
+								& <\rr \\
+\rbound\geq  &&
+			\centermath{ x } 
+							& >
+									\rdfrac{\rr}{\coefx}\\
+\end{alignat*}
+% \end{center}
+
+So the solution set is 
+\ifdim \detr pt>0 pt 
+	$( \rdfrac{\rr}{\coefx},\rbound ]$ 
+\else 
+	$\emptyset$ 
+\fi.
+
+\end{solution}

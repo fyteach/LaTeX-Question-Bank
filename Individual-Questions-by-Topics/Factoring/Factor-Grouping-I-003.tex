@@ -1,0 +1,58 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+\pgfmathtruncatemacro{\a}{random(2,3)} 
+\pgfmathtruncatemacro{\b}{random(7,5)} 
+\pgfmathtruncatemacro{\c}{random(3,2)} 
+\pgfmathtruncatemacro{\d}{random(4,6)} 
+
+
+\pgfmathtruncatemacro{\ard}{\a/gcd(\a,\b)}
+\pgfmathtruncatemacro{\brd}{\b/gcd(\a,\b)}
+
+\pgfmathtruncatemacro{\crd}{\c/gcd(\c,\d)}
+\pgfmathtruncatemacro{\drd}{\d/gcd(\c,\d)}
+
+\pgfmathtruncatemacro{\ac}{\ard*\crd}
+\pgfmathtruncatemacro{\ad}{\ard*\drd}
+\pgfmathtruncatemacro{\bc}{\brd*\crd}
+\pgfmathtruncatemacro{\bd}{\brd*\drd}
+
+
+
+\pgfmathdeclarerandomlist{varxy}{{x}{m}}
+\pgfmathrandomitem{\varx}{varxy}
+\edef\varxy{\varx}
+
+\pgfmathdeclarerandomlist{varab}{{a}{p}}
+\pgfmathrandomitem{\vara}{varab}
+\edef\varab{\vara}
+
+\pgfmathdeclarerandomlist{varpq}{{b}{q}}
+\pgfmathrandomitem{\varb}{varpq}
+\edef\varpq{\varb}
+
+\pgfmathdeclarerandomlist{varmn}{{y}{n}}
+\pgfmathrandomitem{\vary}{varmn}
+\edef\varmn{\vary}
+
+
+
+
+
+
+
+
+Factor completely the following polynomial.
+\[\ac\varx^2  -{\bd}\vary\varb -\ad\varx\varb + {\bc}\vary\varx .\]
+
+\begin{solution}
+\[\begin{split}
+&\ac\varx^2 -{\ad}\varx\varb +{\bc}\vary\varx -{\bd}\vary\varb\\
+=&(\ac\varx^2 -{\ad}\varx\varb) + (\bc\vary\varx -{\bd}\vary\varb)\\
+=&\ard\varx(\crd\varx - {\drd}\varb)+ {\brd}\vary(\crd\varx - {\drd}\varb)\\
+=&(\ard\varx + {\brd}\vary)(\crd\varx -{\drd}\varb)
+\end{split}
+\]
+\end{solution}

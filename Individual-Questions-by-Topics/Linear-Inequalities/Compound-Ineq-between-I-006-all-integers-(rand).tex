@@ -1,0 +1,62 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+
+\pgfmathrandominteger{\b}{-3}{3}
+
+\pgfmathtruncatemacro{\a}{random(2,5)} 
+% \pgfmathtruncatemacro{\b}{random(1,3)}
+\pgfmathtruncatemacro{\lbound}{-random(2,7)}
+\pgfmathtruncatemacro{\rbound}{random(1,5)}
+
+\pgfmathtruncatemacro{\lnumber}{\a*\lbound+\b}
+\pgfmathtruncatemacro{\rnumber}{\a*\rbound+\b}
+
+
+
+% \pgfmathtruncatemacro{\lclear}{\lnumber*\a}
+% \pgfmathtruncatemacro{\rclear}{\rnumber*\a}
+
+\pgfmathtruncatemacro{\ll}{\lnumber-\b}
+\pgfmathtruncatemacro{\rr}{\rnumber-\b}
+
+
+% \pgfmathtruncatemacro{\s}{\m-\d}
+% \pgfmathtruncatemacro{\t}{\n+\f}
+
+
+
+
+Solve the compound linear inequality 
+\[\lnumber\leq
+\ifnum\b>0
+ \a x+\b 
+\else
+ \a x \b 
+\fi
+< \rnumber.\]
+
+
+
+\begin{solution}
+	\begin{center}
+		\begin{alignat*}{2}
+			\lnumber
+			\leq  &&
+			\centermath{ 
+				\ifnum\b>0
+					\a x+\b 
+				\else
+					\a x \b 
+				\fi
+			}
+			& < \rnumber\\
+		\ll\leq  &&\centermath{ \a x } & <\rr\\
+		\lbound\leq  &&\centermath{ x } & < \rbound \\
+	\end{alignat*}
+\end{center}
+
+So the solution set is $[\lbound,\rbound)$.
+
+\end{solution}

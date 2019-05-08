@@ -1,0 +1,70 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+\pgfmathtruncatemacro{\a}{random(0,3)} 
+\pgfmathtruncatemacro{\b}{random(0,3)} 
+
+\pgfmathtruncatemacro{\x}{random(1,10)} 
+
+
+\pgfmathtruncatemacro{\n}{random(2,5)} 
+
+
+
+\pgfmathtruncatemacro{\y}{\n*(\x-\a)+\b}
+
+
+
+\pgfmathtruncatemacro{\mnum}{\y-\b}
+
+\pgfmathtruncatemacro{\mden}{\x-\a} 
+
+\pgfmathtruncatemacro{\bnum}{\b*\mden-\mnum*\a}
+\pgfmathtruncatemacro{\bden}{\mden} 
+
+\pgfmathtruncatemacro{\bsign}{\bnum*\bden}
+
+
+Find an equation of the line passing through the following two points
+\[(\a, \b)\text{\quad and\quad} (\x, \y).\]
+Write the equation in the slope-intercept form if the slope is not undefined. 
+
+
+\begin{solution}
+The slope is 
+\[
+m=\frac{\y-\b}{\x-\a}=\simplyfrac{\mnum}{\mden}.
+\]
+
+\ifnum\mnum=0
+	Since the slope is $0$, the line is a horizontal line and the slope-intercept form equation is 
+	\[y=\b.\]
+\else
+	\ifnum\mden=0
+		Since the slope is undefined, the line is a vertical line and an equation is 
+		\[x=\a.\]
+	\else
+		We can then write down the point-slope form equation of the line.
+		\[y-\b=\rdfrac{\mnum}{\mden}(x-\a).\]
+		Solve for $y$ and simplify the equations, we will get the slope intercept form.
+		\[
+		\begin{split}
+		y-\b&=\rdfrac{\mnum}{\mden}(x-\a)\\
+		y & =\rdfrac{\mnum}{\mden}(x-\a)+\b\\
+		y&= \rdfrac{\mnum}{\mden}x
+		\ifnum\bsign=0 
+			.
+		\else
+			\ifnum\bsign>0
+				+\rdfrac{\bnum}{\bden}.
+			\else
+				\rdfrac{\bnum}{\bden}.
+			\fi
+		\fi
+		\end{split}
+		\]
+	\fi
+\fi		
+
+\end{solution}

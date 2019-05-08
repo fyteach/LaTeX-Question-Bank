@@ -1,0 +1,102 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+%%%%%%The solution (x, y)
+\pgfmathtruncatemacro{\x}{random(1,3)-2} 
+\pgfmathtruncatemacro{\y}{-random(1,4)+3}
+
+
+%%%%Coeff of equation 1
+\pgfmathtruncatemacro{\aone}{-random(2,3)} %%coef of x
+\pgfmathtruncatemacro{\bone}{2}
+
+
+%%%%Coeff of equation 2
+\pgfmathtruncatemacro{\atwo}{2} %%coef of x
+\pgfmathtruncatemacro{\btwo}{3}
+
+
+%%%%least common multiple of coeff of y
+\pgfmathtruncatemacro{\lcmy}{\bone*\btwo/gcd(\bone,\btwo)}
+
+
+%%%%Multipliers
+\pgfmathtruncatemacro{\money}{\lcmy/\bone}
+\pgfmathtruncatemacro{\mtwoy}{\lcmy/\btwo}
+
+
+%%%%% new a's after multiply by the multipliers
+\pgfmathtruncatemacro{\maone}{\money*\aone}
+\pgfmathtruncatemacro{\matwo}{\mtwoy*\atwo}
+
+
+%%%%%%original c's
+\pgfmathtruncatemacro{\cone}{\aone*\x+\bone*\y}
+\pgfmathtruncatemacro{\ctwo}{\atwo*\x-\btwo*\y}
+
+
+%%%%%%new c's
+\pgfmathtruncatemacro{\monecone}{\money*\cone}
+\pgfmathtruncatemacro{\mtwoctwo}{\mtwoy*\ctwo}
+
+
+%%%%%% coeff of x after eliminating y
+\pgfmathtruncatemacro{\coefx}{\maone+\matwo}
+
+%%%%%%right side number after eliminating
+\pgfmathtruncatemacro{\cthree}{\monecone+\mtwoctwo}
+
+
+%%%%%% a_1 times \x
+\pgfmathtruncatemacro{\aonetimesx}{\aone*\x}
+
+
+%%%%%% c_1 minus aone\x
+\pgfmathtruncatemacro{\coneminusaonex}{\cone-\aone*\x}
+
+
+
+
+\setcounter{equation}{0}
+
+
+Solve the following system of linear equations.
+\begin{align}
+\aone x + \bone y &= \cone  \label{eq-I002-1}\\
+\atwo x - \btwo y &= \ctwo  \label{eq-I002-2}
+\end{align}
+
+\begin{solution}
+Multiply \eqref{eq-I002-1} by $\money$ and \eqref{eq-I002-2} by $\mtwoy$.
+\begin{align}
+\money(\aone x) + \money(\bone y) &=\money\cdot(\cone) \nonumber \\
+\maone x + \lcmy y &= \monecone \label{eq-I002-3}
+\end{align}
+
+\begin{align}
+\mtwoy(\atwo x) - \mtwoy(\btwo y) &=\mtwoy\cdot(\ctwo) \nonumber \\
+\matwo x - \lcmy y &= \mtwoctwo \label{eq-I002-4}
+\end{align}
+
+Add equations \eqref{eq-I002-3} and \eqref{eq-I002-4} to eliminate $y$: 
+\begin{align}
+&& \maone x + \lcmy y &= \monecone \nonumber \\
++&& \matwo x - \lcmy y &= \mtwoctwo  \nonumber\\[-0.5em]
+\cline{1-4}
+&& \coefx x+0 &=\cthree \nonumber\\
+&& x&=\x\nonumber
+\end{align}
+
+
+
+Plug $x=\x$ into \eqref{eq-I002-1} and solve for $y$.
+\begin{align*}
+\aone\cdot \x+ \bone y &=\cone \\
+\aonetimesx+\bone y&= \cone\\
+\bone y&= \coneminusaonex \\
+y&=\y
+\end{align*}
+% \end{enumerate}
+The solution is $(\x,\y)$. 
+
+\end{solution}

@@ -1,0 +1,44 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+%%%%%%%%%%%%%%%% Question Setup %%%%%%%%%
+\pgfmathdeclarerandomlist{varx}{{x}{y}{z}{a}{t}}
+\pgfmathrandomitem{\varx}{varx}
+\edef\varx{\varx}
+
+
+\pgfmathtruncatemacro{\coefx}{random(2,2)} 
+\pgfmathtruncatemacro{\aa}{2*random(1,4)-1} 
+\pgfmathtruncatemacro{\bb}{2*random(2,5)-1} 
+\pgfmathtruncatemacro{\cc}{2*random(1,3)-1}
+
+
+
+%%%%%%%%%%%%%%%% Solution Setup %%%%%%%%%%%%%%
+\pgfmathtruncatemacro{\bc}{\bb*\cc}
+\pgfmathtruncatemacro{\ansMnum}{\aa+\bb*\cc}
+\pgfmathtruncatemacro{\ansmnum}{\aa-\bb*\cc}
+
+
+%%%%%%%%%%%%%%%%%% Question and Solution %%%%%%%%%%%%%%%
+
+Solve the absolute value equation 
+\[\left|\frac{\coefx \varx - \aa}{\bb}\right| = \cc.\]
+
+\begin{solution}
+Since $|X||Y|=|XY|$, we may clear the denominator by multiplying both sizes by $|\bb|$ which gives
+\[|\coefx \varx - \aa| = \bc.\]
+Since $\bc>0$, this equation is equivalent to the following two equations.
+
+\begin{center}
+	\begin{alignat*}{3}
+		\coefx \varx - \aa&=\bc &&\ctc{ or } & \coefx \varx - \aa&=-\bc\\
+		\coefx \varx&=\ansMnum && \ctc{or} & \coefx \varx&=\ansmnum\\
+		\varx&=\rdfrac{\ansMnum}{\coefx} && \ctc{or} & \varx&=\rdfrac{\ansmnum}{\coefx}\\
+	\end{alignat*}
+\end{center} 
+So the solutions are $\varx=\rdfrac{\ansMnum}{\coefx}$ and $\varx=\rdfrac{\ansmnum}{\coefx}$. In set-builder notation, the solution set is 
+$\{\rdfrac{\ansmnum}{\coefx}, \rdfrac{\ansMnum}{\coefx}\}$.
+\end{solution}
+

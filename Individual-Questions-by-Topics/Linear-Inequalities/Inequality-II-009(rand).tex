@@ -1,0 +1,48 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+%%%%%%%%%%%%%%%% Setup %%%%%%%%%
+\pgfmathdeclarerandomlist{varx}{{x}{y}{z}}
+\pgfmathrandomitem{\varx}{varx}
+\edef\varx{\varx}
+
+\pgfmathtruncatemacro{\aa}{random(4,7)} 
+\pgfmathtruncatemacro{\dd}{random(1,5)} 
+\pgfmathtruncatemacro{\cc}{random(2,4)}
+
+\pgfmathtruncatemacro{\ans}{random(3,5)}
+
+\pgfmathtruncatemacro{\bb}{\ans * (\aa + \cc) - \cc * \dd}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%% For solution %%%%%%%%%%%%%%%%%%%%
+\pgfmathtruncatemacro{\ac}{\aa+\cc}
+\pgfmathtruncatemacro{\bcd}{\bb+\cc*\dd}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+ Solve the following inequality. Write the answer in interval notation.       
+ \[ \aa \varx - \bb + \cc(\varx - \dd) < 0 \]
+
+
+
+\begin{solution}
+\[
+	\begin{split}
+		\aa \varx - \bb + \cc(\varx - \dd) &< 0\\
+		\ac\varx \constdisplay{-\bcd} &<0\\
+		\ac\varx & <\bcd \\
+		\varx  & <\ans\\
+	\end{split}
+\]
+
+So the solution set is 
+$(-\infty, \ans)$
+
+\end{solution}

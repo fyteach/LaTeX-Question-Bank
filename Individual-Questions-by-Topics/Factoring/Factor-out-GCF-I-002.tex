@@ -1,0 +1,48 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+\pgfmathtruncatemacro{\a}{random(2,7)} 
+\pgfmathtruncatemacro{\b}{random(2,5)} 
+\pgfmathtruncatemacro{\c}{random(2,5)} 
+
+
+\pgfmathdeclarerandomlist{varxy}{{x}{y}}
+\pgfmathrandomitem{\varxy}{varxy}
+\edef\varxy{\varxy}
+
+\pgfmathdeclarerandomlist{varab}{{a}{b}}
+\pgfmathrandomitem{\varab}{varab}
+\edef\varab{\varab}
+
+\pgfmathdeclarerandomlist{varpq}{{p}{q}}
+\pgfmathrandomitem{\varpq}{varpq}
+\edef\varpq{\varpq}
+
+\pgfmathdeclarerandomlist{varmn}{{m}{n}}
+\pgfmathrandomitem{\varmn}{varmn}
+\edef\varmn{\varmn}
+
+
+\pgfmathtruncatemacro{\n}{random(2,5)} 
+\pgfmathtruncatemacro{\none}{\n+2} 
+
+\pgfmathtruncatemacro{\m}{random(5,8)} 
+\pgfmathtruncatemacro{\mone}{\m-3} 
+
+\pgfmathtruncatemacro{\ab}{\a*\b}
+
+\pgfmathtruncatemacro{\ac}{\a*\c}
+
+
+
+
+
+Factor completely the following polynomial.
+\[\a {\varxy}^{\none}{\varab}^\mone +\ab {\varxy}^{\n}{\varab}^\m-\ac{\varxy}^{\n}{\varab}^\mone.\]
+
+\begin{solution}
+\[
+\a\varxy^\none{\varab}^\mone +\ab \varxy^\n{\varab}^3-\ac{\varxy}^{\n}{\varab}^\mone=\a\varxy^\n\varab^\mone(\varxy^2+\b \varab^3-\c).
+\]
+\end{solution}

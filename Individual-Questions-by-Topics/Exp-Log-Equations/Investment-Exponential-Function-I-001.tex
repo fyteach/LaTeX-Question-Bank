@@ -1,0 +1,47 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+
+% \pgfmathtruncatemacro{\a}{random(1,5)}
+% \pgfmathtruncatemacro{\k}{\a^2}
+
+% \pgfmathdeclarerandomlist{diffone}{{2}{3}{4}{5}}
+% \pgfmathdeclarerandomlist{difftwo}{{1}{3}{4}{5}}
+% \pgfmathdeclarerandomlist{diffthree}{{1}{2}{4}{5}}
+% \pgfmathdeclarerandomlist{difffour}{{1}{2}{3}{5}}
+% \pgfmathdeclarerandomlist{difffive}{{1}{2}{3}{4}}
+
+% \ifcase\a\relax%
+%   \or \pgfmathrandomitem{\h}{diffone}
+%   \or \pgfmathrandomitem{\h}{difftwo}
+%   \or \pgfmathrandomitem{\h}{diffthree}
+%   \or \pgfmathrandomitem{\h}{difffour}
+%   \or \pgfmathrandomitem{\h}{difffive} 
+%  \fi
+%  \edef\h{\h}
+
+ A $5000$ check was deposited to a bank account with  the annual rate $5\%$ compounded monthly. Using the formula:
+\[A=P\left(1+\dfrac rn\right)^{nt},\] 
+\begin{enumerate}[label={(\arabic*)},afterlabel={\quad}]
+\item determine the account balance after $6$ years. Round your answer to the nearest cent;
+\item determine how many years, to the nearest tenth, it will take 
+double the account. 
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}[label={(\arabic*)},afterlabel={\quad}]
+\item 
+\[A=5000\left(1+\dfrac{0.05}{12}\right)^{12\cdot 6}\approx 6745.09\]
+\item Solve $t$ from the equation
+\[
+\begin{split}
+10000&=5000\left(1+\dfrac{0.05}{12}\right)^{12t}\\
+2&=\left(1+\dfrac{0.05}{12}\right)^{12t}\\
+\ln2&=12t\ln\left(1+\dfrac{0.05}{12}\right)\\
+t&=\dfrac{\ln2}{12\ln\left(1+\dfrac{0.05}{12}\right)}\\
+t&\approx 13.9
+\end{split}
+\]
+\end{enumerate}
+\end{solution}

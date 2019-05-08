@@ -1,0 +1,69 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+
+%%%%%%%%%% Euclid's formula to generate Pythagorean triples %%%%%%%%
+%%% m>n>0, a=m^2-n^2, b=2mn, c=m^2+n^2 %%%%
+
+
+\pgfmathtruncatemacro{\m}{random(3,5)}
+\pgfmathtruncatemacro{\n}{random(2,1)}
+
+\pgfmathtruncatemacro{\k}{random(1,3)}
+
+\pgfmathtruncatemacro{\a}{\k*(\m^2-\n^2)}
+\pgfmathtruncatemacro{\b}{\k*(2*\m*\n)}
+\pgfmathtruncatemacro{\c}{\k*(\m^2+\n^2)}
+
+\pgfmathtruncatemacro{\s}{abs(\a-\b)}
+\pgfmathtruncatemacro{\twos}{2*\s}
+\pgfmathtruncatemacro{\ssq}{\s^2}
+
+\pgfmathtruncatemacro{\csq}{\c^2}
+
+\pgfmathtruncatemacro{\cs}{\csq-\ssq}
+
+
+%%%%%% c^2-s^2=c^2-(a-b)^2=2ab %%%%
+\pgfmathtruncatemacro{\ab}{\cs/2}
+
+
+The hypotenuse of a right triangle is $\c$ feet. One leg is $\s$ feet longer the other. Find the lengths of the legs.
+
+
+\begin{solution}
+	\begin{multicols}{2}
+Suppose the shorter leg is $x$ feet. Then the longer leg $x+\s$ feet.  The Pythogorean Theorem tells us that 
+\[x^2+(x+\s)^2=\c^2.\]
+
+\columnbreak
+	\begin{center}
+	\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.6, font=\small, minimum size=0.5pt, inner sep=0pt}]
+	\draw[name path=outside]  (0,0)--(4,0)--(4,3)--cycle;
+    \draw[|stealth-{stealth}Bar] (0,-0.25)--(4,-0.25) node[midway, fill=white] {$x+\s$};
+    \draw[|stealth-{stealth}Bar] (4.25,0)--(4.25,3) node[midway, fill=white] {$x$};
+    \draw[|stealth-{stealth}Bar] (-0.2,0.15)--(3.8,3.15) node[midway, fill=white] {$\c$};
+	\end{tikzpicture}
+	\end{center}	
+\end{multicols}
+
+
+Solve the equation to find $x$.
+\[
+\begin{split}
+	x^2+(x+\s)^2&=\c^2\\
+	2x^2+\twos x+\ssq&=\csq\\
+	2x^2+\twos x-\cs&=0\\
+	x^2+\s x-\ab&=0\\
+	\ifnum\a>\b
+	(x+\a)(x-\b)&=0\\
+	\else
+	(x-\a)(x+\b) &=0\\
+	\fi
+\end{split}
+\]
+Then 
+\ifnum\a>\b $x=\b$ \else $x=\a$ \fi.
+So the lengths of the legs are $\a$ feet and $\b$ feet.
+\end{solution}

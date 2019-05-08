@@ -1,0 +1,90 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+
+
+
+%%%%%%%%%List of coprime numbers < #1
+% \pgfmathsetmacro{\randbound}{int(5)}
+
+\pgfmathdeclarerandomlist{CoprimeWithOne}{
+  {1}{2}{3}{4}{5}
+}
+ \pgfmathdeclarerandomlist{CoprimeWithTwo}{
+  {1}{3}{5}
+}
+ \pgfmathdeclarerandomlist{CoprimeWithThree}{
+  {1}{2}{4}{5}
+}
+ \pgfmathdeclarerandomlist{CoprimeWithFour}{
+  {1}{3}{5}
+}
+ \pgfmathdeclarerandomlist{CoprimeWithFive}{
+  {1}{2}{3}{4}
+}
+
+
+\pgfmathsetmacro{\w}{int(random(2,5))}
+\pgfmathsetmacro{\s}{int(random(1,3))}
+\pgfmathsetmacro{\l}{int(\w+\s)}
+\pgfmathsetmacro{\p}{int(random(1,3))}
+\pgfmathsetmacro{\lw}{int(\l*\w)}
+\pgfmathsetmacro{\Sumlw}{int(\l+\w)}
+\pgfmathsetmacro{\DoubleSumlw}{int(2*\Sumlw)}
+\pgfmathsetmacro{\Sumlwtwop}{int(\l+\w+2*\p)}
+
+\pgfmathtruncatemacro{\Doublep}{2*\p}
+
+\pgfmathtruncatemacro{\pTimesSumlwtwop}{\p*\Sumlwtwop}
+
+\pgfmathtruncatemacro{\A}{(\l+2*\p)*(\w+2*\p)}
+
+\pgfmathtruncatemacro{\C}{\A-\lw}
+
+
+A paint measuring $\w$ by $\l$ inches is surrounded by a frame of uniform width. The combined area of the painting and the frame is $\A$ square inches. Find the width of the frame.
+
+
+\begin{solution}
+\begin{multicols}{2}
+Suppose the width of the frame is $x$ inches. Then the total length is $2x+\l$ inches and the total width is $2x+\w$. Using the area formula of a rectangle and the given information in the question, we obtain the following equation
+\[(2x+\w)(2x+\l)=\A.\]
+
+\columnbreak
+	\begin{center}
+	\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.6, font=\small, minimum size=0.5pt, inner sep=0pt}]
+	\draw[name path=outside]  (0,0)--(5,0)--(5,4)--(0,4)--cycle;
+	\draw[name path=inside] (0.5,0.5)--(4.5,0.5)--(4.5,3.5)--(0.5,3.5)--cycle;
+	\draw[stealth-stealth] (0,2.5)--(0.5,2.5) node[midway, fill=white] {$x$};
+    \draw[stealth-stealth] (0.5,2.5)--(4.5,2.5) node[midway, fill=white] {$\l$};
+    \draw[stealth-stealth] (4.5,2.5)--(5,2.5) node[midway, fill=white] {$x$};
+
+    \draw[stealth-stealth] (2,0)--(2,0.5) node[midway, fill=white] {$x$};
+    \draw[stealth-stealth] (2,0.5)--(2,3.5) node[midway, fill=white] {$\w$};
+    \draw[stealth-stealth] (2,3.5)--(2,4) node[midway, fill=white] {$x$};
+
+	\tikzfillbetween[
+	    of=outside and inside, 
+	%    every even segment/.style={pattern=crosshatch}
+	  ] {pattern=crosshatch,pattern color=gray!50};
+	\end{tikzpicture}
+	\end{center}	
+\end{multicols}
+Solve the equation to find $x$.
+\[
+\begin{split}
+	(2x+\w)(2x+\l)&=\A\\
+	4x^2+\DoubleSumlw x+\lw&=\A\\ 
+  4x^2+\DoubleSumlw x-\C&=0\\
+2x^2+ \Sumlw x - \pTimesSumlwtwop&=0\\
+(x-\p)(2x+\Sumlwtwop)&=0\\
+\end{split}
+\]
+Then 
+\begin{alignat*}{3}
+	x-\p&=0 && \ctc{or} & 2x+\Sumlwtwop&=0\\
+    x&=\p && \ctc{or} & x&=-\reducedfraction{\Sumlwtwop}{2}
+\end{alignat*}
+So the width of the frame is $\p$ inches.
+\end{solution}

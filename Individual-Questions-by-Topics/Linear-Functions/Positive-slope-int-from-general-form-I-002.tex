@@ -1,0 +1,56 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+\pgfmathtruncatemacro{\b}{random(1,4)} 
+
+\pgfmathtruncatemacro{\n}{random(1,3)}
+
+
+\pgfmathtruncatemacro{\a}{\b*\n} 
+
+
+\pgfmathtruncatemacro{\yint}{random(1,5)-3} 
+
+\pgfmathtruncatemacro{\yintabs}{abs(\yint)} 
+
+\pgfmathtruncatemacro{\c}{\b*\yint}
+
+
+% \pgfmathtruncatemacro{\yintsign}{\a*\c}
+ 
+
+
+
+
+Find the slope-intercept form equation of the line defined by the equation 
+\[-\a x + {\ifnum\b=1 \else \b \fi} y =\c.\]
+
+
+\begin{solution}
+To find the slope-intercept form, we solve for $y$ from the given equation.
+
+\[
+\begin{split}
+		-\a x + {\ifnum\b=1 \else \b \fi} y = & \c\\
+		\ifnum\b=1  
+			y 
+		\else
+			\b y
+		\fi
+			= & \a x+
+						\ifnum\c<0
+							(\c)
+						\else 
+							\c
+						\fi
+		\\
+		y   =  & \n x
+						\ifnum\yint<0
+							- \yintabs.
+						\else 
+							+ \yint.
+						\fi
+\end{split}
+\]
+\end{solution}

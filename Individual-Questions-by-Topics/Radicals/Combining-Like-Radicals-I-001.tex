@@ -1,0 +1,86 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+% \pgfmathdeclarerandomlist{varx}{{x}{y}{p}{q}{z}}
+\pgfmathdeclarerandomlist{varx}{{2}{3}}
+\pgfmathrandomitem{\varx}{varx}
+\edef\varx{\varx}
+
+% \pgfmathdeclarerandomlist{vary}{{y}{b}}
+% \pgfmathrandomitem{\vary}{vary}
+% \edef\vary{\vary}
+
+% \pgfmathdeclarerandomlist{varz}{{z}{c}}
+% \pgfmathrandomitem{\varz}{varz}
+% \edef\varz{\varz}
+
+
+
+
+\pgfmathtruncatemacro{\m}{2} %%index <=5.
+
+
+
+
+
+
+
+
+  \pgfmathtruncatemacro{\a}{random(3,9)}
+  \pgfmathtruncatemacro{\b}{random(2,5)}
+  \pgfmathtruncatemacro{\c}{random(2,9)}
+
+
+  \pgfmathtruncatemacro{\i}{random(1,2)-1}
+  \pgfmathtruncatemacro{\j}{1}
+  \pgfmathtruncatemacro{\k}{random(2,1)}
+\pgfmathtruncatemacro{\l}{1}
+
+  \pgfmathtruncatemacro{\mi}{\m*\i}
+  \pgfmathtruncatemacro{\mj}{\m*\j}
+  \pgfmathtruncatemacro{\mk}{\m*\k}
+
+\pgfmathtruncatemacro{\xmi}{\varx^(\mi+\l)}
+\pgfmathtruncatemacro{\xmj}{\varx^(\mj+\l)}
+\pgfmathtruncatemacro{\xmk}{\varx^(\mk)}
+
+
+\pgfmathtruncatemacro{\xl}{\varx*\l}
+
+
+
+\pgfmathtruncatemacro{\axi}{\a*\varx^\i}
+\pgfmathtruncatemacro{\bxj}{\b*\varx^\j}
+\pgfmathtruncatemacro{\cxk}{\c*\varx^\k}
+\pgfmathtruncatemacro{\finalcoef}{\axi-\bxj}
+
+
+Simplify the following expression and write in radical form.
+\[
+  \a\sqrt{\xmi}-\b\sqrt{\xmj}-\c\sqrt{\xmk}
+\]
+
+\begin{solution}
+\[
+  \begin{split}
+  \a\sqrt{\xmi}-\b\sqrt{\xmj}-\c\sqrt{\xmk}
+ =&
+  \a\sqrt{\ifnum\mi=0 \xl \else \varx^{\mi}\xl \fi}-\b\sqrt{\varx^{\mj}\xl }-\c\sqrt{\varx^{\mk}}
+\\
+=&
+  \a\cdot \varx^{\invisibleoneinpower{\i}} \cdot \sqrt{\xl} -\b\cdot \varx^{\invisibleoneinpower{\j}} \cdot\sqrt{\xl }-\c \cdot \varx^{\invisibleoneinpower{\k}}
+\\
+=&
+  \axi \sqrt{\xl} -\bxj \sqrt{\xl }-\cxk
+\\
+=&
+\ifnum \finalcoef=0 
+  -\cxk.
+\else
+  \finalcoef \sqrt{\xl} -\cxk.
+\fi
+\end{split}
+\]
+
+\end{solution}

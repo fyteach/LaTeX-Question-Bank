@@ -1,0 +1,121 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+%%%%%%The solution (x, y)
+\pgfmathtruncatemacro{\x}{random(1,3)-2} 
+\pgfmathtruncatemacro{\y}{-random(1,4)+3}
+
+
+%%%%Coeff of equation 1
+\pgfmathtruncatemacro{\aone}{-random(1,3)} %%coef of x
+\pgfmathtruncatemacro{\bone}{random(1,3)}
+
+
+%%%%Coeff of equation 2
+\pgfmathtruncatemacro{\atwo}{2} %%coef of x
+\pgfmathtruncatemacro{\btwo}{1}
+
+
+%%%%least common multiple of coeff of y
+\pgfmathtruncatemacro{\lcmy}{\bone*\btwo/gcd(\bone,\btwo)}
+
+
+%%%%Multipliers
+\pgfmathtruncatemacro{\money}{\lcmy/\bone}
+\pgfmathtruncatemacro{\mtwoy}{\lcmy/\btwo}
+
+
+%%%%% new a's after multiply by the multipliers
+\pgfmathtruncatemacro{\maone}{\money*\aone}
+\pgfmathtruncatemacro{\matwo}{\mtwoy*\atwo}
+
+
+%%%%%%original c's
+\pgfmathtruncatemacro{\cone}{\aone*\x-\bone*\y}
+\pgfmathtruncatemacro{\ctwo}{\atwo*\x-\btwo*\y}
+
+
+%%%%%%new c's
+\pgfmathtruncatemacro{\monecone}{\money*\cone}
+\pgfmathtruncatemacro{\mtwoctwo}{\mtwoy*\ctwo}
+
+
+%%%%%% coeff of x after eliminating y
+\pgfmathtruncatemacro{\coefx}{\maone-\matwo}
+
+%%%%%%right side number after eliminating
+\pgfmathtruncatemacro{\cthree}{\monecone-\mtwoctwo}
+
+
+%%%%%% a_1 times \x
+\pgfmathtruncatemacro{\aonetimesx}{\aone*\x}
+
+
+%%%%%% c_1 minus aone\x
+\pgfmathtruncatemacro{\coneminusaonex}{\cone-\aone*\x}
+
+
+
+
+\setcounter{equation}{0}
+
+
+Solve the following system of linear equations.
+\begin{align}
+\displayaone x - \displaybone y &= \cone  \label{eq-I003-1}\\
+\displayatwo x - \displaybtwo y &= \ctwo  \label{eq-I003-2}
+\end{align}
+
+\begin{solution}
+
+\ifnum\bone=1 
+	Multiply \eqref{eq-I003-1} by $\money$.
+		\begin{align}
+		\money(\displayaone x) - \money(\displaybone y) &=\money\cdot(\cone) \nonumber \\
+		\maone x - \lcmy y &= \monecone \label{eq-I003-3}
+		\end{align}
+
+\else 
+	\ifnum\btwo=1
+		Multiply \eqref{eq-I003-2} by $\mtwoy$.
+		\begin{align}
+		\mtwoy(\displayatwo x) - \mtwoy(\displaybtwo y) &=\mtwoy\cdot(\ctwo) \nonumber \\
+		\matwo x - \lcmy y &= \mtwoctwo \label{eq-I003-4}
+		\end{align}
+	\else
+		Multiply \eqref{eq-I003-1} by $\money$ and \eqref{eq-I003-2} by $\mtwoy$.
+		\begin{align}
+		\money(\displayaone x) - \money(\displaybone y) &=\money\cdot(\cone) \nonumber \\
+		\maone x - \lcmy y &= \monecone \label{eq-I003-3}
+		\end{align}
+
+		\begin{align}
+		\mtwoy(\displayatwo x) - \mtwoy(\displaybtwo y) &=\mtwoy\cdot(\ctwo) \nonumber \\
+		\matwo x - \lcmy y &= \mtwoctwo \label{eq-I003-4}
+		\end{align}
+
+	\fi
+\fi
+
+Subtraction equations to eliminate $y$: \eqref{eq-I003-1}$-$\eqref{eq-I003-4} 
+\begin{align}
+&& \maone x - \lcmy y &= \monecone \nonumber \\
+-&& \matwo x - \lcmy y &= \mtwoctwo  \nonumber\\[-0.5em]
+\cline{1-4}
+&& \displaycoefx x+0 &=\cthree \nonumber\\
+&& x&=\x\nonumber
+\end{align}
+
+
+
+Plug $x=\x$ into \eqref{eq-I003-1} and solve for $y$.
+\begin{align*}
+\aone\cdot \x- \displaybone y &=\cone \\
+\aonetimesx-\displaybone y&= \cone\\
+-\displaybone y&= \coneminusaonex \\
+y&=\y
+\end{align*}
+% \end{enumerate}
+The solution is $(\x,\y)$. 
+
+\end{solution}

@@ -1,0 +1,24 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+
+\pgfmathtruncatemacro{\kk}{random(1,9)}
+\pgfmathtruncatemacro{\bb}{2*(\kk)}
+\pgfmathtruncatemacro{\negksq}{-(\kk)^2}
+\pgfmathtruncatemacro{\discr}{\bb^2-4*2*\negksq}
+
+
+
+The hypotenuse of an isosceles right triangle is \kk cm longer than either of its legs. Note that an isosceles right triangle is a right triangle whose legs are the same length. Find the exact length of its legs and its hypotenuse.
+
+
+\begin{solution}
+ Suppose the length of a leg is $x$ meters. Then the length of the hypotenuse is $x+\kk$. By Pythagorean identity: $\text{hypotenuse}^2=\text{Leg}^2+\text{Leg}^2$, we have the following equation
+\[x^2+x^2=(x+\kk)^2.\] 
+Simplify the equation, we get
+\[x^2- \bb x \negksq=0.\]
+By the quadratic formula, we get  
+\[x=\dfrac{-(-\bb) +\sqrt{(-\bb)^2-4\cdot(\negksq)}}{2}=\kk+\invisibleoneincoef{\kk}\sqrt{2}.\]
+So the leg is $\kk+\invisibleoneincoef{\kk}\sqrt{2}$ cm and the hypotenuse is $\bb+\invisibleoneincoef{\kk}\sqrt{2}$ cm.
+\end{solution}

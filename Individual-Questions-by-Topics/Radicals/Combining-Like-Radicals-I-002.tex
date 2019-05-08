@@ -1,0 +1,81 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+% \pgfmathdeclarerandomlist{varx}{{x}{y}{p}{q}{z}}
+\pgfmathdeclarerandomlist{varx}{{x}{a}}
+\pgfmathrandomitem{\varx}{varx}
+\edef\varx{\varx}
+
+% \pgfmathdeclarerandomlist{vary}{{y}{b}}
+% \pgfmathrandomitem{\vary}{vary}
+% \edef\vary{\vary}
+
+% \pgfmathdeclarerandomlist{varz}{{z}{c}}
+% \pgfmathrandomitem{\varz}{varz}
+% \edef\varz{\varz}
+
+% \pgfmathdeclarerandomlist{evenpower}{{2}{4}}
+% \pgfmathrandomitem{\m}{evenpower}
+% \edef\m{\m}
+
+
+\pgfmathtruncatemacro{\m}{random(3,5)} %%index <=5.
+
+
+
+\pgfmathdeclarerandomlist{indextwo}{{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}}
+\pgfmathdeclarerandomlist{indexthree}{{2}{3}{4}{5}}
+\pgfmathdeclarerandomlist{indexfour}{{2}{3}}
+\pgfmathdeclarerandomlist{indexfive}{{2}}
+
+
+\ifcase\m\relax%
+  \or \pgfmathrandomitem{\n}{}
+  \or \pgfmathrandomitem{\n}{indextwo}
+  \or \pgfmathrandomitem{\n}{indexthree}
+  \or \pgfmathrandomitem{\n}{indexfour}
+  \or \pgfmathrandomitem{\n}{indexfive} 
+ \fi
+ \edef\n{\n}
+
+
+  \pgfmathtruncatemacro{\a}{random(1,2)}
+  \pgfmathtruncatemacro{\b}{random(3,4)}
+
+  \pgfmathtruncatemacro{\k}{random(1,2)}
+
+
+  \pgfmathtruncatemacro{\c}{random(2,9)}
+
+
+
+\pgfmathtruncatemacro{\nm}{\n^\m}
+  \pgfmathtruncatemacro{\ma}{\m*\a}
+  \pgfmathtruncatemacro{\mb}{\m*\b}
+  \pgfmathtruncatemacro{\mak}{\m*\a+\k}
+  \pgfmathtruncatemacro{\mbk}{\m*\b+\k}
+
+
+Assume the variable $\varx$ is positive. Simplify the following expression and write in radical form.
+\[
+\sqrt[\m]{\nm\varx^{\mak}}-\c\sqrt[\m]{\varx^{\mbk}}
+\]
+
+\begin{solution}
+\[
+  \begin{split}
+  \sqrt[\m]{\nm\varx^{\mak}}-\c\sqrt[\m]{\varx^{\mbk}}
+  =&
+  \sqrt[\m]{\n^{\m}\cdot \varx^{\invisibleoneinpower{\ma}}\cdot \varx^{\invisibleoneinpower{\k}} }
+  -\c \sqrt[\m]{\varx^{\invisibleoneinpower{\mb}}\cdot \varx^{\invisibleoneinpower{\k}}}
+  \\
+  =&
+  \n\varx^{\invisibleoneinpower{\a}}\sqrt[\m]{\varx^{\invisibleoneinpower{\k}}}-\c\varx^{\invisibleoneinpower{\b}}\sqrt[\m]{\varx^{\invisibleoneinpower{\k}}}
+  \\
+  =& (\n\varx^{\invisibleoneinpower{\a}}-\c\varx^{\invisibleoneinpower{\b}})\sqrt[\m]{\varx^{\invisibleoneinpower{\k}}}
+.
+  \end{split}
+\]
+
+\end{solution}

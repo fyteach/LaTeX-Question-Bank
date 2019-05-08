@@ -1,0 +1,34 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+% \pgfmathdeclarerandomlist{varx}{{x}{y}{p}{q}{z}}
+\pgfmathdeclarerandomlist{varx}{{x}}
+\pgfmathrandomitem{\varx}{varx}
+\edef\varx{\varx}
+
+
+\pgfmathsetmacro{\aaa}{int(random(10,1)-6)}
+\pgfmathsetmacro{\aa}{int(ifthenelse(\aaa<0, \aaa, \aaa+1)) }
+\pgfmathsetmacro{\bb}{int(random(5,2))}
+\pgfmathsetmacro{\ab}{int(\aa*\bb)}
+
+
+
+
+
+Simplify the rational expression.
+\[\dfrac{\varx^3  \plusminus{\aa}\varx^2 + \bb \varx \constdisplay{\ab} }{ \varx \constdisplay{\aa} }.\]
+
+\begin{solution}
+\[
+	\begin{split}
+		&\dfrac{\varx^3  \plusminus{\aa}\varx^2 + \bb \varx \constdisplay{\ab}}{ \varx \plusminus{\aa}}\\
+	=	&\dfrac{(\varx^3  \plusminus{\aa}\varx^2) + (\bb \varx \constdisplay{\ab})}{\varx \constdisplay{\aa}}\\
+  = &\dfrac{ \varx^2(\varx  \plusminus{\aa}) + \bb (\varx \constdisplay{\aa})}{\varx \constdisplay{\aa}}\\
+	= &\dfrac{ (\varx^2+\bb)(\varx  \plusminus{\aa})}{\varx \constdisplay{\aa}}\\
+  = &\varx^2+\bb
+	\end{split}
+\]
+
+\end{solution}

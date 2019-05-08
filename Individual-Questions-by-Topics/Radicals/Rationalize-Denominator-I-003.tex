@@ -1,0 +1,71 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+\pgfmathdeclarerandomlist{varx}{{x}{p}{r}}
+\pgfmathrandomitem{\varx}{varx}
+\edef\varx{\varx}
+
+
+% \pgfmathdeclarerandomlist{vary}{{y}{q}{s}}
+% \pgfmathrandomitem{\vary}{vary}
+% \edef\vary{\vary}
+
+
+
+
+\pgfmathtruncatemacro{\aa}{random(1,5)}
+
+\pgfmathtruncatemacro{\bbint}{-random(2,7)+5}
+\pgfmathtruncatemacro{\bb}{ifthenelse(\bbint<0, \bbint, \bbint+1)}
+
+\pgfmathtruncatemacro{\ccint}{random(6,3)}
+\pgfmathtruncatemacro{\cc}{ifthenelse(\ccint<0, \ccint, \ccint+1)}
+
+
+
+\pgfmathtruncatemacro{\ddint}{random(5,1)-3}
+\pgfmathtruncatemacro{\dd}{ifthenelse(\ddint<0, \ddint, \ddint+1)}
+
+
+
+\pgfmathtruncatemacro{\negdd}{-\dd}
+
+\pgfmathtruncatemacro{\ac}{\aa*\cc}
+\pgfmathtruncatemacro{\bd}{\bb*\dd}
+\pgfmathtruncatemacro{\ad}{\aa*\dd}
+\pgfmathtruncatemacro{\bc}{\bb*\cc}
+
+
+\pgfmathtruncatemacro{\bcad}{\bc+\ad}
+
+\pgfmathtruncatemacro{\ccsq}{(\cc)^2}
+\pgfmathtruncatemacro{\ddsq}{(\dd)^2}
+
+
+Rationalize the denonimator and simplify as much as possible.
+\[
+\frac{\invisibleoneincoef{\aa}\sqrt{\varx} \constdisplay{\bb}}{\invisibleoneincoef{\cc}\sqrt{\varx} \constdisplay{\negdd}}
+\]
+
+\begin{solution}
+\[
+\begin{split} 
+\frac{ \invisibleoneincoef{\aa}\sqrt{\varx} \constdisplay{\bb} }
+     { \invisibleoneincoef{\cc}\sqrt{\varx} \constdisplay{\negdd} }
+&= 
+\frac{ (\invisibleoneincoef{\aa}\sqrt{\varx} \constdisplay{\bb})(\invisibleoneincoef{\cc}\sqrt{\varx} \constdisplay{\dd} ) }
+     {(\invisibleoneincoef{\cc}\sqrt{\varx} \constdisplay{\negdd} )(\invisibleoneincoef{\cc}\sqrt{\varx} \constdisplay{\dd}) }\\
+&= 
+\frac{ (\invisibleoneincoef{\aa}\sqrt{\varx} \constdisplay{\bb})(\invisibleoneincoef{\cc}\sqrt{\varx} \constdisplay{\dd} ) }
+     { \invisibleoneincoef{\ccsq} \varx - \ddsq }\\
+&=
+\frac{ \invisibleoneincoef{\ac}\varx \plusminus{\bc} \sqrt{\varx} \plusminus{\ad}\sqrt{\varx} \constdisplay{\bd} }
+     { \invisibleoneincoef{\ccsq} \varx-\ddsq }\\
+&=
+\frac{ \invisibleoneincoef{\ac} \varx \plusminus{\bcad} \sqrt{\varx} \constdisplay{\bd} }
+     { \invisibleoneincoef{\ccsq} \varx-\ddsq }
+\end{split} 
+\]
+
+\end{solution}

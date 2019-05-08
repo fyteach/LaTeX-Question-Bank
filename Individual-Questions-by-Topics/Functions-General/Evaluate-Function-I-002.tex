@@ -1,0 +1,64 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+\pgfmathtruncatemacro{\a}{random(1,3)} 
+
+\pgfmathtruncatemacro{\b}{random(2,4)}
+
+
+\pgfmathtruncatemacro{\c}{random(1,5)}
+
+
+
+
+\pgfmathtruncatemacro{\m}{random(1,3)-2} 
+\pgfmathtruncatemacro{\minusm}{-\m}
+
+\pgfmathtruncatemacro{\n}{random(2,3)} 
+
+\pgfmathtruncatemacro{\ansone}{(-\a*(\m)^2+\b*(\m)-\c)-(-\a*(\minusm)^2+\b*(\minusm)-\c)} 
+
+
+\pgfmathtruncatemacro{\doublen}{2*\n} 
+
+\pgfmathtruncatemacro{\bn}{-2*\n+\b} 
+\pgfmathtruncatemacro{\cn}{-\n^2+\b*\n-\c}
+
+
+
+
+
+If $f(x)=-\ifnum \a=1 \else \a\fi   x^2  + \ifnum\b=1 \else \b\fi  x  -  \c$, 
+determine the function values 
+
+\begin{enumerate*}[label={\textup(\arabic*)}, afterlabel=~~~, itemjoin=\hspace{0.25\textwidth}]
+\item $f(\m)-f(\minusm)$
+\item $f(a+\n)$.
+\end{enumerate*}
+% and $f(a+\n)$.
+
+
+\begin{solution}
+\begin{enumerate}[label={\textup(\arabic*)}, afterlabel=~~~]
+	\item
+\[
+f(\m)-f(\minusm)=(-\ifnum\a=1  \else \a \fi (\m)^2    + \ifnum\b=1 \else \b  \fi  (\m)  -  \c)
+-(-\ifnum\a=1  \else \a \fi (\minusm)^2    + \ifnum\b=1 \else \b  \fi  (\minusm)  -  \c)
+=\ansone.
+\]
+
+\item
+\[
+	\begin{split}
+	f(a+\n)
+=&-\ifnum\a=1 \else \a \fi (a+\n)^2+ \ifnum\b=1 \else \b\fi  (a+\n)-\c\\
+=& -\ifnum\a=1 \else \a \fi (a^2+\doublen a+\n^2)  \ifnum\b=1 + \else \ifnum\b=-1  - \else +\b \fi \fi  (a+\n)-\c\\
+=& -\ifnum\a=1 \else \a \fi a^2  
+\ifnum\bn=1 + \else {\ifnum\bn=-1  - \else {\ifnum \bn>1 + \bn \else \bn \fi} \fi} \fi a 
+\ifnum\cn=0 \else {\ifnum \cn>0 +\cn \else \cn\fi} \fi.
+	\end{split}
+\]
+
+\end{enumerate}
+\end{solution}

@@ -1,0 +1,48 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+%%%%%%%%%%%%%%%% Question Setup %%%%%%%%%
+\pgfmathdeclarerandomlist{varx}{{x}{y}{z}{a}{t}}
+\pgfmathrandomitem{\varx}{varx}
+\edef\varx{\varx}
+
+
+
+\pgfmathtruncatemacro{\aa}{2*random(1,2)} 
+\pgfmathtruncatemacro{\bb}{2*random(1,3)-1} 
+
+
+\pgfmathtruncatemacro{\ans}{random(1,3)} 
+
+\pgfmathtruncatemacro{\cc}{\aa*\ans-\bb}
+
+
+%%%%%%%%%%%%%%%% Solution Setup %%%%%%%%%%%%%%
+\pgfmathtruncatemacro{\bplusc}{\cc+\bb}
+
+
+
+%%%%%%%%%%%%%%%%%% Question and Solution %%%%%%%%%%%%%%%
+
+Solve the absolute value equation 
+\[ \aa|\varx| - \bb  = \cc .\]
+
+\begin{solution}
+First, we isolate the absolute value expression and the remove the absolute value sign.
+\[
+\begin{split}
+\aa|\varx| - \bb  &= \cc\\
+\aa|\varx|  &= \bplusc\\
+|\varx| &=\ans
+\end{split}
+\]
+
+\begin{center}
+	\begin{alignat*}{3}
+		\varx&=\ans &&\ctc{ or } & \varx&=-\ans
+	\end{alignat*}
+\end{center} 
+So the solutions are $\varx=\ans$ and $\varx=-\ans$.  In set-builder notation, the solution set is 
+$\{-\ans, \ans\}$.
+\end{solution}
+

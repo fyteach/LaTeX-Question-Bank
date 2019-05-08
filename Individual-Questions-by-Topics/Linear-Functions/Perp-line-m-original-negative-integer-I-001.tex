@@ -1,0 +1,140 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+\pgfmathtruncatemacro{\a}{random(2,7)} 
+
+\pgfmathtruncatemacro{\n}{-random(1,5)}
+
+
+\pgfmathtruncatemacro{\absn}{abs(\n)}
+
+
+\pgfmathtruncatemacro{\b}{\a*\n} 
+
+\pgfmathtruncatemacro{\absb}{abs(\a*\n)}
+
+
+\pgfmathtruncatemacro{\c}{random(1,7)-4} 
+
+\pgfmathtruncatemacro{\x}{random(1,8)-4} 
+\pgfmathtruncatemacro{\y}{random(1,8)-4}
+
+
+% \pgfmathtruncatemacro{\mnum}{\y-\b}
+% \pgfmathtruncatemacro{\mden}{\x-\a} 
+
+% \pgfmathsetmacro{\n}{\mnum/\mden}
+
+\pgfmathtruncatemacro{\bnum}{\absn*\y-\x}
+\pgfmathtruncatemacro{\bden}{\absn} 
+
+\pgfmathtruncatemacro{\bsign}{\bnum*\bden}
+ 
+
+
+
+
+Find the slope-intercept form of the equation of the line perpendicular to the line $\absb x+ \a y=\c$ and passing through $(\x, \y)$.
+
+
+\begin{solution}
+
+The slope of original line is  
+\[
+m=\n.
+\]
+
+The slope of the perpendicular line is 
+\[
+m_{\perp}=-\frac{1}{m}=-\frac{1}{\n}=\frac{1}{\absn}.
+\]
+
+
+We can then write down the point-slope form equation of the line.
+		\[
+			\ifnum\y<0 
+				y-(\y) 
+			\else
+				y-\y
+			\fi
+			=
+			\ifnum\absn =1
+				\ifnum\x<0 
+					x-(\x) 
+				\else
+					x-\x
+				\fi
+			\else
+				\frac{1}{\absn}
+					\ifnum\x<0 
+						(x-(\x)) 
+					\else
+						(x-\x)
+					\fi
+			\fi
+		\]
+Solve for $y$ and simplify the equations, we will get the slope intercept form.
+		\[
+		\begin{split}
+		\ifnum\y<0 
+				y-(\y) 
+			\else
+				y-\y
+		\fi
+			&
+		=\ifnum\absn =1
+				\ifnum\x<0 
+					x-(\x) 
+				\else
+					x-\x
+				\fi
+			\else
+				\frac{1}{\absn}
+					\ifnum\x<0 
+							(x-(\x)) 
+						\else
+							(x-\x)
+					\fi
+			\fi	
+		\\
+		y   & 
+		=\ifnum\absn =1
+				\ifnum\x<0 
+					x-(\x) 
+				\else
+					x-\x
+				\fi
+			\else
+				\frac{1}{\absn}
+					\ifnum\x<0 
+						(x-(\x)) 
+					\else
+						(x-\x)
+					\fi
+			\fi
+		+
+		\ifnum\y<0
+			(\y)
+		\else
+			\y
+		\fi	
+		\\
+		y   &
+		= \ifnum\absn =1
+				x
+			\else
+				\frac{1}{\absn}x
+			\fi
+		\ifnum\bsign=0 
+			.
+		\else
+			\ifnum\bsign>0
+				+\rdfrac{\bnum}{\bden}.
+			\else
+				\rdfrac{\bnum}{\bden}.
+			\fi
+		\fi
+		\end{split}
+		\]
+\end{solution}

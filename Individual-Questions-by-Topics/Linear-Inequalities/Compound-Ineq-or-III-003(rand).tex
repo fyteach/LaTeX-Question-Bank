@@ -1,0 +1,48 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+%%%%%%%%%%%%%%%%%%%% Setup %%%%%%%%%%%%%%%%%%%%%%%
+% This is an (-infinity,a) or (b,infinity) problem:
+
+\pgfmathtruncatemacro{\aa}{random(1,10)-6} %%%% left bound	
+\pgfmathtruncatemacro{\bb}{random(1,9)+\aa}    %%%% right bound
+
+\pgfmathtruncatemacro{\cc}{random(1,7)}
+\pgfmathtruncatemacro{\dd}{random(1,7)}
+\pgfmathtruncatemacro{\nn}{random(4,6)}
+\pgfmathtruncatemacro{\pp}{-random(1,2)+\nn}
+\pgfmathtruncatemacro{\mm}{-random(4,2)}
+
+\pgfmathtruncatemacro{\ee}{\cc+\mm*\aa}
+\pgfmathtruncatemacro{\ff}{\nn*\bb+\dd}
+\pgfmathtruncatemacro{\gg}{\pp-\nn}
+
+%%%%%%%%%%%% Solution Setup %%%%%%%%%%%%%%%%%%
+\pgfmathtruncatemacro{\ec}{\ee-\cc}
+\pgfmathtruncatemacro{\pg}{\pp-\gg}
+\pgfmathtruncatemacro{\df}{\dd+\ff}
+\pgfmathtruncatemacro{\anschecker}{\ec/\mm-\df/\pg}
+
+
+Solve the following compound linear inequalities. Write your answer in interval notation. 
+
+
+\[ \cc \plusminus{\mm} x>\ee \quad \textup{  or  }\quad \pp x-\dd > \ff \plusminus{\gg} x \]
+
+\begin{solution}
+\begin{center}
+\begin{align*}
+\cc \plusminus{\mm} x&> \ee &&\text{or} & \pp x-\dd &> \ff \plusminus{\gg} x\\
+\mm x&>\ec  &&  & \pg x&> \df\\
+x&< \rdfrac{\ec}{\mm} &&\text{or}  &  x&> \rdfrac{\df}{\pg}
+\end{align*}
+\end{center}
+
+The solution set is
+\ifnum\anschecker>0
+	 $(-\infty, \infty)$.
+ \else
+	 $(-\infty, \rdfrac{\ec}{\mm})\cup (\rdfrac{\df}{\pg}, \infty)$.
+ \fi
+\end{solution}

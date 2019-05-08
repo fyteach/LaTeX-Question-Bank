@@ -1,0 +1,55 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+% \pgfmathdeclarerandomlist{varx}{{x}{y}{p}{q}{z}}
+\pgfmathdeclarerandomlist{varx}{{x}}
+\pgfmathrandomitem{\varx}{varx}
+\edef\varx{\varx}
+
+
+
+\pgfmathdeclarerandomlist{randnumbers}{{3}{-3}{-4}{4}{-5}{5}{6}{-6}{-7}{-7}}
+\pgfmathrandomitem{\a}{randnumbers}
+\edef\a{\a}
+
+
+% \pgfmathtruncatemacro{\a}{-random(3, 9)} 
+\pgfmathtruncatemacro{\b}{\a+1}
+
+\pgfmathtruncatemacro{\B}{(\a)+(\b)}
+\pgfmathtruncatemacro{\C}{(\a)*(\b)}
+\pgfmathtruncatemacro{\D}{\C-2}
+
+\pgfmathtruncatemacro{\r}{\a-1}
+\pgfmathtruncatemacro{\s}{\a+2}
+
+
+\pgfmathtruncatemacro{\rootone}{-\r}
+\pgfmathtruncatemacro{\roottwo}{-\s}
+
+
+% \pgfmathtruncatemacro{\bminusa}{(\a)*(\b)}
+
+%%%1/(x+a)-1/(x+b)=1/2 Roots: r=-(a-1) or s=-(a+2)
+
+Solve the  rational equation
+\[
+   \frac{1}{\varx \constdisplay{\a}}-\frac{1}{\varx \constdisplay{\b}}=\frac{1}{2}.
+\]
+
+\begin{solution}
+\[
+	\begin{split}
+		\frac{1}{\varx \constdisplay{\a}}-\frac{1}{\varx \constdisplay{\b}}&=\frac{1}{2}\\
+    2[(\varx \constdisplay{\b}) - (\varx \constdisplay{\a})] & = (\varx \constdisplay{\a})(\varx \constdisplay{\b})\\
+    2 &= \varx^2\plusminus{\B}\varx \constdisplay{\C}\\
+    \varx^2\plusminus{\B}\varx \constdisplay{\D}&=0\\
+    (\varx \constdisplay{\r})(\varx \constdisplay{\s}) &=0\\
+	\end{split}
+\]
+  \begin{alignat*}{3}
+    \varx \constdisplay{\r}&=0 &&\ctc{or} & \varx \constdisplay{\s}&=0\\
+    x&=\rootone &&  & x&=\roottwo
+  \end{alignat*}
+\end{solution}

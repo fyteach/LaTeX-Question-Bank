@@ -1,0 +1,21 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+
+\pgfmathtruncatemacro{\ainit}{random(1,8)-5}
+\pgfmathtruncatemacro{\aa}{ifthenelse(\ainit<0, \ainit, \ainit+1)}
+
+\pgfmathtruncatemacro{\bb}{random(1,11)}
+
+
+
+Find the domain of the following rational function and write your answer in interval notation
+\[
+  f(x)=\frac{\aa x^2}{x^2+\bb x}
+\]
+
+\begin{solution}
+The rational function is well-defined except the values of $x$ such that $x^2+\bb x= 0$. Since the equation has two solutions $x=0$ or $x=-\bb$. Removing the two numbers from the number line, we find the domain of the function $f$ is 
+\[(-\infty, -\bb)\cup (-\bb, 0)\cup(0, \infty).\]
+\end{solution}

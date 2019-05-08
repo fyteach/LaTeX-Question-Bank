@@ -1,0 +1,133 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+\pgfmathtruncatemacro{\a}{random(1,6)-5} 
+\pgfmathtruncatemacro{\b}{random(1,3)} 
+
+\pgfmathtruncatemacro{\x}{random(2,7)} 
+
+
+\pgfmathtruncatemacro{\n}{random(1,11)-6} 
+
+
+\pgfmathtruncatemacro{\y}{\n*(\x-\a)+\b}
+
+
+% \pgfmathtruncatemacro{\y}{random(1,7)}
+
+\pgfmathtruncatemacro{\mnum}{\y-\b}
+
+\pgfmathtruncatemacro{\mden}{\x-\a} 
+
+\pgfmathtruncatemacro{\bnum}{\y*\mden-\mnum*\x}
+\pgfmathtruncatemacro{\bden}{\mden} 
+
+\pgfmathtruncatemacro{\bsign}{\bnum*\bden}
+ 
+
+
+Find an equation of the line passing through the following two points
+\[(\a, \b)\text{\quad and\quad} (\x, \y).\]
+Write the equation in the slope-intercept form if the slope is not undefined. 
+
+
+\begin{solution}
+
+The slope is 
+\[
+m=
+\ifnum\y<0 
+	\frac{\b-(\y)}{\a-\x} 
+\else
+	\frac{\b-\y}{\a-\x}
+\fi
+=\simplyfrac{\mnum}{\mden}.
+\]
+
+\ifnum\mnum=0
+	Since the slope is $0$, the line is a horizontal line and the slope-intercept form equation is 
+	\[y=\b.\]
+\else
+	\ifnum\mden=0
+		Since the slope is undefined, the line is a vertical line and an equation is 
+		\[x=\a.\]
+	\else
+		We can then write down the point-slope form equation of the line.
+		\[
+			\ifnum\y<0 
+				y-(\y) 
+			\else
+				y-\y
+			\fi
+			=
+			\ifdim\n pt=1 pt
+				x-\x
+			\else
+				\ifdim\n pt=-1 pt
+					-(x-\x)
+				\else
+					\rdfrac{\mnum}{\mden}(x-\x).
+				\fi
+			\fi	
+		\]
+		Solve for $y$ and simplify the equations, we will get the slope intercept form.
+		\[
+		\begin{split}
+		\ifnum\y<0 
+				y-(\y) 
+			\else
+				y-\y
+		\fi
+			&
+		=\ifdim\n pt =1 pt 
+				x-\x
+			\else
+				\ifdim\n pt =-1 pt
+					-(x-\x)
+				\else
+					\rdfrac{\mnum}{\mden}(x-\x).
+				\fi
+			\fi	
+		\\
+		y   & 
+		=\ifdim\n pt =1 pt 
+					x-\x
+				\else
+					\ifdim\n pt=-1 pt
+						-(x-\x)
+					\else
+						\rdfrac{\mnum}{\mden}(x-\x)
+					\fi
+				\fi	
+		+
+		\ifnum\y>0
+			\y
+		\else
+			(\y)
+		\fi	
+		\\
+		y   &
+		= \ifdim\n pt=1 pt
+					x
+				\else
+					\ifdim\n pt=-1 pt
+						-x
+					\else
+						\rdfrac{\mnum}{\mden}x
+					\fi
+				\fi	
+		\ifnum\bsign=0 
+			.
+		\else
+			\ifnum\bsign>0
+				+\rdfrac{\bnum}{\bden}.
+			\else
+				\rdfrac{\bnum}{\bden}.
+			\fi
+		\fi
+		\end{split}
+		\]
+	\fi
+\fi		
+\end{solution}

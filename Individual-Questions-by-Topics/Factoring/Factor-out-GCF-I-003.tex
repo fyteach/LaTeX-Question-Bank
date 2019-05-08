@@ -1,0 +1,48 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+\pgfmathtruncatemacro{\a}{random(2,5)} 
+\pgfmathtruncatemacro{\b}{2*random(4,6)-1} 
+ 
+
+
+\pgfmathdeclarerandomlist{varxy}{{x}{y}}
+\pgfmathrandomitem{\varxy}{varxy}
+\edef\varxy{\varxy}
+
+\pgfmathdeclarerandomlist{varab}{{a}{b}}
+\pgfmathrandomitem{\varab}{varab}
+\edef\varab{\varab}
+
+\pgfmathdeclarerandomlist{varpq}{{p}{q}}
+\pgfmathrandomitem{\varpq}{varpq}
+\edef\varpq{\varpq}
+
+\pgfmathdeclarerandomlist{varmn}{{m}{n}}
+\pgfmathrandomitem{\varmn}{varmn}
+\edef\varmn{\varmn}
+
+
+\pgfmathtruncatemacro{\n}{random(2,5)} 
+\pgfmathtruncatemacro{\none}{\n+2} 
+
+\pgfmathtruncatemacro{\m}{random(5,8)} 
+\pgfmathtruncatemacro{\mone}{\m-3} 
+
+\pgfmathtruncatemacro{\ab}{\a*\b}
+
+
+
+
+
+
+
+Factor out the negative of the greatest common factor.
+\[-\a {\varxy}^{\none} +\ab {\varxy}^{\n}.\]
+
+\begin{solution}
+\[-\a {\varxy}^{\none} +\ab {\varxy}^{\n}
+=-\a\varxy^\n(\varxy^2-\b).
+\]
+\end{solution}

@@ -1,0 +1,38 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+\pgfmathtruncatemacro{\a}{2*random(1,3)-1} 
+\pgfmathtruncatemacro{\b}{2*random(3,5)+1} 
+
+
+
+\pgfmathtruncatemacro{\aplusb}{-\a+\b} 
+\pgfmathtruncatemacro{\aminusb}{-\a-\b} 
+
+\pgfmathtruncatemacro{\rone}{(-\a+\b)/2} 
+\pgfmathtruncatemacro{\rtwo}{(-\a-\b)/2} 
+
+Solve the absolute value equation 
+\[|2x+\a|=\b.\]
+
+\begin{solution}
+
+% First, check if the equation is $|X|=c$ form. If not, isolate the absolute value expression $|X|$.
+
+% \centerline{$|\a-3x|=\b$}
+% The equation is equivalent to 
+% \[|2x+\a|=\b.\]
+Since $\b>0$, this equation is equivalent to the following two equations.
+
+\begin{center}
+	\begin{alignat*}{3}
+		2x+\a&=\b &&\ctc{ or } & 2x+\a&=-\b\\
+		2x&=\aplusb &&  & 2x&=\aminusb\\
+		x&=\rone &&\ctc{or}  &  x&=\rtwo
+	\end{alignat*}
+\end{center} 
+So the solutions are $x=\rone$ and $x=\rtwo$. In set-builder notation, the solution set is 
+$\{\rtwo, \rone\}$.
+\end{solution}
+

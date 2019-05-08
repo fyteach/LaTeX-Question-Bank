@@ -1,0 +1,23 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+
+\pgfmathtruncatemacro{\ainit}{random(1,8)-5}
+\pgfmathtruncatemacro{\aa}{ifthenelse(\ainit<0, \ainit, \ainit+1)}
+
+
+\pgfmathtruncatemacro{\binit}{random(1,12)-7}
+\pgfmathtruncatemacro{\bb}{ifthenelse(\ainit<0, \ainit, \ainit+1)}
+
+
+
+Find the domain of the following rational function and write your answer in interval notation
+\[
+  f(x)=\frac{\invisibleoneincoef{\aa} x^3}{\sqrt{-x \constdisplay{\bb}} }
+\]
+
+\begin{solution}
+The function is well-defined if the denominator  $\sqrt{-x \constdisplay{\bb}}$ is a nonzero real number. Since the denominator is a radical, and cannot be zero, we know $x$ must satisfy the inequality $-x \constdisplay{\bb}>0$. Solve the inequality, we get $x< \bb$. So the domain of $f$ is 
+\[(-\infty, \bb).\]
+\end{solution}

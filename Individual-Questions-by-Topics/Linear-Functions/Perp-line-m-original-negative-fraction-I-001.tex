@@ -1,0 +1,145 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+\pgfmathtruncatemacro{\a}{random(2,9)} 
+
+\pgfmathtruncatemacro{\binit}{random(2,9)}
+
+\pgfmathtruncatemacro{\b}{ifthenelse(\a==\binit, \binit+1, \binit)}
+
+\pgfmathtruncatemacro{\m}{\a/\b}
+
+
+% \pgfmathtruncatemacro{\b}{\a*\n} 
+
+% \pgfmathtruncatemacro{\absb}{abs(\a*\n)}
+
+
+
+
+
+\pgfmathtruncatemacro{\c}{random(1,7)-4} 
+\pgfmathtruncatemacro{\x}{random(1,8)-4} 
+\pgfmathtruncatemacro{\y}{random(1,8)-4}
+
+
+% \pgfmathtruncatemacro{\mnum}{\y-\b}
+% \pgfmathtruncatemacro{\mden}{\x-\a} 
+
+% \pgfmathsetmacro{\n}{\mnum/\mden}
+
+\pgfmathtruncatemacro{\bnum}{-\a*\x+\b*\y}
+\pgfmathtruncatemacro{\bden}{\b} 
+
+
+
+\pgfmathtruncatemacro{\bsign}{\bnum*\bden}
+ 
+
+
+
+
+Find the slope-intercept form of the equation of the line perpendicular to the line $\a y+ \b x=\c$ and passing through $(\x, \y)$.
+
+
+\begin{solution}
+
+The slope of original line is  
+\[
+m=\simplyfrac{-\b}{\a}.
+\]
+
+The slope of the perpendicular line is 
+\[
+m_{\perp}=-\frac{1}{m}=\rdfrac{\a}{\b}.
+\]
+
+
+We can then write down the point-slope form equation of the line.
+		\[
+			\ifnum\y<0 
+				y-(\y) 
+			\else
+				y-\y
+			\fi
+			=
+			\ifdim\m pt =1 pt
+				\ifnum\x<0 
+					x-(\x) 
+				\else
+					x-\x
+				\fi
+			\else
+				\rdfrac{\a}{\b}
+					\ifnum\x<0 
+						(x-(\x)) 
+					\else
+						(x-\x)
+					\fi
+			\fi
+		\]
+Solve for $y$ and simplify the equations, we will get the slope intercept form.
+		\[
+		\begin{split}
+		\ifnum\y<0 
+				y-(\y) 
+			\else
+				y-\y
+		\fi
+			&
+		=\ifdim\m pt =1 pt
+				\ifnum\x<0 
+					x-(\x) 
+				\else
+					x-\x
+				\fi
+			\else
+				\rdfrac{\a}{\b}
+					\ifnum\x<0 
+							(x-(\x)) 
+						\else
+							(x-\x)
+					\fi
+			\fi	
+		\\
+		y   & 
+		=\ifdim\m pt =1 pt
+				\ifnum\x<0 
+					x-(\x) 
+				\else
+					x-\x
+				\fi
+			\else
+				\rdfrac{\a}{\b}
+					\ifnum\x<0 
+						(x-(\x)) 
+					\else
+						(x-\x)
+					\fi
+			\fi
+		+
+		\ifnum\y<0
+			(\y)
+		\else
+			\y
+		\fi	
+		\\
+		y   &
+		= \ifdim\m pt =1 pt
+				x
+			\else
+				\rdfrac{\a}{\b}x
+			\fi
+		\ifnum\bsign=0 
+			.
+		\else
+			\ifnum\bsign>0
+				+\rdfrac{\bnum}{\bden}.
+			\else
+				\rdfrac{\bnum}{\bden}.
+			\fi
+		\fi
+		\end{split}
+\]
+\end{solution}

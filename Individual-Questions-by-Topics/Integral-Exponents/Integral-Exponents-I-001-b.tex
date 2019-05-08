@@ -1,0 +1,47 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+
+
+\pgfmathtruncatemacro{\aa}{random(1,7)} 
+\pgfmathtruncatemacro{\bb}{random(1,7)}
+
+
+
+\pgfmathtruncatemacro{\mm}{random(2,5)}
+
+\pgfmathtruncatemacro{\pp}{random(2,3)}
+
+
+
+
+
+
+
+
+\pgfmathtruncatemacro{\ap}{\aa*\pp}
+\pgfmathtruncatemacro{\bp}{\bb*\pp}
+\pgfmathtruncatemacro{\mp}{\mm^\pp}
+\pgfmathtruncatemacro{\onep}{(-1)^\pp}
+
+
+
+
+
+
+Simplify. \textbf{Write with positive exponents.}
+\[
+\left(-\mm x^{\aa}y^{-\bb}\right)^{-\pp}
+\]
+
+
+\begin{solution}
+\[
+\left(-\mm x^{\aa}y^{-\bb}\right)^{-\pp}
+=\left(-\dfrac{\mm x^{\aa}}{y^{\bb}}\right)^{-\pp}
+=\left(-\dfrac{y^{\bb}}{\mm x^{\aa}}\right)^{\pp}
+=(-1)^{\pp}\dfrac{(y^{\bb})^{\pp}}{\mm^{\pp} (x^{\aa})^{\pp}}
+=\invisibleoneincoef{\onep}\dfrac{y^{\bp}}{\mp x^{\ap}}.
+\]
+\end{solution}

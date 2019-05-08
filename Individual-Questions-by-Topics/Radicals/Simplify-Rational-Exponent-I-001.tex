@@ -1,0 +1,86 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+% \pgfmathdeclarerandomlist{varx}{{x}{y}{p}{q}{z}}
+\pgfmathdeclarerandomlist{varx}{{x}{a}}
+\pgfmathrandomitem{\varx}{varx}
+\edef\varx{\varx}
+
+\pgfmathdeclarerandomlist{vary}{{y}{b}}
+\pgfmathrandomitem{\vary}{vary}
+\edef\vary{\vary}
+
+\pgfmathdeclarerandomlist{varz}{{z}{c}}
+\pgfmathrandomitem{\varz}{varz}
+\edef\varz{\varz}
+
+\pgfmathdeclarerandomlist{evenpower}{{2}{4}}
+\pgfmathrandomitem{\m}{evenpower}
+\edef\m{\m}
+
+
+% \pgfmathtruncatemacro{\m}{random(3,5)} %%index <=5.
+
+
+
+\pgfmathdeclarerandomlist{indextwo}{{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}}
+\pgfmathdeclarerandomlist{indexthree}{{2}{3}{4}{5}}
+\pgfmathdeclarerandomlist{indexfour}{{2}{3}}
+\pgfmathdeclarerandomlist{indexfive}{{2}}
+
+
+\ifcase\m\relax%
+  \or \pgfmathrandomitem{\n}{}
+  \or \pgfmathrandomitem{\n}{indextwo}
+  \or \pgfmathrandomitem{\n}{indexthree}
+  \or \pgfmathrandomitem{\n}{indexfour}
+  \or \pgfmathrandomitem{\n}{indexfive} 
+ \fi
+ \edef\n{\n}
+
+
+  \pgfmathtruncatemacro{\a}{random(1,2)}
+  \pgfmathtruncatemacro{\b}{random(3,4)}
+
+
+\pgfmathtruncatemacro{\nm}{\n^\m}
+  \pgfmathtruncatemacro{\ma}{\m*\a}
+  \pgfmathtruncatemacro{\mb}{\m*\b}
+  % \pgfmathtruncatemacro{\inta}{int(\ma/\m)}
+  % \pgfmathtruncatemacro{\intb}{int(\mb/\m)}
+  % \pgfmathtruncatemacro{\minta}{\inta*\m}
+  % \pgfmathtruncatemacro{\mintb}{\intb*\m}
+  % \pgfmathtruncatemacro{\fraca}{\ma-\minta}
+  % \pgfmathtruncatemacro{\fracb}{\mb-\mintb}
+
+Assume all variables are positive. Write the following expression with rational exponents in radical expression and simplify.
+\[
+(\nm\varx^{\ma}\vary^{\mb})^{\frac{1}{\m}}
+\]
+
+\begin{solution}
+\[
+  (\nm\varx^{\ma}\vary^{\mb})^{\frac{1}{\m}}
+  =
+  \ifnum\m=2
+      \sqrt{\nm\varx^{\ma}\vary^{\mb}}
+    \else
+      \sqrt[\m]{\nm\varx^{\ma}\vary^{\mb}}
+  \fi
+      =
+    \ifnum\m=2
+      \sqrt{
+        (\n\varx^{\invisibleoneinpower{\a}}\vary^{\invisibleoneinpower{\b}})^\m
+    }
+    \else
+      \sqrt[\m]{
+       (\n\varx^{\invisibleoneinpower{\a}}\vary^{\invisibleoneinpower{\b}})^\m
+      }
+    \fi  
+=
+  \n\varx^{\invisibleoneinpower{\a}}\vary^{\invisibleoneinpower{\b}}
+.
+\]
+
+\end{solution}

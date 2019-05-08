@@ -1,0 +1,56 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+
+
+\pgfmathtruncatemacro{\a}{random(2,5)} 
+\pgfmathtruncatemacro{\b}{-random(1,5)}
+% \pgfmathtruncatemacro{\b}{\ifthenelse(\binit==0, \binit+1, \binit)}
+\pgfmathtruncatemacro{\c}{\a-random(7,11)}
+\pgfmathtruncatemacro{\d}{\b+random(8,10)}
+
+
+\pgfmathtruncatemacro{\m}{-random(2,5)}
+
+\pgfmathtruncatemacro{\t}{-random(2,3)}
+
+\pgfmathtruncatemacro{\n}{\t*\m}
+
+\pgfmathtruncatemacro{\p}{-2*random(1,2)}
+\pgfmathtruncatemacro{\absp}{abs(\p)}
+
+\pgfmathtruncatemacro{\tp}{(\t)^\absp}
+
+
+
+
+
+
+\pgfmathtruncatemacro{\ac}{\a-\c}
+\pgfmathtruncatemacro{\acp}{\p*(\a-\c)}
+\pgfmathtruncatemacro{\absacp}{abs(\acp)}
+
+\pgfmathtruncatemacro{\bd}{\b-\d}
+\pgfmathtruncatemacro{\bdp}{\p*(\b-\d)}
+% \pgfmathtruncatemacro{\absbdp}{abs(\bdp)}
+
+
+
+
+
+Simplify. \textbf{Write with positive exponents.}
+\[
+    (-z)^0\cdot \left(\dfrac{\m x^{\a}y^{\b}}{\n x^{\c}y^{\invisibleoneinpower{\d}}}\right)^{\p}
+\]
+
+
+\begin{solution}
+\[
+    (-z)^0\cdot \left(\dfrac{\m x^{\a}y^{\b}}{\n x^{\c}y^{\invisibleoneinpower{\d}}}\right)^{\p}
+=\left(\dfrac{x^{\ac}y^{\bd}}{\t}\right)^{\p}
+=\dfrac{x^{\display{\ac}\display{\p}}y^{\display{\bd}\display{\p}}}{\display{\t}^{\p}}
+=\dfrac{x^{\acp}y^{\bdp}}{\display{\t}^{\p}}
+=\dfrac{\tp y^{\bdp}}{x^{\absacp}}
+\]
+\end{solution}

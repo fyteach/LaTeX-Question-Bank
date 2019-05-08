@@ -1,0 +1,71 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+% \pgfmathdeclarerandomlist{varx}{{x}{y}{p}{q}{z}}
+% \pgfmathdeclarerandomlist{varx}{{2}{3}{5}{7}}
+% \pgfmathrandomitem{\varx}{varx}
+% \edef\varx{\varx}
+
+% \pgfmathdeclarerandomlist{vary}{{y}{b}}
+% \pgfmathrandomitem{\vary}{vary}
+% \edef\vary{\vary}
+
+
+
+
+\pgfmathtruncatemacro{\xint}{random(1,8)-5}
+\pgfmathtruncatemacro{\xx}{ifthenelse(\xint<0, \xint, \xint+1)}
+
+\pgfmathtruncatemacro{\yint}{random(1,8)-5}
+\pgfmathtruncatemacro{\yy}{ifthenelse(\yint<0, \yint, \yint+1)}
+\pgfmathtruncatemacro{\negyy}{int(-\yy)}
+
+\pgfmathtruncatemacro{\rint}{random(1,8)-5}
+\pgfmathtruncatemacro{\rr}{ifthenelse(\rint<0, \rint, \rint+1)}
+\pgfmathtruncatemacro{\rrsq}{(\rr)^2}
+
+\pgfmathtruncatemacro{\sint}{random(1,8)-5}
+\pgfmathtruncatemacro{\ss}{ifthenelse(\sint<0, \sint, \sint+1)}
+\pgfmathtruncatemacro{\negss}{int(-\ss)}
+\pgfmathtruncatemacro{\sssq}{(\ss)^2}
+
+\pgfmathtruncatemacro{\sumsq}{\rrsq+\sssq}
+
+\pgfmathtruncatemacro{\cint}{random(1,12)-7}
+\pgfmathtruncatemacro{\cc}{ifthenelse(\cint<0, \cint, \cint+1)}
+
+\pgfmathtruncatemacro{\xc}{\xx*\cc}
+\pgfmathtruncatemacro{\yc}{\yy*\cc}
+\pgfmathtruncatemacro{\numc}{\yc*\rr+\xc*\ss}
+\pgfmathtruncatemacro{\numi}{\yc*\ss+\xc*\rr}
+
+
+Write the quotient of complex numbers in the form $a+b\mathbf{i}$, where $\mathbf{i}$ is the imaginary unit. 
+\[
+\frac{(\xx \plusminus{\negyy} \mathbf{i} )(\cc \mathbf{i}) }{ \rr \plusminus{\negss}\mathbf{i} }
+\]
+
+\begin{solution}
+\[
+\begin{split} 
+\frac{(\xx \plusminus{\negyy} \mathbf{i})(\cc \mathbf{i})}{\rr \plusminus{\negyy} \mathbf{i}}
+&= \frac{\yc \plusminus{\xc} \mathbf{i} }{\rr \plusminus{\negss} \mathbf{i}}\\
+&= 
+\frac{ (\yc \plusminus{\xc} \mathbf{i})(\rr \plusminus{\ss} \mathbf{i}) }
+	 { (\rr \plusminus{\negss}\mathbf{i}) (\rr \plusminus{\ss} \mathbf{i}) }\\
+&=
+\frac{\numc \plusminus{\numi}\mathbf{i}}{\rrsq-\sssq\cdot(-1)}\\
+&=
+\frac{\numc \plusminus{\numi}\mathbf{i}}{\sumsq}\\
+&=\rdfrac{\numc}{\sumsq} 
+\ifnum\numi=0 
+	\else 
+		\ifnum\numi>0 + \rdfrac{\numi}{\sumsq}\mathbf{i} 
+			\else \rdfrac{\numi}{\sumsq}\mathbf{i}.
+		\fi
+\fi
+\end{split} 
+\]
+
+\end{solution}

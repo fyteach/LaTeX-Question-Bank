@@ -1,0 +1,22 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+\pgfmathtruncatemacro{\aa}{random(2,4)}
+\pgfmathtruncatemacro{\bb}{random(2,3)}
+\pgfmathtruncatemacro{\cc}{(\aa)^(\bb)}
+
+
+
+Find a number and fill it in the box so that the equality holds.
+\[\log_{\raisebox{-0.25em}{\openbox}} \cc = \bb\]
+
+
+\begin{solution}
+		\[\begin{split}
+		\log_x \cc &= \bb\\
+		x^{\bb} &=\cc\\
+		x & =\ifnum\bb=2 \sqrt{\cc} \else \sqrt[\bb]{\cc}\fi =\aa
+		\end{split}
+		\]
+\end{solution}

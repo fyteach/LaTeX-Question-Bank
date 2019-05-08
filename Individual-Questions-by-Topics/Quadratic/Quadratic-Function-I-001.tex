@@ -1,0 +1,31 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+
+
+\pgfmathtruncatemacro{\hh}{-random(5,1)}
+\pgfmathtruncatemacro{\kk}{-random(1,5)}
+\pgfmathtruncatemacro{\xx}{random(4,2)}
+\pgfmathtruncatemacro{\yy}{random(1,5)}
+\pgfmathtruncatemacro{\anum}{\yy-\kk}
+\pgfmathtruncatemacro{\aden}{(\xx-\hh)^2}
+
+
+
+
+A quadratic function has its vertex at the point $(\hh, \kk)$.  The function
+passes through the point  $(\xx,\yy)$.   When written in vertex form, the
+function is $f(x)= a(x-h)^2 +k$. Find the $a$, $h$ and $k$.
+
+\begin{solution}
+Since the vertex is $(\hh, \kk)$, we know that $h=\hh$ and $k=\kk$. To find $a$, we plug the point $(\xx, \yy)$ in the equation and solve for $a$.
+\[
+\begin{split}
+\yy    &=a(\xx-\display{\hh})^2+\display{\kk}\\
+\yy-\display{\kk}&=a(\xx-\display{\hh})^2\\
+\anum   &=\aden a\\
+a      &=\rdfrac{\anum}{\aden}.
+\end{split}
+\]
+\end{solution}

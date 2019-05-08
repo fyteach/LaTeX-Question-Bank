@@ -1,0 +1,55 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+\pgfmathtruncatemacro{\mm}{random(2, 3)} 
+\pgfmathtruncatemacro{\nn}{random(5, 6)} 
+
+\pgfmathtruncatemacro{\roota}{\mm/gcd(\mm,\nn)}
+\pgfmathtruncatemacro{\rootb}{\nn/gcd(\mm,\nn)}
+
+\pgfmathtruncatemacro{\a}{\roota*\roota} 
+\pgfmathtruncatemacro{\b}{\rootb*\rootb} 
+
+\pgfmathtruncatemacro{\c}{random(5,3)} 
+
+\pgfmathtruncatemacro{\ac}{\a*\c}
+\pgfmathtruncatemacro{\bc}{\b*\c}
+
+
+
+
+\pgfmathdeclarerandomlist{varxy}{{k}{x}}
+\pgfmathrandomitem{\varx}{varxy}
+\edef\varxy{\varx}
+
+\pgfmathdeclarerandomlist{varab}{{a}{p}}
+\pgfmathrandomitem{\vara}{varab}
+\edef\varab{\vara}
+
+\pgfmathdeclarerandomlist{varpq}{{b}{q}}
+\pgfmathrandomitem{\varb}{varpq}
+\edef\varpq{\varb}
+
+\pgfmathdeclarerandomlist{varmn}{{y}{n}}
+\pgfmathrandomitem{\vary}{varmn}
+\edef\varmn{\vary}
+
+
+
+
+
+
+
+
+Factor completely the following polynomial.
+\[\ac\varx^3  - {\bc}\varx.\]
+
+\begin{solution}
+\[\begin{split}
+&\ac\varx^3  - {\bc}\varx\\
+=&\c\varx(\invisibleoneincoef{\a}\varx^2-\b)\\
+=&\c\varx((\invisibleoneincoef{\roota}\varx)^2-(\rootb)^2)\\
+=&\c\varx(\invisibleoneincoef{\roota}\varx - \rootb)(\invisibleoneincoef{\roota}\varx + \rootb)
+\end{split}
+\]
+\end{solution}

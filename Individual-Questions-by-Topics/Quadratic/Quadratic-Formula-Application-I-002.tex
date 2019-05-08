@@ -1,0 +1,25 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+\pgfmathdeclarerandomlist{varx}{{x}{y}}
+% \pgfmathdeclarerandomlist{varx}{{2}{3}}
+
+\pgfmathtruncatemacro{\aa}{2*random(3,5)}
+\pgfmathtruncatemacro{\cc}{(4-(\aa)^2)/2}
+\pgfmathtruncatemacro{\rr}{-\cc+1}
+\pgfmathsetmacro{\shrt}{-1+sqrt(\rr)}
+\pgfmathsetmacro{\lng}{(1+sqrt(\rr)}
+
+The hypotenuse of a \textbf{right triangle} is $\aa$ feet long. One leg is $2$ feet longer than the other. Find the length of each leg to the nearest tenth of a foot.
+
+
+\begin{solution}
+ Suppose the shorter leg is $x$ feet. Then the longer leg is is $x+2$. By Pythagorean Theorem, we have the following equation
+\[x^2+(x+2)^2=\aa^2.\] 
+Simplify the equation, we get
+\[x^2+2x \cc=0.\]
+By the quadratic formula, we get  
+\[x=-1+\sqrt{\rr}.\]
+So the legs are approximately $\pgfmathprintnumber[fixed, precision=1]{\shrt}$ feet and $\pgfmathprintnumber[fixed, precision=1]{\lng}$ feet.
+\end{solution}

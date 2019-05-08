@@ -1,0 +1,46 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+\pgfmathtruncatemacro{\a}{random(2,8)-11} %%%% left bound	
+\pgfmathtruncatemacro{\b}{random(2,9)}    %%%% right bound
+
+\pgfmathtruncatemacro{\c}{random(2,5)}
+\pgfmathtruncatemacro{\d}{random(6,10) }
+
+\pgfmathtruncatemacro{\e}{random(7,9)}
+\pgfmathtruncatemacro{\f}{random(1,7) }
+
+
+\pgfmathtruncatemacro{\m}{-\c*(\b)-\d}
+\pgfmathtruncatemacro{\n}{\e*(\a)+\f}
+
+
+
+
+
+
+\pgfmathtruncatemacro{\s}{\m+\d}
+\pgfmathtruncatemacro{\t}{\n-\f}
+
+
+
+
+Solve the compound linear inequality and write the solution set in interval notation. 
+
+\[-\c x - \d\leq  \m   \text{\quad\quad and\quad\quad} \e x+\f\leq \n.\]
+
+\begin{solution}
+
+\begin{center}
+\begin{align*}
+-\c x - \d&\leq  \m &&\text{and} & \e x+\f&\leq  \n\\
+-\c x&\leq   \s&&  & \e x&\leq  \t\\
+x&\geq  \b  &&\text{and}  &  x&\leq \a
+\end{align*}
+\end{center}
+
+The solution set is $\emptyset$.
+\end{solution}
+
+

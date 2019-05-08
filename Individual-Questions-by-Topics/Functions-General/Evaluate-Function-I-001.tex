@@ -1,0 +1,54 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+\pgfmathtruncatemacro{\a}{random(1,3)} 
+
+\pgfmathtruncatemacro{\b}{random(2,4)}
+
+
+\pgfmathtruncatemacro{\c}{random(1,5)}
+
+
+
+
+\pgfmathtruncatemacro{\minit}{random(1,3)-2} 
+\pgfmathtruncatemacro{\m}{ifthenelse(\minit<0,\minit,\minit+1)} 
+
+\pgfmathtruncatemacro{\n}{random(2,3)} 
+
+\pgfmathtruncatemacro{\ansone}{-\a*\m^2+\b*\m-\c} 
+
+
+\pgfmathtruncatemacro{\at}{\a*(\n)^2}
+\pgfmathtruncatemacro{\bt}{\b*\n} 
+
+
+
+ 
+
+
+
+If $f(x)=-\ifnum \a=1 \else \a\fi   x^2  + \ifnum\b=1 \else \b\fi  x  -  \c$, 
+determine the function values 
+
+\begin{enumerate*}[label={\textup(\arabic*)}, afterlabel=~~~, itemjoin=\hspace{0.25\textwidth}]
+\item $f(\m)$, 
+\item $f(\n t)$.
+\end{enumerate*}
+
+\begin{solution}
+\begin{enumerate}[label={\textup(\arabic*)}, afterlabel=~~~]
+\item
+\[
+f(\m)=-\ifnum\a=1  \else \a \fi (\m)^2    + \ifnum\b=1 \else \b  \fi  (\m)  -  \c=\ansone
+\]
+
+\item 
+\[
+f(\n t)
+=-\ifnum\a=1 \else \a \fi (\n t)^2+ \ifnum\b=1 \else \b\fi  (\n t)-\c
+= -\ifnum\at=1 \else \at \fi t^2  \ifnum\bt=1 + \else \ifnum\bt=-1  - \else +\bt \fi \fi  t-\c
+\]
+\end{enumerate}
+\end{solution}

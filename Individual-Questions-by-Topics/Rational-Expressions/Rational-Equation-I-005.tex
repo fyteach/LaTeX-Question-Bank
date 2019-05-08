@@ -1,0 +1,114 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+% \pgfmathdeclarerandomlist{varx}{{x}{y}{p}{q}{z}}
+\pgfmathdeclarerandomlist{varx}{{x}{y}}
+\pgfmathrandomitem{\varx}{varx}
+\edef\varx{\varx}
+
+\pgfmathdeclarerandomlist{vara}{{a}{p}}
+\pgfmathrandomitem{\vara}{vara}
+\edef\vara{\vara}
+
+\pgfmathdeclarerandomlist{varb}{{b}{q}}
+\pgfmathrandomitem{\varb}{varb}
+\edef\varb{\varb}
+
+
+\pgfmathdeclarerandomlist{CoprimeWithOne}{
+  {1}{2}{3}{4}{5}
+}
+ \pgfmathdeclarerandomlist{CoprimeWithTwo}{
+  {1}{3}{5}
+}
+ \pgfmathdeclarerandomlist{CoprimeWithThree}{
+  {1}{2}{4}{5}
+}
+ \pgfmathdeclarerandomlist{CoprimeWithFour}{
+  {1}{3}{5}
+}
+ \pgfmathdeclarerandomlist{CoprimeWithFive}{
+  {1}{2}{3}{4}
+}
+
+
+\pgfmathsetmacro{\a}{int(random(2,5))}
+
+ %%%%%% generate random b coprime with a %%%
+ \ifcase\a\relax%
+  \or \pgfmathrandomitem{\b}{}
+  \or \pgfmathrandomitem{\b}{CoprimeWithTwo}
+  \or \pgfmathrandomitem{\b}{CoprimeWithThree}
+  \or \pgfmathrandomitem{\b}{CoprimeWithFour}
+  \or \pgfmathrandomitem{\b}{CoprimeWithFive} 
+ \fi
+ \edef\b{\b}
+
+
+ \pgfmathsetmacro{\c}{int(random(1,5))}
+
+ %%%%%% generate random d coprime c %%%
+
+ \ifcase\c\relax%
+  \or \pgfmathrandomitem{\d}{CoprimeWithOne}
+  \or \pgfmathrandomitem{\d}{CoprimeWithTwo}
+  \or \pgfmathrandomitem{\d}{CoprimeWithThree}
+   \or \pgfmathrandomitem{\d}{CoprimeWithFour}
+   \or \pgfmathrandomitem{\d}{CoprimeWithFive}
+ \fi
+  \edef\d{\d}
+
+
+  \pgfmathsetmacro{\r}{int(random(3,5))}
+
+ 
+ \pgfmathtruncatemacro{\s}{random(1,2)}
+\pgfmathtruncatemacro{\t}{random(1,6)}
+
+ \pgfmathtruncatemacro{\A}{\a*\c}
+ \pgfmathtruncatemacro{\C}{(-\b)*(\d)}
+ \pgfmathtruncatemacro{\B}{\a*(\d)+(-\b)*(\c)}
+
+\pgfmathtruncatemacro{\D}{\r*\c+\a*\s}
+\pgfmathtruncatemacro{\E}{\r*\d+\s*(-\b)-\t}
+
+
+% \pgfmathtruncatemacro{\bminusa}{(\a)*(\b)}
+
+%%%r/(ax+b)-s/(ax+b)(cx+d)=x/(cx+d) Roots: r=1 or s=-(rd+s)/a
+
+Solve for $\varx$ from the rational equation
+\[
+   \frac{\r}{\vara }
+  +
+  \frac{\s}{\varx}
+  =
+  \frac{\t}{\varb} 
+  .
+\]
+
+\begin{solution}
+\[
+	\begin{split}
+   \frac{\r}{\vara }
+  +
+  \frac{\s}{\varx}
+  &=
+  \frac{\t}{\varb}
+\\
+    \invisibleoneincoef{\r}\varb\varx+ \invisibleoneincoef{\s}\vara\varb
+    &=\invisibleoneincoef{\t}\vara\varx 
+\\
+    \invisibleoneincoef{\r}\varb\varx-\invisibleoneincoef{\t}\vara\varx
+    &= -\invisibleoneincoef{\s}\vara\varb
+\\
+    (\invisibleoneincoef{\r}\varb- \invisibleoneincoef{\t}\vara)\varx
+    &= -\invisibleoneincoef{\s}\vara\varb
+\\
+    \varx
+    &= \dfrac{\invisibleoneincoef{\s}\vara\varb}
+    {\invisibleoneincoef{\t}\vara-\invisibleoneincoef{\r}\varb}    
+	\end{split}
+\]
+\end{solution}

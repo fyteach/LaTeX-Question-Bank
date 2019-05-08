@@ -1,0 +1,52 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+
+% \pgfmathtruncatemacro{\a}{random(1,5)}
+% \pgfmathtruncatemacro{\k}{\a^2}
+
+% \pgfmathdeclarerandomlist{diffone}{{2}{3}{4}{5}}
+% \pgfmathdeclarerandomlist{difftwo}{{1}{3}{4}{5}}
+% \pgfmathdeclarerandomlist{diffthree}{{1}{2}{4}{5}}
+% \pgfmathdeclarerandomlist{difffour}{{1}{2}{3}{5}}
+% \pgfmathdeclarerandomlist{difffive}{{1}{2}{3}{4}}
+
+% \ifcase\a\relax%
+%   \or \pgfmathrandomitem{\h}{diffone}
+%   \or \pgfmathrandomitem{\h}{difftwo}
+%   \or \pgfmathrandomitem{\h}{diffthree}
+%   \or \pgfmathrandomitem{\h}{difffour}
+%   \or \pgfmathrandomitem{\h}{difffive} 
+%  \fi
+%  \edef\h{\h}
+
+\pgfmathtruncatemacro{\b}{random(3,7)}
+\pgfmathtruncatemacro{\a}{\b-1}
+\pgfmathtruncatemacro{\c}{10-\a}
+
+Solve the following equations for $x$.
+\[
+	\log_\b x+\log_\b(x-\a)=1.
+\]
+
+
+\begin{solution}
+		\[\begin{split}
+		\log_\b x+\log_\b(x-\a)&=1\\
+		\log_\b(x(x-\a))&=1\\
+		x(x-\a)&=\b\\
+		x^2-\a x-\b&=0\\
+		(x+1)(x-\b)&=0
+		\end{split}
+		\]
+		\begin{alignat*}{3}
+x+1&=0 &&\ctc{or} & x-\b&=0\\
+		x&=-1 && \ctc{or} & x&=\b
+\end{alignat*}
+Since in $\log_\b x$, $x$ must be positive. So $x=-1$ cannot be a solution. Plug in $x=5$ and check:
+\[\log_\b\b+\log_\b(\b-\a)=1+\log_\b1=1+0=1.\]
+So the solution is $x=5$.
+\end{solution}
+
+

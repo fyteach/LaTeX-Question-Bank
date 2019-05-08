@@ -1,0 +1,25 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+
+\pgfmathtruncatemacro{\a}{random(1,7)}
+% \pgfmathtruncatemacro{\k}{random(2,5)}
+\pgfmathtruncatemacro{\k}{random(2,5)}
+\pgfmathtruncatemacro{\twok}{2*\k}
+\pgfmathtruncatemacro{\b}{\twok-\a}
+\pgfmathsetmacro{\ans}{ln(\k)/ln(10)}
+
+
+Solve the exponential equation $2\cdot 10^{x}-\a=\b$. Round your result to the nearest hundredth.
+
+\begin{solution}
+\[
+\begin{split}
+2\cdot 10^{x}-\a &=\b\\
+2\cdot 10^{x} &=\twok \\
+10^x&=\k\\
+x&=\log\k\approx \pgfmathprintnumber[fixed, precision=2]{\ans}
+\end{split}
+\]
+\end{solution}

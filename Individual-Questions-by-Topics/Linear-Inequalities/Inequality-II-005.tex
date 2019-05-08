@@ -1,0 +1,64 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+%%%%%%%%%%%% Assume a<0, %%%%%%%%%%%%
+
+
+%%%%%%%random should take positive arguments%%%%%%
+
+\pgfmathtruncatemacro{\a}{random(3,7)}
+\pgfmathtruncatemacro{\b}{random(2,8)-10}
+\pgfmathtruncatemacro{\c}{random(2,5)}
+
+%%%%%%% 
+\pgfmathtruncatemacro{\result}{-2}
+
+
+
+
+\pgfmathtruncatemacro{\d}{\a*(\result +\c)-\b*\result}
+\pgfmathtruncatemacro{\e}{\a-\b}
+\pgfmathtruncatemacro{\f}{\d-\a*\c}
+\pgfmathtruncatemacro{\g}{\a*\c}
+
+
+
+Solve the inequality and write the solution set in interval notation.
+\ifnum\d>0
+\[ \a (x+\c)\leq \b x +\d.\]
+\begin{solution}
+\[\begin{split}
+\a (x+\c)&\leq \b x +\d \\
+\a x+\g&\leq \b x +\d \\
+\e x&\leq \f \\
+\ifnum\e>0
+x&\leq \result \\
+\else
+x\geq \result \\
+\fi
+\end{split}
+\]
+The solution set is \ifnum\e>0 $(-\infty, \result ]$ \else  $[\result , \infty)$\fi.
+\end{solution}
+
+
+
+\else
+\[ \a (x+1)\leq \b x \d. \]
+
+\begin{solution}
+\[\begin{split}
+\a (x+\c)&\leq \b x \d \\
+\a x+\g&\leq \b x \d \\
+\e x&\leq \f \\
+\ifnum\e> 0
+x&\leq \result \\
+\else
+x\geq \result \\
+\fi
+\end{split}
+\]
+The solution set is \ifnum\e>0 $(-\infty, \result ]$ \else  $[\result , \infty)$\fi.
+\end{solution}
+
+\fi

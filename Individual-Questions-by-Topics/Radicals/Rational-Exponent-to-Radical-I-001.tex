@@ -1,0 +1,70 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+% \pgfmathdeclarerandomlist{varx}{{x}{y}{p}{q}{z}}
+\pgfmathdeclarerandomlist{varx}{{x}{a}}
+\pgfmathrandomitem{\varx}{varx}
+\edef\varx{\varx}
+
+\pgfmathdeclarerandomlist{vary}{{y}{b}}
+\pgfmathrandomitem{\vary}{vary}
+\edef\vary{\vary}
+
+\pgfmathdeclarerandomlist{varz}{{z}{c}}
+\pgfmathrandomitem{\varz}{varz}
+\edef\varz{\varz}
+
+
+\pgfmathtruncatemacro{\m}{random(2,5)} %%index <=5.
+
+
+
+\pgfmathdeclarerandomlist{coprimetwo}{{3}{5}{7}{9}{11}}
+\pgfmathdeclarerandomlist{coprimethree}{{2}{4}{5}{7}{8}}
+\pgfmathdeclarerandomlist{coprimefour}{{2}{3}{5}{7}{9}}
+\pgfmathdeclarerandomlist{coprimefive}{{2}{3}{4}{6}{7}{8}{9}}
+
+
+\ifcase\m\relax%
+  % \or \pgfmathrandomitem{\a}{}
+  \or \pgfmathrandomitem{\a}{coprimetwo}
+  \or \pgfmathrandomitem{\a}{coprimethree}
+  \or \pgfmathrandomitem{\a}{coprimefour}
+  \or \pgfmathrandomitem{\a}{coprimefive} 
+ \fi
+ \edef\a{\a}
+
+\ifcase\m\relax%
+  % \or \pgfmathrandomitem{\a}{}
+  \or \pgfmathrandomitem{\a}{coprimetwo}
+  \or \pgfmathrandomitem{\a}{coprimethree}
+  \or \pgfmathrandomitem{\a}{coprimefour}
+  \or \pgfmathrandomitem{\a}{coprimefive} 
+ \fi
+ \edef\a{\a}
+
+  % \pgfmathtruncatemacro{\a}{random(1,5)}
+  % \pgfmathtruncatemacro{\b}{random(3,4)}
+
+
+
+
+Write the rational exponent as radical expression (assume all variables are positive).
+\[
+  \varx^{\reducedfraction{\a}{\m}}.
+\]
+
+\begin{solution}
+\[
+  \varx^{\reducedfraction{\a}{\m}}
+= 
+  \ifnum\m=2
+    \sqrt{\varx^{\invisibleoneinpower{\a}}}
+  \else
+      \sqrt[\m]{\varx^{\invisibleoneinpower{\a}}}
+  \fi
+.
+\]
+
+\end{solution}

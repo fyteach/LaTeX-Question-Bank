@@ -1,0 +1,42 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+%%%%%%%%%%%%%%%% Question Setup %%%%%%%%%
+\pgfmathdeclarerandomlist{varx}{{x}{y}{z}{a}{t}}
+\pgfmathrandomitem{\varx}{varx}
+\edef\varx{\varx}
+
+\pgfmathtruncatemacro{\aa}{2*random(1,5)-1} 
+\pgfmathtruncatemacro{\bb}{2*random(1,4)} 
+\pgfmathtruncatemacro{\cc}{2*random(1,3)}
+
+
+
+%%%%%%%%%%%%%%%% Solution Setup %%%%%%%%%%%%%%
+\pgfmathtruncatemacro{\cb}{\cc+\bb}
+\pgfmathtruncatemacro{\ansM}{\cb-\aa}
+\pgfmathtruncatemacro{\ansm}{-\cb-\aa}
+
+
+%%%%%%%%%%%%%%%%%% Question and Solution %%%%%%%%%%%%%%%
+
+Solve the absolute value equation 
+\[|\varx + \aa| - \bb  = \cc.\]
+
+\begin{solution}
+
+By isolating the absolute value express, one has 
+\[|\varx + \aa| = \cb.\]
+Since $\cb>0$, this equation is equivalent to the following two equations.
+
+\begin{center}
+	\begin{alignat*}{3}
+		\varx + \aa&=\cb &&\ctc{ or } & \varx + \aa&=-\cb\\
+		\varx&=\ansM && \ctc{or} & \varx&=\ansm\\
+	\end{alignat*}
+\end{center} 
+So the solutions are $x=\ansm$ and $x=\ansM$. In set-builder notation, the solution set is 
+$\{\ansm, \ansM\}$.
+\end{solution}
+

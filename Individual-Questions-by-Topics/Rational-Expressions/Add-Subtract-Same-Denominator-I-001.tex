@@ -1,0 +1,140 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+% \pgfmathdeclarerandomlist{varx}{{x}{y}{p}{q}{z}}
+\pgfmathdeclarerandomlist{varx}{{x}}
+\pgfmathrandomitem{\varx}{varx}
+\edef\varx{\varx}
+
+\pgfmathdeclarerandomlist{vary}{{y}}
+\pgfmathrandomitem{\vary}{vary}
+\edef\vary{\vary}
+
+%%%%%%%%%List of coprime numbers < #1
+% \pgfmathsetmacro{\randbound}{int(5)}
+
+\pgfmathdeclarerandomlist{CoprimeWithOne}{
+  {1}{2}{3}{4}{5}
+}
+ \pgfmathdeclarerandomlist{CoprimeWithTwo}{
+  {1}{3}{5}
+}
+ \pgfmathdeclarerandomlist{CoprimeWithThree}{
+  {1}{2}{4}{5}
+}
+ \pgfmathdeclarerandomlist{CoprimeWithFour}{
+  {1}{3}{5}
+}
+ \pgfmathdeclarerandomlist{CoprimeWithFive}{
+  {1}{2}{3}{4}
+}
+
+
+
+% \pgfmathsetmacro{\a}{int(random(2,3))}
+\pgfmathsetmacro{\a}{int(1)}
+
+
+ %%%%%% generate random b coprime with a %%%
+ \ifcase\a\relax%
+  \or \pgfmathrandomitem{\b}{CoprimeWithOne}
+  \or \pgfmathrandomitem{\b}{CoprimeWithTwo}
+  \or \pgfmathrandomitem{\b}{CoprimeWithThree}
+  % \or \pgfmathrandomitem{\b}{CoprimeWithFour}
+  % \or \pgfmathrandomitem{\b}{CoprimeWithFive} 
+ \fi
+ \edef\b{\b}
+
+ \pgfmathsetmacro{\c}{int(random(4,5))}
+
+ %%%%%% generate random d coprime c %%%
+
+ \ifcase\c\relax%
+   \or \pgfmathrandomitem{\d}{}
+   \or \pgfmathrandomitem{\d}{}
+   \or \pgfmathrandomitem{\d}{}
+   \or \pgfmathrandomitem{\d}{CoprimeWithFour}
+   \or \pgfmathrandomitem{\d}{CoprimeWithFive}
+ \fi
+  \edef\d{\d}
+
+  \pgfmathsetmacro{\e}{int(random(2,3))}
+
+ %%%%%% generate random d coprime c %%%
+
+ \ifcase\e\relax%
+   \or \pgfmathrandomitem{\f}{CoprimeWithOne}
+   \or \pgfmathrandomitem{\f}{CoprimeWithTwo}
+   \or \pgfmathrandomitem{\f}{CoprimeWithThree}
+   % \or \pgfmathrandomitem{\f}{CoprimeWithFour}
+   % \or \pgfmathrandomitem{\f}{CoprimeWithFive}
+ \fi
+  \edef\f{\f}
+
+
+ \pgfmathtruncatemacro{\A}{\a*\c}
+ \pgfmathtruncatemacro{\C}{(-\b)*(\d)}
+ \pgfmathtruncatemacro{\B}{\a*(\d)+(-\b)*(\c)}
+
+
+
+ \pgfmathtruncatemacro{\E}{\a*\e}
+ \pgfmathtruncatemacro{\G}{(-\b)*(-\f)}
+ \pgfmathtruncatemacro{\F}{\a*(-\f)+(-\b)*(\e)}
+
+
+ \pgfmathtruncatemacro{\absG}{abs(\G)}
+
+
+  \pgfmathsetmacro{\m}{int(random(2,3))}
+  \pgfmathtruncatemacro{\Em}{-\E+\m}
+
+  \pgfmathsetmacro{\n}{int(random(2,3))}
+
+  \pgfmathtruncatemacro{\Fn}{\F+\n}
+
+Simplify the rational expression.
+\[
+    \dfrac
+      {\m\varx^2 \ifnum\Fn=0 \else \plusminus{\Fn}\varx\fi}
+      {\invisibleoneincoef{\A}\varx^2  \plusminus{\B}\varx \ifnum\C>0 +\C\else \C\fi}
+    -
+    \dfrac
+    {\ifnum\Em=0 \invisibleoneincoef{\n}\varx \else\invisibleoneincoef{\Em}\varx^2 \plusminus{\n}\varx \fi 
+     \ifnum\G>0 -\G\else +\absG\fi}
+    {\invisibleoneincoef{\A}\varx^2  \plusminus{\B}\varx \ifnum\C>0 +\C\else \C\fi}
+  .
+\]
+
+\begin{solution}
+\[
+	\begin{split}
+		& 
+    \dfrac
+      {\m\varx^2 \ifnum\Fn=0 \else\plusminus{\Fn}\varx\fi}
+      {\invisibleoneincoef{\A}\varx^2  \plusminus{\B}\varx \ifnum\C>0 +\C\else \C\fi}
+    -
+    \dfrac
+    {\ifnum\Em=0 \invisibleoneincoef{\n}\varx \else \invisibleoneincoef{\Em}\varx^2 \plusminus{\n}\varx \fi 
+     \ifnum\G>0 -\G\else +\absG\fi}
+    {\invisibleoneincoef{\A}\varx^2  \plusminus{\B}\varx \ifnum\C>0 +\C\else \C\fi}
+  .
+\\
+	=	&
+      \dfrac
+        {\invisibleoneincoef{\E}\varx^2  \plusminus{\F}\varx \ifnum\G>0 +\G\else \G\fi}
+        {\invisibleoneincoef{\A}\varx^2  \plusminus{\B}\varx \ifnum\C>0 +\C\else \C\fi}
+\\
+  = &\dfrac
+      {( \invisibleoneincoef{\a}\varx- \b )( \invisibleoneincoef{\e}\varx - \f )}
+      {( \invisibleoneincoef{\a}\varx- \b )( \invisibleoneincoef{\c}\varx + \d )}
+\\
+	=	&
+  \dfrac
+    {\invisibleoneincoef{\e}\varx- \f }
+    {\invisibleoneincoef{\c}\varx + \d}
+	\end{split}
+\]
+
+\end{solution}

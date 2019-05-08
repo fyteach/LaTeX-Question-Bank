@@ -1,0 +1,41 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+%%%%%%%%%%%%%%%% Question Setup %%%%%%%%%
+\pgfmathdeclarerandomlist{varx}{{x}{y}{z}{a}{t}}
+\pgfmathrandomitem{\varx}{varx}
+\edef\varx{\varx}
+
+
+\pgfmathtruncatemacro{\coefx}{random(1,2)} 
+\pgfmathtruncatemacro{\aa}{2*random(1,3)} 
+\pgfmathtruncatemacro{\bb}{2*random(1,3)-1} 
+
+
+
+
+%%%%%%%%%%%%%%%% Solution Setup %%%%%%%%%%%%%%
+\pgfmathtruncatemacro{\ansnum}{-\aa+\bb}
+\pgfmathtruncatemacro{\ansden}{2*\coefx}
+
+
+%%%%%%%%%%%%%%%%%% Question and Solution %%%%%%%%%%%%%%%
+
+Solve the absolute value equation 
+\[ |\invisibleoneincoef{\coefx}\varx + \aa | = |\invisibleoneincoef{\coefx} \varx - \bb | .\]
+
+\begin{solution}
+Since $|X|=|Y|$ if and only if $X=Y$ or $X=-Y$, we know the equation is equivalent to the following equations
+
+\begin{center}
+	\begin{alignat*}{3}
+		\invisibleoneincoef{\coefx} \varx + \aa&=\invisibleoneincoef{\coefx} \varx - \bb &&\ctc{ or } & \invisibleoneincoef{\coefx} \varx + \aa&=\bb-\invisibleoneincoef{\coefx} \varx \\
+		\aa&= -\bb && \ctc{or} & \ansden \varx&=\ansnum\\
+		&  && \ctc{or} & \varx&=\rdfrac{\ansnum}{\ansden}\\
+	\end{alignat*}
+\end{center} 
+So the solutions are $\varx=\rdfrac{\ansnum}{\ansden}$, because the equation $\invisibleoneincoef{\coefx} \varx + \aa=\invisibleoneincoef{\coefx} \varx - \bb$ has no solution.  In set-builder notation, the solution set is 
+$\{\rdfrac{\ansnum}{\ansden}\}$.
+\end{solution}
+

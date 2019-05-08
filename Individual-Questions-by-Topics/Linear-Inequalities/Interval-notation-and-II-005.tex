@@ -1,0 +1,51 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+%%%%%%%%%%%%%%%% Setup %%%%%%%%%
+
+\pgfmathtruncatemacro{\aa}{random(9,1)} 
+\pgfmathtruncatemacro{\bb}{random(1,9)} 
+\pgfmathtruncatemacro{\ab}{\bb-\aa}
+
+\ifnum\ab=0 
+	\pgfmathtruncatemacro{\cc}{\bb+1} 
+\else 
+	\pgfmathtruncatemacro{\cc}{\bb} 
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%% For solution %%%%%%%%%%%%%%%%%%%%
+\ifnum\ab<0  %%% a>b=c.
+	\pgfmathtruncatemacro{\ans}{\aa} 
+\else %%% a<=b<=c
+	\pgfmathtruncatemacro{\ans}{\cc} 
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+Solve the following inequality. Write the answer in interval notation.
+\[ x > \aa  \mbox{ and }  x > \cc \]
+
+\begin{solution}
+	For ``and'', we look for the ``overlap'', that is double shaded portion on the number line. Note that \ifnum\ab<0 $\aa>\cc$ \else $\aa<\cc$ \fi. From the following graph, 
+	\begin{center}
+	\begin{tikzpicture}
+	\draw[-latex] (-3,0)--(3, 0);
+	\draw[(-, thick] (-1.5, 0)--(3,0);
+	\draw[(-, thick] (0, 0)--(3,0);
+	\fill[pattern=north east lines] (-1.5,0) rectangle (3,0.1);
+	\fill[pattern=north west lines] (0,0) rectangle (3,0.1);
+	\ifnum\ab<0 
+	    \node[below] at (-1.5, -0.1) {$\cc$};
+	    \node[below] at (0, -0.1) {$\aa$};
+    \else 
+	    \node[below] at (-1.5, -0.1) {$\aa$};
+	    \node[below] at (0, -0.1) {$\cc$};
+    \fi
+	\end{tikzpicture}
+\end{center}
+we know that the interval is $(\ans, \infty)$.
+\end{solution}

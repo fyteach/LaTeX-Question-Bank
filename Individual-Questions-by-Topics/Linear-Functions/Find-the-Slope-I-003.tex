@@ -1,0 +1,28 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+\pgfmathtruncatemacro{\a}{-random(1,3)} 
+\pgfmathtruncatemacro{\b}{random(1,3)} 
+
+\pgfmathtruncatemacro{\x}{random(3,8)} 
+\pgfmathtruncatemacro{\y}{-random(2,5)}
+
+\pgfmathtruncatemacro{\mnum}{\y-\b}
+\pgfmathtruncatemacro{\mden}{\x-\a} 
+
+
+
+
+
+
+
+Find the slope of the line passing through the following two points
+\[(\a, \b)\text{\quad and\quad} (\x, \y).\]
+
+\begin{solution}
+The slope is
+\[
+m=\frac{(\y)-\b}{\x-(\a)}=\simplyfrac{\mnum}{\mden}.
+\]
+\end{solution}

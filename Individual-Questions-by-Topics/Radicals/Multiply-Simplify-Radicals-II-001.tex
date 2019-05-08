@@ -1,0 +1,40 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+% \pgfmathdeclarerandomlist{varx}{{x}{y}{p}{q}{z}}
+\pgfmathdeclarerandomlist{varx}{{x}{a}}
+\pgfmathrandomitem{\varx}{varx}
+\edef\varx{\varx}
+
+\pgfmathdeclarerandomlist{vary}{{y}{b}}
+\pgfmathrandomitem{\vary}{vary}
+\edef\vary{\vary}
+
+
+  \pgfmathtruncatemacro{\a}{random(2,3)}
+  \pgfmathtruncatemacro{\b}{random(2,7)}
+  \pgfmathtruncatemacro{\c}{random(5,3)}
+  \pgfmathtruncatemacro{\d}{random(7,2)}
+
+\pgfmathtruncatemacro{\ac}{\a*\c}
+\pgfmathtruncatemacro{\bd}{\b*\d}
+\pgfmathtruncatemacro{\ad}{\a*\d}
+\pgfmathtruncatemacro{\bc}{\b*\c}
+
+\pgfmathtruncatemacro{\bcad}{\bc-\ad}
+
+
+
+Assume all variables are positive. Simplify the following expression as much as possible.
+\[
+(\a\sqrt{\varx}+\b\sqrt{\vary})(\c\sqrt{\varx}-\d\sqrt{\vary})
+\]
+
+\begin{solution}
+\[
+    (\a\sqrt{\varx}+\b\sqrt{\vary})(\c\sqrt{\varx}-\d\sqrt{\vary}) 
+= \ac\varx+\bc\sqrt{\varx\vary}-\ad\sqrt{\varx\vary}-\bd\vary=\ac\varx-\bd\vary \constdisplay{\bcad}\sqrt{\varx\vary}.
+\]
+
+\end{solution}

@@ -1,0 +1,34 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+% \pgfmathdeclarerandomlist{varx}{{x}{y}{p}{q}{z}}
+% \pgfmathdeclarerandomlist{varx}{{x}{a}}
+% \pgfmathrandomitem{\varx}{varx}
+% \edef\varx{\varx}
+
+
+
+\pgfmathtruncatemacro{\aa}{random(2,6)}
+\pgfmathtruncatemacro{\bb}{2*random(1,3)}
+\pgfmathtruncatemacro{\cc}{2*random(2,4)-1}
+\pgfmathtruncatemacro{\dd}{random(2,5)}
+\pgfmathtruncatemacro{\ddminusone}{\dd-1}
+\pgfmathtruncatemacro{\ab}{\aa*\bb}
+\pgfmathtruncatemacro{\db}{\dd*\bb}
+
+Assume all variables are positive. Write the following expression with rational exponents and simplify to the form $\frac{x^p}{x^q}$.
+\[
+\left(\frac{x^{\aa} y}{y^{\dd}}\right)^{\frac{\bb}{\cc}}
+\]
+
+\begin{solution}
+\[
+ \left(\frac{x^{\aa} y}{y^{\dd}}\right)^{\frac{\bb}{\cc}}
+  = 
+ \left(\frac{x^{\aa}}{y^{\invisibleoneinpower{\ddminusone}}}\right)^{\frac{\bb}{\cc}}
+  =\frac{x^{\aa\cdot \frac{\bb}{\cc}}}{y^{\ddminusone \cdot \frac{\bb}{\cc} }} 
+  =\frac{x^{\rdfrac{\ab}{\cc}}}{y^{\rdfrac{\db}{\cc} }}.
+\]
+
+\end{solution}

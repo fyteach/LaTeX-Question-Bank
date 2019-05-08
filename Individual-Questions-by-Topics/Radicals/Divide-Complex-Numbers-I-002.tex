@@ -1,0 +1,37 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+
+
+
+
+\pgfmathtruncatemacro{\b}{random(2,5)}
+\pgfmathtruncatemacro{\c}{random(6,9)}
+
+
+
+Write the quotient in the form $a+b\mathbf{i}$, where $\mathbf{i}$ is the imaginary unit. 
+\[
+\frac{\b\sqrt{-1}+\c}{\sqrt{-1}}
+\]
+
+\begin{solution}
+\[
+    \frac{\b\sqrt{-1}+\c}{\sqrt{-1}}
+=     \frac{\b\mathbf{i}+\c}{\mathbf{i}} 
+= \frac{(\b\mathbf{i}+\c)\mathbf{i}}{(\mathbf{i})^2}
+= 
+  \frac
+  {
+    -\b+\c\mathbf{i} 
+  }
+  {
+    -1
+  }
+= 
+ \b-\c\mathbf{i}
+.
+\]
+
+\end{solution}

@@ -1,0 +1,66 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+\pgfmathtruncatemacro{\a}{random(1,3)} 
+
+\pgfmathtruncatemacro{\b}{random(2,4)}
+
+
+\pgfmathtruncatemacro{\c}{random(1,5)}
+
+
+
+
+\pgfmathtruncatemacro{\minit}{random(1,3)-2} 
+\pgfmathtruncatemacro{\m}{ifthenelse(\minit<0,\minit,\minit+1)} 
+\pgfmathtruncatemacro{\oppm}{-\m} 
+
+
+\pgfmathtruncatemacro{\n}{random(2,3)} 
+
+\pgfmathtruncatemacro{\ansonea}{-\a*\m^2+\b*\m-\c} 
+\pgfmathtruncatemacro{\ansoneb}{-\a*(\oppm)^2+\b*(\oppm)-\c} 
+\pgfmathtruncatemacro{\ansone}{\ansonea+\ansoneb} 
+
+
+\pgfmathtruncatemacro{\at}{\a*(\n)^2}
+\pgfmathtruncatemacro{\bt}{\b*\n} 
+
+
+
+ 
+
+
+
+If $f(x)=-\ifnum \a=1 \else \a\fi   x^2  + \ifnum\b=1 \else \b\fi  x  -  \c$, 
+determine the function values 
+
+\begin{enumerate*}[label={\textup(\arabic*)}, afterlabel=~~~, itemjoin=\hspace{0.25\textwidth}]
+\item $f(\m)+f(\oppm)$, 
+\item $f(\n t)$.
+\end{enumerate*}
+
+
+\begin{solution}
+\begin{enumerate}[label={\textup(\arabic*)}, afterlabel=~~~]
+\item
+Since
+\[
+f(\m)=-\ifnum\a=1  \else \a \fi (\m)^2    + \ifnum\b=1 \else \b  \fi  (\m)  -  \c=\ansonea,
+\]
+and
+\[
+f(\oppm)=-\ifnum\a=1  \else \a \fi (\oppm)^2    + \ifnum\b=1 \else \b  \fi  (\oppm)  -  \c=\ansoneb.
+\]
+Then
+\[f(\m)+f(\oppm)=\ansonea+ \display{\ansoneb}=\ansone.\]
+
+\item 
+\[
+f(\n t)
+=-\ifnum\a=1 \else \a \fi (\n t)^2+ \ifnum\b=1 \else \b\fi  (\n t)-\c
+= -\ifnum\at=1 \else \at \fi t^2  \ifnum\bt=1 + \else \ifnum\bt=-1  - \else +\bt \fi \fi  t-\c
+\]
+\end{enumerate}
+\end{solution}

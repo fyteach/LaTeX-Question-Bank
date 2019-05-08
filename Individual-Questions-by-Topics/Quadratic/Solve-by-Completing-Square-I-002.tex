@@ -1,0 +1,33 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+\pgfmathdeclarerandomlist{varx}{{x}{y}}
+% \pgfmathdeclarerandomlist{varx}{{2}{3}}
+\pgfmathrandomitem{\varx}{varx}
+\edef\varx{\varx}
+
+
+\pgfmathtruncatemacro{\h}{random(1,3)}
+\pgfmathtruncatemacro{\b}{2*\h}
+\pgfmathtruncatemacro{\r}{random(2,3)}
+\pgfmathtruncatemacro{\c}{\h^2+\r}
+\pgfmathtruncatemacro{\k}{\c-\h^2}
+
+Solve the following equation \textbf{by completing the square}
+\[
+  \varx^2-\b\varx+\c=0.
+\]
+\emph{\small Note: No credit for using methods other than completing the square.}
+
+\begin{solution}
+\[
+  \begin{split}
+  \varx^2-\b\varx+\c &=0\\
+  (\varx-\h)^2+\k&=0\\
+  (\varx-\h)^2&=-\r \\
+  \varx-\h&=\pm\sqrt{-\r}\\
+  \varx&=\h\pm\mathbf{i}\sqrt{\r}.
+  \end{split}
+\]
+\end{solution}

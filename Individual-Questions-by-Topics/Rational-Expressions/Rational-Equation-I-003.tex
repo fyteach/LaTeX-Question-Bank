@@ -1,0 +1,111 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+% \pgfmathdeclarerandomlist{varx}{{x}{y}{p}{q}{z}}
+\pgfmathdeclarerandomlist{varx}{{x}}
+\pgfmathrandomitem{\varx}{varx}
+\edef\varx{\varx}
+
+
+
+
+\pgfmathdeclarerandomlist{CoprimeWithOne}{
+  {1}{2}{3}{4}{5}
+}
+ \pgfmathdeclarerandomlist{CoprimeWithTwo}{
+  {1}{3}{5}
+}
+ \pgfmathdeclarerandomlist{CoprimeWithThree}{
+  {1}{2}{4}{5}
+}
+ \pgfmathdeclarerandomlist{CoprimeWithFour}{
+  {1}{3}{5}
+}
+ \pgfmathdeclarerandomlist{CoprimeWithFive}{
+  {1}{2}{3}{4}
+}
+
+
+\pgfmathsetmacro{\a}{int(random(2,3))}
+
+ %%%%%% generate random b coprime with a %%%
+ \ifcase\a\relax%
+  \or \pgfmathrandomitem{\b}{CoprimeWithOne}
+  \or \pgfmathrandomitem{\b}{CoprimeWithTwo}
+  \or \pgfmathrandomitem{\b}{CoprimeWithThree}
+  % \or \pgfmathrandomitem{\b}{CoprimeWithFour}
+  % \or \pgfmathrandomitem{\b}{CoprimeWithFive} 
+ \fi
+ \edef\b{\b}
+
+
+ \pgfmathsetmacro{\c}{int(random(4,5))}
+
+ %%%%%% generate random d coprime c %%%
+
+ \ifcase\c\relax%
+   \or \pgfmathrandomitem{\d}{}
+   \or \pgfmathrandomitem{\d}{}
+   \or \pgfmathrandomitem{\d}{}
+   \or \pgfmathrandomitem{\d}{CoprimeWithFour}
+   \or \pgfmathrandomitem{\d}{CoprimeWithFive}
+ \fi
+  \edef\d{\d}
+
+
+  \pgfmathsetmacro{\r}{int(random(2,3))}
+
+ 
+ \pgfmathtruncatemacro{\s}{(\a+(-\b)-\r*\c-\r*\d)}
+\pgfmathtruncatemacro{\negatives}{-(\a+(-\b)-\r*\c-\r*\d)}
+
+ \pgfmathtruncatemacro{\A}{\a*\c}
+ \pgfmathtruncatemacro{\C}{(-\b)*(\d)}
+ \pgfmathtruncatemacro{\B}{\a*(\d)+(-\b)*(\c)}
+
+
+\pgfmathtruncatemacro{\E}{(-\b)-\r*\c}
+\pgfmathtruncatemacro{\F}{-(\r*\d+\s)}
+
+\pgfmathtruncatemacro{\negativeF}{-(\r*\d+\s)}
+
+
+
+% \pgfmathtruncatemacro{\bminusa}{(\a)*(\b)}
+
+%%%r/(ax+b)-s/(ax+b)(cx+d)=x/(cx+d) Roots: r=1 or s=-(rd+s)/a
+
+Solve the  rational equation
+\[
+   \frac{\r}{ \invisibleoneincoef{\a}\varx \constdisplay{-\b} }
+   -  \frac{\negatives}{\invisibleoneincoef{\A}\varx^2 \plusminus{\B}\varx \constdisplay{\C}} 
+   = \frac{x}{\invisibleoneincoef{\c}\varx \constdisplay{\d}}.
+\]
+
+\begin{solution}
+\[
+	\begin{split}
+		\frac{\r}{ \invisibleoneincoef{\a}\varx \constdisplay{-\b} }
+   -  
+   \frac{\negatives}{\invisibleoneincoef{\A}\varx^2 \plusminus{\B}\varx \constdisplay{\C}} 
+   &= 
+   \frac{x}{\invisibleoneincoef{\c}\varx \constdisplay{\d}}
+    \\
+   \frac{\r}{ (\invisibleoneincoef{\a}\varx \constdisplay{-\b}) }
+   -  
+   \frac{\negatives}{(\invisibleoneincoef{\a}\varx \constdisplay{-\b})(\invisibleoneincoef{\c}\varx \constdisplay{\d})} 
+   &= 
+   \frac{x}{\invisibleoneincoef{\c}\varx \constdisplay{\d}}
+    \\
+    \r(\invisibleoneincoef{\c}\varx \constdisplay{\d}) \constdisplay{\s}
+    &=x(\invisibleoneincoef{\a}\varx \constdisplay{-\b})\\
+    \a \varx^2 \plusminus{\E}\varx \constdisplay{\F}  &=0\\
+    (\a \varx \constdisplay{\negativeF})(\varx-1)&=0
+	\end{split}
+\]
+  \begin{alignat*}{3}
+    \a \varx \constdisplay{\negativeF}&=0 &&\ctc{or} & \varx -1&=0\\
+    \varx&=\reducedfraction{\F}{\a} &&  & \varx&=1
+  \end{alignat*}
+\end{solution}

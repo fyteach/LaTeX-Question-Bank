@@ -1,0 +1,63 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+% \pgfmathdeclarerandomlist{varx}{{x}{y}{p}{q}{z}}
+\pgfmathdeclarerandomlist{varx}{{x}{a}}
+\pgfmathrandomitem{\varx}{varx}
+\edef\varx{\varx}
+
+\pgfmathdeclarerandomlist{vary}{{y}{b}}
+\pgfmathrandomitem{\vary}{vary}
+\edef\vary{\vary}
+
+\pgfmathdeclarerandomlist{varz}{{z}{c}}
+\pgfmathrandomitem{\varz}{varz}
+\edef\varz{\varz}
+
+
+\pgfmathtruncatemacro{\m}{2*(random(2,3))-1} %%index m<=5 and odd.
+
+
+
+\pgfmathdeclarerandomlist{indextwo}{{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}}
+\pgfmathdeclarerandomlist{indexthree}{{2}{3}{4}{5}}
+\pgfmathdeclarerandomlist{indexfour}{{2}{3}{4}}
+\pgfmathdeclarerandomlist{indexfive}{{2}}
+
+
+\ifcase\m\relax%
+  \or \pgfmathrandomitem{\n}{}
+  \or \pgfmathrandomitem{\n}{indextwo}
+  \or \pgfmathrandomitem{\n}{indexthree}
+  \or \pgfmathrandomitem{\n}{indexfour}
+  \or \pgfmathrandomitem{\n}{indexfive} 
+ \fi
+ \edef\n{\n}
+
+
+  \pgfmathtruncatemacro{\a}{random(1,3)}
+  \pgfmathtruncatemacro{\b}{random(2,4)}
+  \pgfmathtruncatemacro{\c}{random(3,1)}
+
+\pgfmathtruncatemacro{\nm}{\n^\m}
+  \pgfmathtruncatemacro{\ma}{\m*\a}
+  \pgfmathtruncatemacro{\mb}{\m*\b}
+  \pgfmathtruncatemacro{\mc}{\m*\c}
+
+Simplify the radical expression.
+\[
+      \sqrt[\m]{-\nm\varx^{\ma}\vary^{\mb}}.
+\]
+
+\begin{solution}
+\[
+      \sqrt[\m]{-\nm\varx^{\ma}\vary^{\mb}}
+      =
+      \sqrt[\m]{(-\n\varx^{\invisibleoneinpower{\a}}\vary^{\invisibleoneinpower{\b}})^\m}
+=
+  -\n\varx^{\invisibleoneinpower{\a}}\vary^{\invisibleoneinpower{\b}}
+.
+\]
+
+\end{solution}

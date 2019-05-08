@@ -1,0 +1,52 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+
+% \pgfmathtruncatemacro{\a}{random(1,5)}
+% \pgfmathtruncatemacro{\k}{\a^2}
+
+% \pgfmathdeclarerandomlist{diffone}{{2}{3}{4}{5}}
+% \pgfmathdeclarerandomlist{difftwo}{{1}{3}{4}{5}}
+% \pgfmathdeclarerandomlist{diffthree}{{1}{2}{4}{5}}
+% \pgfmathdeclarerandomlist{difffour}{{1}{2}{3}{5}}
+% \pgfmathdeclarerandomlist{difffive}{{1}{2}{3}{4}}
+
+% \ifcase\a\relax%
+%   \or \pgfmathrandomitem{\h}{diffone}
+%   \or \pgfmathrandomitem{\h}{difftwo}
+%   \or \pgfmathrandomitem{\h}{diffthree}
+%   \or \pgfmathrandomitem{\h}{difffour}
+%   \or \pgfmathrandomitem{\h}{difffive} 
+%  \fi
+%  \edef\h{\h}
+
+\pgfmathtruncatemacro{\c}{random(1,2)}
+\pgfmathtruncatemacro{\coef}{random(2,11)}
+\pgfmathtruncatemacro{\tentopowerc}{10^\c}
+\pgfmathtruncatemacro{\a}{\tentopowerc-\coef}
+\pgfmathtruncatemacro{\ans}{-random(2, 5)}
+\pgfmathtruncatemacro{\negans}{-\ans}
+\pgfmathtruncatemacro{\b}{-\coef*\ans}
+
+Solve the logarithmic equation 
+\[\log(\b-\a x)=\c+\log(-x).\]
+
+
+\begin{solution}
+		\[\begin{split}
+		\log(\b-\a x)&=\c+\log(-x)\\
+		\log(\b-\a x)-\log(-x)&=\c\\
+		\log\left(\frac{\b-\a x}{-x}\right)&=\c\\
+		 \frac{\b-\a x}{-x} &=10^\c\\
+		  \frac{\b-\a x}{-x} &=\tentopowerc\\
+		  \b-\a x&=-\tentopowerc x\\
+		  \b&=-\coef x\\
+		  x&=\ans.
+		\end{split}
+		\]
+Check: The left hand side is 
+\[\log(\b-\a\cdot (\ans))=\log(\negans\cdot\tentopowerc)=\log\negans+\c\]
+which is the same as right hand side.
+So the solution is $x=\ans$.
+\end{solution}

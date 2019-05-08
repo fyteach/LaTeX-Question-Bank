@@ -1,0 +1,123 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+% \pgfmathdeclarerandomlist{varx}{{x}{y}{p}{q}{z}}
+\pgfmathdeclarerandomlist{varx}{{x}}
+\pgfmathrandomitem{\varx}{varx}
+\edef\varx{\varx}
+
+\pgfmathdeclarerandomlist{vary}{{y}}
+\pgfmathrandomitem{\vary}{vary}
+\edef\vary{\vary}
+
+
+
+\pgfmathdeclarerandomlist{CoprimeWithOne}{
+  {1}{2}{3}{4}{5}
+}
+ \pgfmathdeclarerandomlist{CoprimeWithTwo}{
+  {1}{3}{5}
+}
+ \pgfmathdeclarerandomlist{CoprimeWithThree}{
+  {1}{2}{4}{5}
+}
+ \pgfmathdeclarerandomlist{CoprimeWithFour}{
+  {1}{3}{5}
+}
+ \pgfmathdeclarerandomlist{CoprimeWithFive}{
+  {1}{2}{3}{4}
+}
+
+
+\pgfmathsetmacro{\a}{int(random(2,5))}
+
+ %%%%%% generate random b coprime with a %%%
+ \ifcase\a\relax%
+  \or \pgfmathrandomitem{\b}{}
+  \or \pgfmathrandomitem{\b}{CoprimeWithTwo}
+  \or \pgfmathrandomitem{\b}{CoprimeWithThree}
+  \or \pgfmathrandomitem{\b}{CoprimeWithFour}
+  \or \pgfmathrandomitem{\b}{CoprimeWithFive} 
+ \fi
+ \edef\b{\b}
+
+
+ \pgfmathsetmacro{\c}{int(random(2,5))}
+
+ %%%%%% generate random d coprime c %%%
+
+ \ifcase\c\relax%
+  \or \pgfmathrandomitem{\d}{}
+  \or \pgfmathrandomitem{\d}{CoprimeWithTwo}
+  \or \pgfmathrandomitem{\d}{CoprimeWithThree}
+   \or \pgfmathrandomitem{\d}{CoprimeWithFour}
+   \or \pgfmathrandomitem{\d}{CoprimeWithFive}
+ \fi
+  \edef\d{\d}
+
+
+\pgfmathtruncatemacro{\ApB}{\a+\b}
+\pgfmathtruncatemacro{\AmB}{\a-\b}
+\pgfmathtruncatemacro{\ADpBC}{\a*\d+\b*\c}
+\pgfmathtruncatemacro{\ADmBC}{\a*\d-\b*\c}
+
+\pgfmathtruncatemacro{\GCDTop}{gcd(\AmB,\ADpBC)}
+\pgfmathtruncatemacro{\GCDBot}{gcd(\AmB,\ADmBC)}
+\pgfmathtruncatemacro{\GCDTB}{gcd(\GCDTop,\GCDBot)}
+
+\pgfmathtruncatemacro{\Topx}{\AmB/\GCDTB}
+\pgfmathtruncatemacro{\Botx}{\ApB/\GCDTB}
+\pgfmathtruncatemacro{\Topc}{\ADpBC/\GCDTB}
+\pgfmathtruncatemacro{\Botc}{\ADmBC/\GCDTB}
+
+%%%%[a/(x-c)-b/(x+d)]/[a/(x-c)+b/(x+d)]=[(a-b)x+ad+bc]/[(a+b)x+ad-bc]
+
+Simplify the complex rational expression.
+\[
+  \dfrac
+  {
+    \frac{\a}{\varx-\c}-\frac{\b}{\varx+\d}
+  }
+  {
+    \frac{\a}{\varx-\c}+\frac{\b}{\varx+\d}
+  }  
+  .
+\]
+
+\begin{solution}
+\[
+	\begin{split}
+  \dfrac
+  {
+    \frac{\a}{\varx-\c}-\frac{\b}{\varx+\d}
+  }
+  {
+    \frac{\a}{\varx-\c}+\frac{\b}{\varx+\d}
+  }  
+  =&
+     \dfrac
+  {
+    \frac{\a(\varx+\d)-\invisibleoneincoef{\b}(\varx-\c)}{(\varx-\c)(\varx+\d)}
+  }
+  {
+    \frac{\a(\varx+\d)+\invisibleoneincoef{\b}(\varx-\c)}{(\varx-\c)(\varx+\d)}
+  } 
+\\
+	=	&
+    \dfrac
+    {\a(\varx+\d)-\invisibleoneincoef{\b}(\varx-\c)}
+    {\a(\varx+\d)+\invisibleoneincoef{\b}(\varx-\c)}
+\\
+	=	&
+  \dfrac
+      {\invisibleoneincoef{\AmB}\varx \constdisplay{\ADpBC} }
+      {\invisibleoneincoef{\ApB}\varx \ifnum \ADmBC=0 \else \constdisplay{\ADmBC} \fi }  \\
+      =	&
+      \dfrac
+          {\invisibleoneincoef{\Topx}\varx \constdisplay{\Topc} }
+          {\invisibleoneincoef{\Botx}\varx \ifnum \Botc=0 \else \constdisplay{\Botc} \fi }  
+	\end{split}
+\]
+
+\end{solution}

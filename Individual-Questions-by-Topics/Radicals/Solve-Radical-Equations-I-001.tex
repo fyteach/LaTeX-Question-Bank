@@ -1,0 +1,57 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+% \pgfmathdeclarerandomlist{varx}{{x}{y}{p}{q}{z}}
+\pgfmathdeclarerandomlist{varx}{{x}}
+\pgfmathrandomitem{\varx}{varx}
+\edef\varx{\varx}
+
+
+ \pgfmathtruncatemacro{\m}{random(2,3)}
+
+ \pgfmathtruncatemacro{\x}{random(1,3)}
+
+
+
+\pgfmathtruncatemacro{\a}{random(1,4)}
+\pgfmathtruncatemacro{\c}{random(2,4)}
+\pgfmathtruncatemacro{\cm}{\c^\m}
+
+\pgfmathtruncatemacro{\dd}{-random(2,4)}
+\pgfmathtruncatemacro{\ee}{\c+\dd}
+
+\pgfmathtruncatemacro{\b}{\cm-\a*\x}
+ \pgfmathtruncatemacro{\ax}{\a*\x}
+
+Solve the following radical equation 
+\[ 
+\ifnum\m=2
+  \sqrt{\invisibleoneincoef{\a}\varx \constdisplay{\b} } \constdisplay{\dd}=\ee
+\else
+  \sqrt[\m]{\invisibleoneincoef{\a}\varx \constdisplay{\b} } \constdisplay{\dd}=\ee
+\fi
+.
+\]
+
+\begin{solution}
+\[
+  \begin{split}
+    \ifnum\m=2
+  \sqrt{\invisibleoneincoef{\a}\varx \constdisplay{\b} } \constdisplay{\dd}
+\else
+  \sqrt[\m]{\invisibleoneincoef{\a}\varx \constdisplay{\b} } \constdisplay{\dd}
+\fi
+&=\ee \\
+    \ifnum\m=2
+      \sqrt{\invisibleoneincoef{\a}\varx \constdisplay{\b}}
+    \else
+      \sqrt[\m]{\invisibleoneincoef{\a}\varx \constdisplay{\b}}
+    \fi
+    &=\c\\
+      \invisibleoneincoef{\a}\varx \constdisplay{\b}&=\cm\\
+      \invisibleoneincoef{\a}\varx&=\ax\\
+\ifnum\a>1  \varx&=\x \fi
+  \end{split}
+\]
+\end{solution}

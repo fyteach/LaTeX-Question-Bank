@@ -1,0 +1,49 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+\pgfmathtruncatemacro{\a}{random(1,3)} 
+\pgfmathtruncatemacro{\b}{random(1,3)} 
+\pgfmathtruncatemacro{\c}{random(3,8)} 
+\pgfmathtruncatemacro{\d}{-random(2,5)} 
+\pgfmathtruncatemacro{\e}{\b*\d} 
+\pgfmathtruncatemacro{\f}{\e/\d} 
+
+
+\pgfmathtruncatemacro{\aplusb}{\a+\f} 
+\pgfmathtruncatemacro{\aminusb}{\a-\f} 
+
+\pgfmathtruncatemacro{\ronenum}{\aplusb/gcd(\aplusb ,\c)} 
+\pgfmathtruncatemacro{\roneden}{\c/gcd(\aplusb, \c)} 
+
+\pgfmathtruncatemacro{\rtwonum}{-\aminusb/gcd(\aminusb ,\c)}  
+\pgfmathtruncatemacro{\rtwoden}{\c/gcd(\aminusb, \c)} 
+% \pgfmathsetmacro{\rtwofrac}{\rtwonum/\rtwoden}  
+
+
+
+Solve the absolute value equation 
+\[\d|\c x-\a|=\e.\]
+
+\begin{solution}
+
+First, we isolate the absolute value expression $|X|$.
+\[
+\begin{split}
+\d|\c x-\a|&=\e\\
+|\c x-\a| &=\f
+\end{split}
+\]
+Since $\f>0$, this equation is equivalent to the following two equations.
+
+\begin{center}
+	\begin{alignat*}{3}
+		\c x-\a&=\f &&\ctc{ or } & \c x-\a&=-\f\\
+		\c x&=\aplusb &&  & \c x&=\aminusb\\
+		x&=\rdfrac{\ronenum}{\roneden}&&\ctc{or}  &  x&=\rdfrac{-\rtwonum}{\rtwoden}
+	\end{alignat*}
+\end{center} 
+So the solutions are $x=\rdfrac{\ronenum}{\roneden}$ and $x=\rdfrac{-\rtwonum}{\rtwoden}$. In set-builder notation, the solution set is 
+$\{\rdfrac{-\rtwonum}{\rtwoden}, \rdfrac{\ronenum}{\roneden}\}$.
+\end{solution}
+

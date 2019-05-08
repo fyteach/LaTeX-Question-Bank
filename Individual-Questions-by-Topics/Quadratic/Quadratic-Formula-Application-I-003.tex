@@ -1,0 +1,34 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+\pgfmathtruncatemacro{\area}{random(20,200)}
+\pgfmathtruncatemacro{\kk}{random(1,9)}
+\pgfmathtruncatemacro{\discr}{(-\kk)^2+8*\area}
+\pgfmathtruncatemacro{\kkk}{3*\kk}
+
+
+\pgfmathsetmacro{\xx}{ ( \kk+sqrt(\discr) )/4 }
+
+\pgfmathsetmacro{\yy}{2*\xx-\kk}
+\pgfmathsetmacro{\ans}{sqrt((\xx)^2+(\yy)^2)}
+
+
+A rectangle whose length is $\kk$ meters less than twice its width has an area $\area$ square meters. What is the length of the diagonal? Round your answer to the nearest thousandth of a meter.
+
+
+\begin{solution}
+ Suppose the width is $x$ meters. Then the length is $2x-\kk$ meters. By the rectangular area formula: $\textup{Area}=\textup{Width}~\times~\textup{Length}$, we have the following equation
+\[x(2x-\kk)=\area.\] 
+Simplify the equation, we get
+\[2x^2-\kk x-\area=0.\]
+By the quadratic formula, we get  
+\[x=\dfrac{-\kk+\sqrt{(-\kk)^2-4\cdot 2\cdot (-\area)}}{2\cdot 2}=\dfrac{-\kk+\sqrt{\discr}}{4}.\]
+So the width is approximately $\frac{-\kk+\sqrt{\discr}}{4}$ meters and the length is $\frac{\sqrt{\discr}-\kkk}{2}$ meters. 
+The diagonal is 
+\[
+\sqrt{\left(\dfrac{-\kk+\sqrt{\discr}}{4} \right)^2+ \left( \dfrac{\sqrt{\discr}-\kkk}{2}\right)^2} \approx \pgfmathprintnumber[fixed, precision=3]{\ans}
+\]
+meters.
+
+\end{solution}

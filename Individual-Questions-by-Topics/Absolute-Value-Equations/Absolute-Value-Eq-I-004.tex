@@ -1,0 +1,36 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+\pgfmathtruncatemacro{\a}{4*random(1,3)-2} 
+\pgfmathtruncatemacro{\b}{4*random(3,5)+2} 
+
+\pgfmathtruncatemacro{\aplusb}{\a+\b} 
+\pgfmathtruncatemacro{\aminusb}{\a-\b} 
+
+\pgfmathtruncatemacro{\rone}{(\a+\b)/4} 
+\pgfmathtruncatemacro{\rtwo}{(\a-\b)/4} 
+
+Solve the absolute value equation 
+\[|-4x+\a|=\b.\]
+
+\begin{solution}
+
+% First, check if the equation is $|X|=c$ form. If not, isolate the absolute value expression $|X|$.
+
+% \centerline{$|\a-3x|=\b$}
+The equation is equivalent to 
+\[|4x-\a|=\b.\]
+Since $\b>0$, this equation is equivalent to the following two equations.
+
+\begin{center}
+	\begin{alignat*}{3}
+		4x-\a&=\b &&\ctc{ or } & 4x-\a&=-\b\\
+		4x&=\aplusb &&  & 4x&=\aminusb\\
+		x&=\rone &&\ctc{or}  &  x&=\rtwo
+	\end{alignat*}
+\end{center}
+So the solutions are $x=\rone$ and $x=\rtwo$. In set-builder notation, the solution set is 
+$\{\rtwo, \rone\}$.
+\end{solution}
+

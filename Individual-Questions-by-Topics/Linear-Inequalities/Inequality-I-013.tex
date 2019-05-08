@@ -1,0 +1,30 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+%%%%%%%%%%%% Assume a>0, a>b %%%%%%%%%%%%
+
+\pgfmathtruncatemacro{\a}{3}
+\pgfmathtruncatemacro{\b}{-4}
+
+\pgfmathtruncatemacro{\c}{-2}
+
+\pgfmathtruncatemacro{\e}{\b-\a}
+\pgfmathtruncatemacro{\d}{(\b-\a)*\c}
+
+
+
+
+Solve the inequality and write the solution set in interval notation.
+\[ \d+\a x\leq \b x  \]
+
+
+\begin{solution}
+\[\begin{split}
+\d+\a x &\leq  \b x \\
+\d &\leq  \e x\\
+\e x&\geq \d\\
+x &\leq \c\\
+\end{split}
+\]
+The solution set is $(-\infty, \c]$.
+\end{solution}

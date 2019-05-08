@@ -1,0 +1,32 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+\pgfmathdeclarerandomlist{varx}{{x}{y}}
+% \pgfmathdeclarerandomlist{varx}{{2}{3}}
+\pgfmathrandomitem{\varx}{varx}
+\edef\varx{\varx}
+
+\pgfmathdeclarerandomlist{oddnumbers}{{1}{5}}
+\pgfmathrandomitem{\b}{oddnumbers}
+\edef\b{\b}
+
+\pgfmathtruncatemacro{\a}{random(2,3)}
+\pgfmathtruncatemacro{\twoa}{2*\a}
+% \pgfmathtruncatemacro{\b}{random(1,3)}
+\pgfmathtruncatemacro{\c}{random(1,3)}
+\pgfmathtruncatemacro{\Dt}{\b^2+4*\a*\c}
+
+
+A rectangle whose length is $3$ meters longer than its width has an area $5$ square meters. What is the dimension of the rectangle? Round your answer to the nearest tenth of a meter.
+
+
+\begin{solution}
+ Suppose the width is $x$ meters. Then the length is $x+3$. By the rectangular area formula: $Area=Width~\times~Length$, we have the following equation
+\[x(x+3)=5.\] 
+Simplify the equation, we get
+\[x^2+3x-5=0.\]
+By the quadratic formula, we get  
+\[x=\dfrac{-3+\sqrt{29}}{2}\]
+So the width is approximately $1.2$ meters and the length is approximately $4.2$ meters.
+\end{solution}

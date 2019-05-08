@@ -1,0 +1,67 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+\pgfmathtruncatemacro{\aa}{random(1,3)} 
+\pgfmathtruncatemacro{\bb}{random(3,1)}
+\pgfmathtruncatemacro{\ccinit}{random(1,7)-4}
+\pgfmathtruncatemacro{\cc}{ifthenelse(\ccinit==0,\ccinit+1,\ccinit)}
+
+\pgfmathtruncatemacro{\mtop}{\aa*random(1,2)}
+
+
+\pgfmathsetmacro{\mm}{\mtop/\bb}
+
+\pgfmathtruncatemacro{\xinit}{\bb/gcd(\mtop,\bb)}
+
+\pgfmathtruncatemacro{\xx}{ifthenelse(\cc<0,\xinit,-\xinit)}
+
+\pgfmathtruncatemacro{\mmyy}{\mtop/gcd(\mtop,\bb)}
+
+\pgfmathtruncatemacro{\yy}{ifthenelse(\cc<0, \mmyy+\cc, -\mmyy+\cc)}
+
+% \begin{multicols}{2}
+	Find an equation of the line passing though $(0, \cc)$ and perpendicular to the line in the graph.
+\vspace{-\baselineskip}
+	% \columnbreak
+\begin{center}
+	\begin{flushright}
+		\begin{tikzpicture}[every node/.style={scale=1.25}]
+			\begin{axis}[
+				grid=both,
+				minor tick num=1,
+				xmax=6,
+				xmin=-6,
+				ymax=6,
+				ymin=-6,
+				color=black
+			]
+			\addplot [
+				domain=-6:6, 
+				samples=100, 
+				color=blue,
+				]
+				{\mm*x+\cc};
+			% \draw[fill=black] (0,0) circle (2pt) node[below left, xshift=1pt, yshift=1pt]{\tiny $0$};
+			\draw[fill=black] (0,\cc) circle (2pt) ;
+			\draw[fill=black]  (\xx,\yy) circle (2pt) ;
+			\end{axis}
+			\end{tikzpicture}
+	\end{flushright}
+
+\end{center}
+% \end{multicols}
+
+\begin{solution}
+Since the $y$-intercept is $(0, \cc)$ and the point $(\xx, \yy)$ is also on the line, the slope of the line is  
+\[
+m=\frac{\yy-\display{\cc}}{\xx-0}=\rdfrac{\mtop}{\bb}.
+\]
+
+The slope of the perpendicular line is $m_\perp=-\frac{1}{m}=-\rdfrac{\bb}{\mtop}$.
+
+Then the slope-intercept form equation of the perpendicular line is
+\[
+	y=-\rdfrac{\bb}{\mtop} x \constdisplay{\cc}.
+\]
+\end{solution}

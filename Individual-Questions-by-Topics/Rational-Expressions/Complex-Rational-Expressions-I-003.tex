@@ -1,0 +1,106 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+% \pgfmathdeclarerandomlist{varx}{{x}{y}{p}{q}{z}}
+\pgfmathdeclarerandomlist{varx}{{x}}
+\pgfmathrandomitem{\varx}{varx}
+\edef\varx{\varx}
+
+\pgfmathdeclarerandomlist{vary}{{y}}
+\pgfmathrandomitem{\vary}{vary}
+\edef\vary{\vary}
+
+
+
+\pgfmathdeclarerandomlist{CoprimeWithOne}{
+  {1}{2}{3}{4}{5}
+}
+ \pgfmathdeclarerandomlist{CoprimeWithTwo}{
+  {1}{3}{5}
+}
+ \pgfmathdeclarerandomlist{CoprimeWithThree}{
+  {1}{2}{4}{5}
+}
+ \pgfmathdeclarerandomlist{CoprimeWithFour}{
+  {1}{3}{5}
+}
+ \pgfmathdeclarerandomlist{CoprimeWithFive}{
+  {1}{2}{3}{4}
+}
+
+
+\pgfmathsetmacro{\a}{int(random(2,5))}
+
+ %%%%%% generate random b coprime with a %%%
+ \ifcase\a\relax%
+  \or \pgfmathrandomitem{\d}{}
+  \or \pgfmathrandomitem{\d}{CoprimeWithTwo}
+  \or \pgfmathrandomitem{\d}{CoprimeWithThree}
+  \or \pgfmathrandomitem{\d}{CoprimeWithFour}
+  \or \pgfmathrandomitem{\d}{CoprimeWithFive} 
+ \fi
+ \edef\d{\d}
+
+
+ \pgfmathsetmacro{\b}{int(random(2,5))}
+
+ %%%%%% generate random d coprime c %%%
+
+ \ifcase\b\relax%
+  \or \pgfmathrandomitem{\c}{}
+  \or \pgfmathrandomitem{\c}{CoprimeWithTwo}
+  \or \pgfmathrandomitem{\c}{CoprimeWithThree}
+   \or \pgfmathrandomitem{\c}{CoprimeWithFour}
+   \or \pgfmathrandomitem{\c}{CoprimeWithFive}
+ \fi
+  \edef\c{\c}
+
+
+\pgfmathtruncatemacro{\A}{\d*\c-\a}
+\pgfmathtruncatemacro{\B}{\b+\d*\c}
+
+
+
+
+%%%%[a/(x+1)-1]/[b/(x+1)+1]=[(a-1)-x]/[x+(b+1)]
+
+Simplify the rational expression.
+\[
+  \dfrac
+  { 
+    \d-\frac{\a}{\varx+\c}
+  }
+  {
+    \d+\frac{\b}{\varx+\c}
+  }
+  .
+\]
+
+\begin{solution}
+\[
+	\begin{split}
+  \dfrac
+  {
+    \frac{\invisibleoneincoef{\d}(\varx+\c)-\a}{\varx+\c}
+  }
+  {
+    \frac{\invisibleoneincoef{\d}(\varx+\c)+\b}{\varx+\c}
+  }  
+  =&
+     \dfrac
+  {
+    {\invisibleoneincoef{\d}(\varx+\c)-\a}
+  }
+  {
+    {\invisibleoneincoef{\d}(\varx+\c)+\b}
+  } 
+\\
+	=	&
+    \dfrac
+    {\invisibleoneincoef{\d}\varx \ifnum\A=0 \else \constdisplay{\A}\fi }
+    {\invisibleoneincoef{\d}\varx \ifnum\B=0 \else \constdisplay{\B}\fi} 
+	\end{split}
+\]
+
+\end{solution}

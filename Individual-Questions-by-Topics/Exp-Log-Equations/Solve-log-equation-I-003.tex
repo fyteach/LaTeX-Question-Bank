@@ -1,0 +1,40 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+
+% \pgfmathtruncatemacro{\a}{random(1,5)}
+% \pgfmathtruncatemacro{\k}{\a^2}
+
+% \pgfmathdeclarerandomlist{diffone}{{2}{3}{4}{5}}
+% \pgfmathdeclarerandomlist{difftwo}{{1}{3}{4}{5}}
+% \pgfmathdeclarerandomlist{diffthree}{{1}{2}{4}{5}}
+% \pgfmathdeclarerandomlist{difffour}{{1}{2}{3}{5}}
+% \pgfmathdeclarerandomlist{difffive}{{1}{2}{3}{4}}
+
+% \ifcase\a\relax%
+%   \or \pgfmathrandomitem{\h}{diffone}
+%   \or \pgfmathrandomitem{\h}{difftwo}
+%   \or \pgfmathrandomitem{\h}{diffthree}
+%   \or \pgfmathrandomitem{\h}{difffour}
+%   \or \pgfmathrandomitem{\h}{difffive} 
+%  \fi
+%  \edef\h{\h}
+
+\pgfmathtruncatemacro{\a}{random(2,3)}
+\pgfmathtruncatemacro{\asq}{\a^2}
+\pgfmathtruncatemacro{\b}{random(5,15)}
+\pgfmathtruncatemacro{\ans}{\a^2+\b}
+Solve the logarithmic equation 
+\[\log_{\a} \sqrt{x-\b}=1.\]
+
+
+\begin{solution}
+		\[\begin{split}
+		\log_{\a} \sqrt{x-\b}&=1\\
+		\sqrt{x-\b}&=\a\\
+		x-\b&=\a^2\\
+		 x &=\ans.
+		\end{split}
+		\]
+\end{solution}

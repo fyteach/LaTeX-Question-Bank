@@ -1,0 +1,41 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+
+% \pgfmathtruncatemacro{\a}{random(1,5)}
+% \pgfmathtruncatemacro{\k}{\a^2}
+
+% \pgfmathdeclarerandomlist{diffone}{{2}{3}{4}{5}}
+% \pgfmathdeclarerandomlist{difftwo}{{1}{3}{4}{5}}
+% \pgfmathdeclarerandomlist{diffthree}{{1}{2}{4}{5}}
+% \pgfmathdeclarerandomlist{difffour}{{1}{2}{3}{5}}
+% \pgfmathdeclarerandomlist{difffive}{{1}{2}{3}{4}}
+
+% \ifcase\a\relax%
+%   \or \pgfmathrandomitem{\h}{diffone}
+%   \or \pgfmathrandomitem{\h}{difftwo}
+%   \or \pgfmathrandomitem{\h}{diffthree}
+%   \or \pgfmathrandomitem{\h}{difffour}
+%   \or \pgfmathrandomitem{\h}{difffive} 
+%  \fi
+%  \edef\h{\h}
+
+\pgfmathtruncatemacro{\a}{random(2,4)}
+\pgfmathtruncatemacro{\b}{random(5,15)}
+\pgfmathtruncatemacro{\c}{10-\a}
+Solve the logarithmic equation 
+\[\log(\a x+\b)-\log x=1.\]
+
+
+\begin{solution}
+		\[\begin{split}
+		\log(\a x+\b)-\log x&=1\\
+		\log(\frac{\a x+\b}{x})&=1\\
+		\frac{\a x+\b}{x}&=10^1\\
+		\a x+\b&=10x\\
+		 \c x&=\b\\
+		 x&=\reducedfraction{\b}{\c}.
+		\end{split}
+		\]
+\end{solution}

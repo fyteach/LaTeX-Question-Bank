@@ -1,0 +1,28 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+\pgfmathtruncatemacro{\aa}{random(2,4)}
+\pgfmathtruncatemacro{\bb}{random(3,5)}
+\pgfmathtruncatemacro{\cc}{random(7,5)}
+\pgfmathtruncatemacro{\ab}{\aa*\bb}
+\pgfmathtruncatemacro{\ac}{\aa*\cc}
+\pgfmathtruncatemacro{\twoab}{2*\aa*\bb}
+\pgfmathtruncatemacro{\twoac}{2*\aa*\cc}
+
+
+
+
+Assume all variables are positive. Simplify the following expression as much as possible.
+\[
+ \aa \sqrt{2} \left( \bb \sqrt{12} + \cc \sqrt{6}  \right)
+\]
+
+\begin{solution}
+\[
+ \aa \sqrt{2} \left( \bb \sqrt{12} + \cc \sqrt{6}  \right)
+ =\ab\sqrt{4\cdot 6}+\ac \sqrt{4\cdot 3}
+ =\ab\sqrt{4}\cdot \sqrt{6}+\ac \sqrt{4}\cdot \sqrt{6}
+ =\twoab\sqrt{6}+\twoac\sqrt{3}.
+\]
+
+\end{solution}

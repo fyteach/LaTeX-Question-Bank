@@ -1,0 +1,42 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+
+
+\pgfmathtruncatemacro{\aa}{-random(1,7)} 
+\pgfmathtruncatemacro{\bb}{-random(1,7)}
+\pgfmathtruncatemacro{\cc}{\aa-random(9,15)}
+\pgfmathtruncatemacro{\dd}{\bb+random(8,15)}
+
+
+\pgfmathtruncatemacro{\mm}{-random(2,5)}
+
+\pgfmathtruncatemacro{\tt}{random(2,3)}
+
+\pgfmathtruncatemacro{\nn}{-\tt*\mm}
+
+
+
+
+\pgfmathtruncatemacro{\ac}{\aa-\cc}
+\pgfmathtruncatemacro{\bd}{\dd-\bb}
+
+
+
+
+
+
+Simplify. \textbf{Write with positive exponents.}
+\[
+\dfrac{\mm x^{\aa}y^{\bb}}{\nn x^{\cc}y^{\invisibleoneinpower{\dd}}}
+\]
+
+
+\begin{solution}
+\[
+\dfrac{\mm x^{\aa}y^{\bb}}{\nn x^{\cc}y^{\invisibleoneinpower{\dd}}}
+=-\dfrac{x^{\aa-(\cc)}}{\tt y^{\dd-(\bb)}}
+=-\dfrac{x^{\ac}}{\tt y^{\bd}}.
+\]
+\end{solution}

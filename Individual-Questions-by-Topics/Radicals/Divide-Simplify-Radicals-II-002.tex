@@ -1,0 +1,260 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+% \pgfmathdeclarerandomlist{varx}{{x}{y}{p}{q}{z}}
+\pgfmathdeclarerandomlist{varx}{{x}{a}}
+\pgfmathrandomitem{\varx}{varx}
+\edef\varx{\varx}
+
+\pgfmathdeclarerandomlist{vary}{{y}{b}}
+\pgfmathrandomitem{\vary}{vary}
+\edef\vary{\vary}
+
+\pgfmathdeclarerandomlist{varz}{{z}{c}}
+\pgfmathrandomitem{\varz}{varz}
+\edef\varz{\varz}
+
+\pgfmathdeclarerandomlist{oddpower}{{3}{5}}
+\pgfmathrandomitem{\m}{oddpower}
+\edef\m{\m}
+
+
+% \pgfmathtruncatemacro{\m}{random(2,5)} %%index <=5.
+
+
+
+\pgfmathdeclarerandomlist{indextwo}{{2}{3}{4}{5}{6}{7}{8}{9}{10}{11}}
+\pgfmathdeclarerandomlist{indexthree}{{2}{3}{4}{5}}
+\pgfmathdeclarerandomlist{indexfour}{{2}{3}}
+\pgfmathdeclarerandomlist{indexfive}{{2}}
+
+
+\ifcase\m\relax%
+  \or \pgfmathrandomitem{\n}{}
+  \or \pgfmathrandomitem{\n}{indextwo}
+  \or \pgfmathrandomitem{\n}{indexthree}
+  \or \pgfmathrandomitem{\n}{indexfour}
+  \or \pgfmathrandomitem{\n}{indexfive} 
+ \fi
+ \edef\n{\n}
+
+
+  \pgfmathtruncatemacro{\a}{random(2,3)}
+  \pgfmathtruncatemacro{\b}{random(4,5)}
+
+
+\pgfmathdeclarerandomlist{coprimetwo}{{3}{5}{7}}
+\pgfmathdeclarerandomlist{coprimethree}{{2}{4}{5}{7}}
+\pgfmathdeclarerandomlist{coprimefour}{{3}{5}{7}}
+\pgfmathdeclarerandomlist{coprimefive}{{2}{3}{4}{6}{7}}
+
+
+\ifcase\m\relax%
+  \or \pgfmathrandomitem{\c}{}
+  \or \pgfmathrandomitem{\c}{coprimetwo}
+  \or \pgfmathrandomitem{\c}{coprimethree}
+  \or \pgfmathrandomitem{\c}{coprimefour}
+  \or \pgfmathrandomitem{\c}{coprimefive} 
+ \fi
+ \edef\c{\c}
+
+\ifcase\m\relax%
+  \or \pgfmathrandomitem{\d}{}
+  \or \pgfmathrandomitem{\d}{coprimetwo}
+  \or \pgfmathrandomitem{\d}{coprimethree}
+  \or \pgfmathrandomitem{\d}{coprimefour}
+  \or \pgfmathrandomitem{\d}{coprimefive} 
+ \fi
+ \edef\d{\d}
+
+\pgfmathtruncatemacro{\nm}{-\n^(\m+1)}
+  \pgfmathtruncatemacro{\ma}{\m*\a-1}
+  \pgfmathtruncatemacro{\mb}{\m*\b-1}
+  \pgfmathtruncatemacro{\mac}{\ma-\c}
+  \pgfmathtruncatemacro{\mbd}{\mb-\d}
+  \pgfmathtruncatemacro{\inta}{int(\mac/\m)}
+  \pgfmathtruncatemacro{\intb}{int(\mbd/\m)}
+  \pgfmathtruncatemacro{\minta}{\inta*\m}
+  \pgfmathtruncatemacro{\mintb}{\intb*\m}
+  \pgfmathtruncatemacro{\fraca}{\mac-\minta}
+  \pgfmathtruncatemacro{\fracb}{\mbd-\mintb}
+
+Simplify the radical expression (assume all variables are positive).
+\[
+\ifnum\m=2
+  \dfrac
+  {
+    \sqrt{\n\varx^{\ma}\vary^{\mb}}
+  } 
+  {
+    \sqrt{\nm\varx^{\c}\vary^{\d}}
+  }    
+    \else
+  \dfrac
+  {
+    \sqrt[\m]{\n\varx^{\ma}\vary^{\mb}}
+  }
+  {
+    \sqrt[\m]{\nm\varx^{\c}\vary^{\d}}
+  }
+  \fi
+\]
+
+\begin{solution}
+\[
+\ifnum\m=2
+  \dfrac
+  {
+    \sqrt{\n\varx^{\ma}\vary^{\mb}}
+  } 
+  {
+    \sqrt{\nm\varx^{\c}\vary^{\d}}
+  }    
+    \else
+  \dfrac
+  {
+    \sqrt[\m]{\n\varx^{\ma}\vary^{\mb}}
+  }
+  {
+    \sqrt[\m]{\nm\varx^{\c}\vary^{\d}}
+  }
+\fi
+  =
+\ifnum\m=2
+  \sqrt{
+    \dfrac
+    {
+      \sqrt{\n\varx^{\ma}\vary^{\nb}}
+    } 
+    {
+      \nm\varx^{\c}\vary^{\d}
+    }  
+  }  
+\else
+  \sqrt[\m]{
+    \dfrac
+    {
+     \n\varx^{\ma}\vary^{\mb}
+    } 
+    {
+      \nm\varx^{\c}\vary^{\d}
+    }  
+  } 
+\fi
+  =
+\ifnum\m=2
+  \sqrt{
+    \dfrac{\varx^{\mac}\vary^{\mbd}}
+    {
+      (-\n)^\m
+    }
+  }
+\else
+  \sqrt[\m]{
+    \dfrac{\varx^{\mac}\vary^{\mbd}}
+    {
+      (-\n)^\m
+    }
+  }
+\fi
+  =
+% \ifnum\m=2
+%   \sqrt
+%     { \dfrac{
+%         \ifnum \minta=0
+%           \vary^{\invisibleoneinpower{\mintb}}
+%         \else 
+%             \ifnum\mintb=0
+%               \varx^{\invisibleoneinpower{\mintb}}
+%             \else
+%               \varx^{\invisibleoneinpower{\minta}}\vary^{\invisibleoneinpower{\mintb}}
+%             \fi
+%         \fi
+%             \cdot 
+%         \ifnum \fraca=0
+%             \vary^{\invisibleoneinpower{\fracb}}
+%         \else
+%           \ifnum \fracb=0
+%             \varx^{\invisibleoneinpower{\fraca}}
+%           \else
+%             \n\varx^{\invisibleoneinpower{\fraca}}\vary^{\invisibleoneinpower{\fracb}}
+%           \fi
+%         \fi
+%       }
+%         {
+%           (-\n)^\m
+%         }
+%     }
+% \else
+%   \sqrt[\m]
+%     { \dfrac{
+%         \ifnum \minta=0
+%           \vary^{\invisibleoneinpower{\mintb}}
+%         \else 
+%             \ifnum\mintb=0
+%               \varx^{\invisibleoneinpower{\mintb}}
+%             \else
+%               \varx^{\invisibleoneinpower{\minta}}\vary^{\invisibleoneinpower{\mintb}}
+%             \fi
+%         \fi
+%             \cdot 
+%         \ifnum \fraca=0
+%             \vary^{\invisibleoneinpower{\fracb}}
+%         \else
+%           \ifnum \fracb=0
+%             \varx^{\invisibleoneinpower{\fraca}}
+%           \else
+%             \n\varx^{\invisibleoneinpower{\fraca}}\vary^{\invisibleoneinpower{\fracb}}
+%           \fi
+%         \fi
+%       }
+%         {
+%           (-\n)^\m
+%         }
+%     }
+% \fi
+% =
+-\dfrac{
+  \ifnum \inta=0
+    \vary^{\invisibleoneinpower{\intb}}
+  \else
+    \ifnum \intb=0
+      \varx^{\invisibleoneinpower{\inta}}
+    \else
+      \varx^{\invisibleoneinpower{\inta}}\vary^{\invisibleoneinpower{\intb}}
+    \fi
+  \fi
+  \ifnum\m=2
+  \sqrt{
+  \ifnum \fraca=0
+    \varx^{\invisibleoneinpower{\fraca}}
+    \else
+      \ifnum \fracb=0 
+        \vary^{\invisibleoneinpower{\fracb}}
+        \else 
+          \varx^{\invisibleoneinpower{\fraca}}\vary^{\invisibleoneinpower{\fracb}}
+      \fi
+  \fi
+}
+\else
+  \sqrt[\m]{
+    \ifnum \fraca=0
+    \varx^{\invisibleoneinpower{\fraca}}
+    \else
+      \ifnum \fracb=0 
+        \varx^{\invisibleoneinpower{\fraca}}
+        \else 
+          \varx^{\invisibleoneinpower{\fraca}}\vary^{\invisibleoneinpower{\fracb}}
+      \fi
+  \fi
+  }
+\fi 
+}
+{
+  \n
+}
+.
+\]
+
+\end{solution}

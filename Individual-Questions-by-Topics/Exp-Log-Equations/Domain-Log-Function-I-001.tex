@@ -1,0 +1,24 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+
+% \pgfmathtruncatemacro{\a}{random(1,5)}
+% \pgfmathtruncatemacro{\k}{\a^2}
+
+\pgfmathtruncatemacro{\ainit}{random(1,40)-21}
+\pgfmathtruncatemacro{\aa}{ifthenelse(\ainit<0, \ainit, \ainit+1)}
+\pgfmathtruncatemacro{\negaa}{-\aa}
+
+\pgfmathtruncatemacro{\bb}{random(2,23)}
+
+
+
+
+ Find the domain of the function $f(x)=\log_{\bb}(x \constdisplay{\aa})$. Write the domain in interval notation. 
+
+\begin{solution}
+To get real numbers as output, the power $x \constdisplay{\aa}$ must be positive.
+Solve the inequality $x \constdisplay{\aa}>0$,
+we find that $x>\negaa$ and domain of the function $f$ is $(\negaa,\infty)$.
+\end{solution}

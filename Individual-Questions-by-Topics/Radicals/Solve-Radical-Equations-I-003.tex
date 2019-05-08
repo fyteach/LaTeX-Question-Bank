@@ -1,0 +1,54 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+% \pgfmathdeclarerandomlist{varx}{{x}{y}{p}{q}{z}}
+\pgfmathdeclarerandomlist{varx}{{x}}
+\pgfmathrandomitem{\varx}{varx}
+\edef\varx{\varx}
+
+\pgfmathtruncatemacro{\a}{random(2,5)}
+
+\pgfmathtruncatemacro{\c}{random(1,4)}
+
+\pgfmathtruncatemacro{\k}{random(1,3)}
+
+\pgfmathtruncatemacro{\r}{2*\k+\c}
+
+\pgfmathtruncatemacro{\b}{\a-\c*\r}
+
+\pgfmathtruncatemacro{\csq}{\c^2}
+\pgfmathtruncatemacro{\twoc}{2*\c}
+\pgfmathtruncatemacro{\R}{-\c^2+\a-\b}
+\pgfmathtruncatemacro{\S}{\R/\twoc}
+\pgfmathtruncatemacro{\T}{\S^2}
+
+\pgfmathtruncatemacro{\x}{\T-\b}
+
+\pgfmathtruncatemacro{\ax}{\x+\a}
+\pgfmathtruncatemacro{\bx}{\x+\b}
+
+\pgfmathtruncatemacro{\Sc}{\S+\c}
+
+
+Solve the following radical equation
+\[\sqrt{\varx \constdisplay{\a} }-\sqrt{\varx \constdisplay{\b} }=\c.\]
+
+\begin{solution}
+\[
+  \begin{split}
+    \sqrt{\varx \constdisplay{\a} }-\sqrt{\varx \constdisplay{\b} }&=\c\\
+    \sqrt{\varx \constdisplay{\a} } & = \sqrt{\varx \constdisplay{\b} }+ \c\\
+    \varx \constdisplay{\a}  & = (\sqrt{\varx \constdisplay{\b} }+ \c)^2\\
+    \varx \constdisplay{\a}  &=\varx \constdisplay{\b} + \twoc \sqrt{\varx \constdisplay{\b} } +\csq\\
+    \R &= \twoc \sqrt{\varx \constdisplay{\b} }  \\
+    \sqrt{\varx \constdisplay{\b} } &=\S \\
+    \varx \constdisplay{\b} &=\T \\
+    \varx &=\x \\
+  \end{split}
+\]
+Check the solutions.
+The left hand side of the equation equals
+ \[\sqrt{\x \constdisplay{\a} }-\sqrt{\x \constdisplay{\b} }=\Sc -\S =\c.\]
+Therefore, the equation has only one solution $x=\x$.
+\end{solution}

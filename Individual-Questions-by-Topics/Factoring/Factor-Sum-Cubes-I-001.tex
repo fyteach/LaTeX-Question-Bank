@@ -1,0 +1,74 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+\pgfmathdeclarerandomlist{CoprimeWithOne}{
+  {1}{2}{3}{4}{5}
+}
+ \pgfmathdeclarerandomlist{CoprimeWithTwo}{
+  {1}{3}{5}
+}
+ \pgfmathdeclarerandomlist{CoprimeWithThree}{
+  {1}{2}{4}{5}
+}
+ \pgfmathdeclarerandomlist{CoprimeWithFour}{
+  {1}{3}{5}
+}
+ \pgfmathdeclarerandomlist{CoprimeWithFive}{
+  {1}{2}{3}{4}
+}
+
+
+\pgfmathtruncatemacro{\a}{random(2,5)}
+
+
+
+ %%%%%% generate random b coprime with a %%%
+ \ifcase\a\relax%
+  \or \pgfmathrandomitem{\b}{}
+  \or \pgfmathrandomitem{\b}{CoprimeWithTwo}
+  \or \pgfmathrandomitem{\b}{CoprimeWithThree}
+  \or \pgfmathrandomitem{\b}{CoprimeWithFour}
+  \or \pgfmathrandomitem{\b}{CoprimeWithFive} 
+ \fi
+ \edef\b{\b}
+
+
+
+\pgfmathtruncatemacro{\acube}{\a^3}
+\pgfmathtruncatemacro{\bcube}{\b^3}
+
+\pgfmathtruncatemacro{\asqr}{\a^2}
+\pgfmathtruncatemacro{\bsqr}{\b^2}
+
+\pgfmathtruncatemacro{\ab}{\a*\b}
+
+
+
+
+\pgfmathdeclarerandomlist{varxy}{{x}{a}{p}{t}}
+\pgfmathrandomitem{\varx}{varxy}
+\edef\varxy{\varx}
+
+
+% \pgfmathdeclarerandomlist{pm}{{+}{-}}
+% \pgfmathrandomitem{\pm}{pm}
+% \edef\pm{\pm}
+
+
+
+
+
+
+Factor completely the following polynomial.
+\[\invisibleoneincoef{\acube}\varx^3  + \bcube.\]
+
+
+\begin{solution}
+\[\begin{split}
+&\invisibleoneincoef{\acube}\varx^3  + \bcube \\
+=&(\invisibleoneincoef{\a}\varx)^3  + (\b)^3\\
+=&(\invisibleoneincoef{\a}\varx  + \b)(\invisibleoneincoef{\asqr}\varx^2 - \ab\varx+\bsqr)
+\end{split}
+\]
+\end{solution}

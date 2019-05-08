@@ -1,0 +1,96 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+% \pgfmathdeclarerandomlist{varx}{{x}{y}{p}{q}{z}}
+\pgfmathdeclarerandomlist{varx}{{x}}
+\pgfmathrandomitem{\varx}{varx}
+\edef\varx{\varx}
+
+\pgfmathdeclarerandomlist{vary}{{y}}
+\pgfmathrandomitem{\vary}{vary}
+\edef\vary{\vary}
+
+
+% \pgfmathsetmacro{\a}{int(random(2,3))}
+\pgfmathsetmacro{\a}{int(1)}
+
+ \pgfmathsetmacro{\c}{int(1)}
+
+
+  \pgfmathsetmacro{\e}{int(1)}
+
+\pgfmathsetmacro{\b}{int(random(2, 3))}
+
+\pgfmathsetmacro{\d}{int(random(4, 5))}
+
+\pgfmathsetmacro{\f}{int(random(4, 7))}
+
+ \pgfmathtruncatemacro{\A}{\a*\c}
+ \pgfmathtruncatemacro{\C}{(-\b)*(\d)}
+ \pgfmathtruncatemacro{\B}{\a*(\d)+(-\b)*(\c)}
+
+
+ \pgfmathtruncatemacro{\E}{\a*\e}
+ \pgfmathtruncatemacro{\G}{(-\b)*(-\f)}
+ \pgfmathtruncatemacro{\F}{\a*(-\f)+(-\b)*(\e)}
+
+ 
+\pgfmathtruncatemacro{\r}{\d-(-\b)}
+\pgfmathtruncatemacro{\s}{(-\b)-(-\f)}
+
+ \pgfmathtruncatemacro{\rs}{\r+\s}
+\pgfmathtruncatemacro{\rfsd}{\s*\d+\r*(-\f)}
+
+Simplify the rational expression.
+\[
+    \dfrac
+      {\r}
+      {\invisibleoneincoef{\A}\varx^2  \plusminus{\B}\varx \ifnum\C>0 +\C\else \C\fi}
+    +
+    \dfrac
+    {\s}
+    {\invisibleoneincoef{\E}\varx^2  \plusminus{\F}\varx \ifnum\G>0 +\G\else \G\fi}
+  .
+\]
+
+\begin{solution}
+\[
+	\begin{split}
+		& 
+    \dfrac
+      {\r}
+      {\invisibleoneincoef{\A}\varx^2  \plusminus{\B}\varx \ifnum\C>0 +\C\else \C\fi}
+    +
+    \dfrac
+    {\s}
+    {\invisibleoneincoef{\E}\varx^2  \plusminus{\F}\varx \ifnum\G>0 +\G\else \G\fi}
+  .
+\\
+	=	&
+    \dfrac
+      {\r}
+      {( \invisibleoneincoef{\a}\varx- \b )( \invisibleoneincoef{\c}\varx + \d )}
+    +
+    \dfrac
+      {\s}
+      {( \invisibleoneincoef{\a}\varx- \b )( \invisibleoneincoef{\e}\varx - \f )}
+\\
+	=	&
+  \dfrac
+    {\r(\invisibleoneincoef{\e}\varx- \f)+\s( \invisibleoneincoef{\c}\varx + \d )}
+    {( \invisibleoneincoef{\a}\varx- \b )( \invisibleoneincoef{\c}\varx + \d )(\invisibleoneincoef{\e}\varx- \f) }
+  \\
+  = &
+  \dfrac
+    {\invisibleoneincoef{\rs}\varx \plusminus{\rfsd}}
+    {( \invisibleoneincoef{\a}\varx- \b )( \invisibleoneincoef{\c}\varx + \d )(\invisibleoneincoef{\e}\varx- \f) }
+\\
+  = &
+  \dfrac
+    {\rs}
+    {( \invisibleoneincoef{\c}\varx + \d )(\invisibleoneincoef{\e}\varx- \f) }  
+	\end{split}
+\]
+
+\end{solution}

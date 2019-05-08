@@ -1,0 +1,174 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+% \pgfmathdeclarerandomlist{varx}{{x}{y}{p}{q}{z}}
+\pgfmathdeclarerandomlist{varx}{{x}{a}}
+\pgfmathrandomitem{\varx}{varx}
+\edef\varx{\varx}
+
+\pgfmathdeclarerandomlist{vary}{{y}{b}}
+\pgfmathrandomitem{\vary}{vary}
+\edef\vary{\vary}
+
+\pgfmathdeclarerandomlist{varz}{{z}{c}}
+\pgfmathrandomitem{\varz}{varz}
+\edef\varz{\varz}
+
+
+\pgfmathtruncatemacro{\m}{random(2,3)} %%index <=5.
+
+
+
+\pgfmathdeclarerandomlist{indextwo}{{3}{5}{1}}
+\pgfmathdeclarerandomlist{indexthree}{{1}{5}}
+\pgfmathdeclarerandomlist{indexfour}{{3}{5}{1}}
+% \pgfmathdeclarerandomlist{indexfive}{{2}}
+
+
+\ifcase\m\relax%
+  \or \pgfmathrandomitem{\n}{}
+  \or \pgfmathrandomitem{\n}{indextwo}
+  \or \pgfmathrandomitem{\n}{indexthree}
+  \or \pgfmathrandomitem{\n}{indexfour}
+  % \or \pgfmathrandomitem{\n}{indexfive} 
+ \fi
+ \edef\n{\n}
+
+
+  \pgfmathtruncatemacro{\a}{random(1,2)}
+  \pgfmathtruncatemacro{\b}{random(2,4)}
+  \pgfmathtruncatemacro{\c}{random(5,4)}
+
+% \pgfmathtruncatemacro{\k}{random(1, 2)}
+
+\pgfmathtruncatemacro{\k}{1}
+
+\pgfmathtruncatemacro{\nm}{\n^\m}
+
+\pgfmathtruncatemacro{\twom}{2^\m}
+\pgfmathtruncatemacro{\nk}{\twom*(\n^\k)}
+
+\pgfmathtruncatemacro{\nmk}{\n^(\m+\k)}
+
+  \pgfmathtruncatemacro{\ma}{\m*\a}
+  \pgfmathtruncatemacro{\mb}{\m*\b}
+\pgfmathtruncatemacro{\mc}{\m*\c}
+
+\pgfmathtruncatemacro{\lj}{2*random(1,2)-1}
+
+% \pgfmathtruncatemacro{\lj}{\mb/\j}
+\pgfmathtruncatemacro{\mbl}{\mb+\lj}
+
+  
+
+Simplify the radical expression as much as possible (assume all variables are positive).
+\[
+    \ifnum\m=2
+    \dfrac{
+      \sqrt{\nmk\varx^{\invisibleoneinpower{\lj}}\vary^{\invisibleoneinpower{\ma}}}
+    }
+    {
+      \sqrt{\nk\varx^{\invisibleoneinpower{\mbl}}\varz^{\invisibleoneinpower{\mc}}}
+    }.  
+    \else
+    \dfrac{
+       \sqrt[\m]{\nmk\varx^{\invisibleoneinpower{\ma}}\vary^{\invisibleoneinpower{\lj}}} 
+    }
+    {
+          \sqrt[\m]{\nk\varx^{\invisibleoneinpower{\mbl}}\varz^{\invisibleoneinpower{\mc}}}
+  }.
+    \fi
+\]
+
+\begin{solution}
+\[
+  \ifnum\m=2
+    \dfrac{
+      \sqrt{\nmk\varx^{\invisibleoneinpower{\lj}}\vary^{\invisibleoneinpower{\ma}}}
+    }
+    {
+    \sqrt{\nk\varx^{\invisibleoneinpower{\mbl}}\varz^{\invisibleoneinpower{\mc}}}
+    } 
+    \else
+    \dfrac{
+       \sqrt[\m]{\nmk\varx^{\invisibleoneinpower{\ma}}\vary^{\invisibleoneinpower{\lj}}} 
+    }
+    {
+        \sqrt[\m]{\nk\varx^{\invisibleoneinpower{\mbl}}\varz^{\invisibleoneinpower{\mc}}}
+    }
+  \fi
+=
+  \ifnum\m=2
+    \sqrt{
+        \dfrac{
+           \nmk\varx^{\invisibleoneinpower{\lj}}\vary^{\invisibleoneinpower{\ma}}
+        }
+        {
+          \nk\varx^{\invisibleoneinpower{\mbl}}\varz^{\invisibleoneinpower{\mc}}
+        }
+    } 
+  \else
+    \sqrt[\m]{
+        \dfrac{
+           \nmk\varx^{\invisibleoneinpower{\lj}}\vary^{\invisibleoneinpower{\ma}}
+        }
+        {
+          \nk\varx^{\invisibleoneinpower{\mbl}}\varz^{\invisibleoneinpower{\mc}}
+        }
+    }
+  \fi
+=
+  \ifnum\m=2
+    \sqrt{
+        \dfrac{
+           \nm\vary^{\invisibleoneinpower{\ma}}
+        }
+        {
+          \twom\varx^{\invisibleoneinpower{\mb}}\varz^{\invisibleoneinpower{\mc}}
+        }
+    }.  
+  \else
+    \sqrt[\m]{
+        \dfrac{
+           \nm\vary^{\invisibleoneinpower{\ma}}
+        }
+        {
+          \twom\varx^{\invisibleoneinpower{\mb}}\varz^{\invisibleoneinpower{\mc}}
+        }
+    }.
+  \fi  
+=
+  \ifnum\m=2
+    \sqrt{
+        \left(
+        \dfrac{
+           \n\vary^{\invisibleoneinpower{\a}}
+        }
+        {
+          2\varx^{\invisibleoneinpower{\b}}\varz^{\invisibleoneinpower{\c}}
+        }
+        \right)^\m
+    }
+  \else
+    \sqrt[\m]{
+        \left(
+        \dfrac{
+           \n\vary^{\invisibleoneinpower{\a}}
+        }
+        {
+          2\varx^{\invisibleoneinpower{\b}}\varz^{\invisibleoneinpower{\c}}
+        }
+        \right)^\m
+    }
+  \fi 
+=
+\dfrac{
+           \n\vary^{\invisibleoneinpower{\a}}
+        }
+        {
+          2\varx^{\invisibleoneinpower{\b}}\varz^{\invisibleoneinpower{\c}}
+        }.
+\]
+
+\end{solution}

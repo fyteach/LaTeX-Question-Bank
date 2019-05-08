@@ -1,0 +1,53 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+% \pgfmathdeclarerandomlist{varx}{{x}{y}{p}{q}{z}}
+\pgfmathdeclarerandomlist{varx}{{x}}
+\pgfmathrandomitem{\varx}{varx}
+\edef\varx{\varx}
+
+\pgfmathtruncatemacro{\aint}{random(3,2)}
+\pgfmathtruncatemacro{\d}{random(1,7)}
+
+\pgfmathtruncatemacro{\a}{ifthenelse(\aint!=4, \aint, \aint+1)}
+
+
+\pgfmathtruncatemacro{\b}{-\a*\d}
+
+\pgfmathtruncatemacro{\B}{-2*\d-\a}
+\pgfmathtruncatemacro{\C}{\d^2-\b}
+
+
+\pgfmathtruncatemacro{\xone}{\d}
+\pgfmathtruncatemacro{\xtwo}{\d+\a}
+
+Solve the following radical equation
+\[\sqrt{\a \varx \constdisplay{\b} }+\varx=\d.\]
+
+\begin{solution}
+\[
+  \begin{split}
+    \sqrt{\a \varx \constdisplay{\b}}+\varx &=\d\\
+    \sqrt{\a \varx \constdisplay{\b}} &=\d-\varx\\
+    \a \varx \constdisplay{\b}&=(\varx-\d)^2\\
+     \a \varx \constdisplay{\b}&= \varx^2-2\cdot\d\cdot\varx+\d^2\\
+    \varx^2 \constdisplay{\B}\varx+\C &=0\\
+  \end{split}
+\]
+\begin{alignat*}{3}
+  \varx - \xone&=0 && \ctc{or} & \varx -\xtwo &=0\\
+    x&=\xone && \ctc{or} & x &=\xtwo
+\end{alignat*}
+Check the solutions.
+
+When $\varx=\xone$, the left hand side of the equation equals
+ \[\sqrt{\a\cdot\xone\constdisplay{\b} }+\d =\sqrt{0}+\d =\d.\]
+So $\varx=\xone$ is a solution.
+
+When $\varx=\xtwo$, the left hand side of the equation equals
+ \[\sqrt{\a\cdot\xtwo\constdisplay{\b} }+\d =\sqrt{\a^2}+\d=\a+\d \neq \d.\]
+So $\varx=\xtwo$ is not a solution.
+
+Therefore, the equation has only one solution $x=\xone$.
+\end{solution}

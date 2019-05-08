@@ -1,0 +1,69 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+
+
+
+%%%%%%%%%List of coprime numbers < #1
+% \pgfmathsetmacro{\randbound}{int(5)}
+
+\pgfmathdeclarerandomlist{CoprimeWithOne}{
+  {1}{2}{3}{4}{5}
+}
+ \pgfmathdeclarerandomlist{CoprimeWithTwo}{
+  {1}{3}{5}
+}
+ \pgfmathdeclarerandomlist{CoprimeWithThree}{
+  {1}{2}{4}{5}
+}
+ \pgfmathdeclarerandomlist{CoprimeWithFour}{
+  {1}{3}{5}
+}
+ \pgfmathdeclarerandomlist{CoprimeWithFive}{
+  {1}{2}{3}{4}
+}
+
+
+\pgfmathsetmacro{\w}{int(random(3,5))}
+\pgfmathsetmacro{\s}{int(random(1,3))}
+\pgfmathsetmacro{\l}{int(\w+\s)}
+
+\pgfmathtruncatemacro{\A}{\l*\w}
+
+
+
+
+The area of a rectangle is $\A$ square meters. The length is $\s$ meters longer than the width. Find the width and the length of the rectangle. 
+
+
+\begin{solution}
+\begin{multicols}{2}
+Suppose the width is $x$ meters. Then the length is $x+\s$ meters. Using the area formula of a rectangle and the given information in the question, we obtain the following equation
+\[x(x+\s)=\A.\]
+
+\columnbreak
+	\begin{center}
+	\begin{tikzpicture}[scale=0.8, every node/.style={scale=0.6, font=\small, minimum size=0.5pt, inner sep=0pt}]
+	\draw[name path=outside]  (0,0)--(4,0)--(4,3)--(0,3)--cycle;
+    \draw[stealth-stealth] (0,2)--(4,2) node[midway, fill=white] {$x+\s$};
+    \draw[stealth-stealth] (1,0)--(1,3) node[midway, fill=white] {$x$};
+	\end{tikzpicture}
+	\end{center}	
+\end{multicols}
+
+Solve the equation to find $x$.
+\[
+\begin{split}
+  x(x+\s)&=\A\\
+x^2+\s x &=\A\\
+x^2+\s x-\A&=0\\
+(x-\w)(x+\l)&=0\\
+\end{split}
+\]
+Then 
+\begin{alignat*}{3}
+    x&=\w && \ctc{or} & x&=-\l
+\end{alignat*}
+So the width is $\w$ meters and the length is $\w+\s=\l$ meters.
+\end{solution}

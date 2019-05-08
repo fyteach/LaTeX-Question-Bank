@@ -1,0 +1,86 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+% \pgfmathdeclarerandomlist{varx}{{x}{y}{p}{q}{z}}
+\pgfmathdeclarerandomlist{varx}{{x}}
+\pgfmathrandomitem{\varx}{varx}
+\edef\varx{\varx}
+
+
+\pgfmathdeclarerandomlist{lista}{{-5}{-4}{-3}{-2}{2}{3}{4}{5}}
+\pgfmathrandomitem{\aa}{lista}
+\edef\aa{\aa}
+
+
+\pgfmathsetmacro{\bbi}{int(random(1,10)-6)}
+\pgfmathtruncatemacro{\bbii}{ifthenelse(\bbi<0, \bbi,\bbi+1)}
+
+
+\pgfmathdeclarerandomlist{listb}{{-7}{-6}{-1}{1}{6}{7}{8}{9}}
+
+\pgfmathtruncatemacro{\negaa}{-\aa}
+
+
+\ifnum\bbii=\negaa 
+  \pgfmathrandomitem{\bb}{listb}
+  \edef\bb{\bb}
+\else
+  \pgfmathtruncatemacro{\bb}{\bbii}
+\fi
+
+
+\pgfmathtruncatemacro{\asqr}{\aa*\aa}
+\pgfmathtruncatemacro{\ab}{\aa*\bb}
+\pgfmathtruncatemacro{\aplusb}{\aa+\bb}
+
+
+
+
+Simplify the rational expression.
+\[
+    \dfrac
+      {\varx^2 - \asqr}
+      {\varx^2 \plusminus{\aplusb}\varx \constdisplay{\ab} }
+    \div 
+    \dfrac
+    { \varx}
+    { \varx \constdisplay{\bb} }
+  .
+\]
+
+\begin{solution}
+\[
+	\begin{split}
+		& 
+      \dfrac
+      {\varx^2 - \asqr}
+      {\varx^2 \plusminus{\aplusb}\varx \constdisplay{\ab} }
+    \div 
+    \dfrac
+    { \varx}
+    { \varx \constdisplay{\bb} }
+    \\
+	=	&
+    \dfrac
+      {\varx^2 - \asqr}
+      {\varx^2 \plusminus{\aplusb}\varx \constdisplay{\ab} }
+    \cdot 
+    \dfrac
+    { \varx \constdisplay{\bb} }
+    { \varx}
+    \\
+  = &
+  \dfrac
+      {(\varx \constdisplay{\aa})(\varx \constdisplay{\negaa}) }
+      {(\varx \constdisplay{\aa})(\varx \constdisplay{\bb}) }
+    \cdot 
+    \dfrac
+    { \varx \constdisplay{\bb} }
+    { \varx}
+    \\
+	=	&\dfrac{\varx \constdisplay{\negaa} }{\varx}.
+	\end{split}
+\]
+
+\end{solution}

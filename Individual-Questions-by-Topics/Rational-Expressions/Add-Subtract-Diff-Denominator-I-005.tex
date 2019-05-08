@@ -1,0 +1,85 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+% \pgfmathdeclarerandomlist{varx}{{x}{y}{p}{q}{z}}
+\pgfmathdeclarerandomlist{varx}{{x}}
+\pgfmathrandomitem{\varx}{varx}
+\edef\varx{\varx}
+
+\pgfmathdeclarerandomlist{vary}{{y}}
+\pgfmathrandomitem{\vary}{vary}
+\edef\vary{\vary}
+
+
+
+\pgfmathsetmacro{\b}{int(random(4,5))}
+\pgfmathsetmacro{\c}{int(random(6,8))} %%%%%c\neq b 
+\pgfmathsetmacro{\d}{int(random(1, 3))}
+
+
+\pgfmathtruncatemacro{\a}{((\b)*(\d)-\c*((\b)+(\d)))}
+
+
+
+\pgfmathtruncatemacro{\B}{(\b)+(\c)}
+\pgfmathtruncatemacro{\C}{(\b)*(\c)}
+
+\pgfmathtruncatemacro{\bplusd}{-((\b)+(\d))}
+
+\pgfmathtruncatemacro{\aminusbd}{((\a)-(\b)*(\d))}
+
+
+%%%(x^2+a)/(x+b)(x+c) - (x+d)/(x+c)=-(b+d)/(x+b) 
+
+Simplify the rational expression.
+\[
+    \dfrac
+      {\varx^2 \ifnum\a>0 +\a\else\a\fi}
+      {\varx^2 \plusminus{\B}\varx \ifnum\C>0 +\C\else\C\fi}
+    -
+    \dfrac
+    {\varx \ifnum\d>0 +\d\else\d\fi}
+    {\varx \ifnum\c>0 +\c\else\c\fi}
+  .
+\]
+
+\begin{solution}
+\[
+	\begin{split}
+		& 
+        \dfrac
+      {\varx^2 \ifnum\a>0 +\a\else\a\fi }
+      {\varx^2 \plusminus{\B}\varx \ifnum\C>0 +\C\else\C\fi}
+    -
+    \dfrac
+    {\varx \ifnum\d>0 +\d\else\d\fi}
+    {\varx \ifnum\c>0 +\c\else\c\fi}
+\\
+  =&
+     \dfrac
+      {\varx^2 \ifnum\a>0 +\a\else\a\fi }
+      {(\varx \ifnum\b>0 +\b\else\b\fi)(\varx \ifnum\c>0 +\c\else\c\fi)}
+    -
+    \dfrac
+    {\varx \ifnum\d>0 +\d\else\d\fi}
+    {\varx \ifnum\c>0 +\c\else\c\fi}
+\\
+	=	&
+    \dfrac
+      {(\varx^2 \ifnum\a>0 +\a\else\a\fi)- (\varx \ifnum\b>0 +\b\else\b\fi)(\varx \ifnum\d>0 +\d\else\d\fi)}
+      {(\varx \ifnum\b>0 +\b\else\b\fi)(\varx \ifnum\c>0 +\c\else\c\fi)}
+\\
+	=	&
+  \dfrac
+      {\bplusd x \ifnum\aminusbd>0 +\aminusbd\else\aminusbd\fi}
+      {(\varx \ifnum\b>0 +\b\else\b\fi)(\varx \ifnum\c>0 +\c\else\c\fi)} 
+\\
+  = &
+  \dfrac
+      {\bplusd}
+      {\varx \ifnum\b>0 +\b\else\b\fi } 
+	\end{split}
+\]
+
+\end{solution}

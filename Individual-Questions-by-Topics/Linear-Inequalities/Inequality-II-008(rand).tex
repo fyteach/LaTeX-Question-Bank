@@ -1,0 +1,66 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+%%%%%%%%%%%% Assume a<0, %%%%%%%%%%%%
+
+
+\pgfmathtruncatemacro{\a}{random(2,11)}
+\pgfmathtruncatemacro{\b}{random(8,2)-10}
+\pgfmathtruncatemacro{\c}{random(1,5)}
+
+%%%%%%% 
+\pgfmathtruncatemacro{\result}{1}
+
+
+\pgfmathtruncatemacro{\d}{\a*(\result -\c)-\b*\result}
+\pgfmathtruncatemacro{\e}{\b-\a}
+\pgfmathtruncatemacro{\f}{-\a*\c-\d}
+\pgfmathtruncatemacro{\g}{\a*\c}
+
+
+
+Solve the inequality and write the solution set in interval notation.
+
+% \begin{ocg}{result layer}{1}{0}
+
+\ifnum\d>0
+\[ \b x + \d \geq \a (x-\c).\]
+\begin{solution}
+\[\begin{split}
+\b x +\d&\geq \a (x-\c) \\
+\b x+\d&\geq \a x -\g \\
+\e x&\geq \f \\
+\ifnum\e>0
+x&\geq \result \\
+\else
+x&\leq \result \\
+\fi
+\end{split}
+\]
+The solution set is \ifnum\e>0  $(-\infty, \result ]$ \else  $[\result , \infty)$ \fi.
+\end{solution}
+
+
+
+\else
+\[ \b x \d \geq \a (x-\c). \]
+
+\begin{solution}
+\[\begin{split}
+\b x \d&\geq \a (x-\c) \\
+\b x \d&\geq \a x -\g \\
+\e x&\geq \f \\
+\ifnum\e>0
+x&\geq \result \\
+\else
+x&\leq \result \\
+\fi
+\end{split}
+\]
+The solution set is \ifnum\e>0   $[\result, \infty)$ \else  $(-\infty, \result]$  \fi.
+\end{solution}
+
+\fi
+
+
+% \end{ocg}

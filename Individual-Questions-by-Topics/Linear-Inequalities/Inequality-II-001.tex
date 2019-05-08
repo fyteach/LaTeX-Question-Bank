@@ -1,0 +1,47 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+%%%%%%%%%%%% Assume a>0, a>b %%%%%%%%%%%%
+
+\pgfmathtruncatemacro{\a}{3}
+\pgfmathtruncatemacro{\b}{-4}
+
+\pgfmathtruncatemacro{\c}{2}
+
+\pgfmathtruncatemacro{\e}{\a-\b}
+\pgfmathtruncatemacro{\d}{\a*(\c+1)-\b*\c}
+\pgfmathtruncatemacro{\f}{\d-\a}
+
+
+
+Solve the inequality and write the solution set in interval notation.
+\ifnum\d>0
+\[ \a (x+1)>\b x +\d \]
+\begin{solution}
+\[\begin{split}
+\a (x+1)&>\b x +\d \\
+\a x+\a&>\b x +\d \\
+\e x&>\f \\
+x&>\c
+\end{split}
+\]
+The solution set is $(\c, \infty)$.
+\end{solution}
+
+
+
+\else
+\[ \a (x+1)>\b x \d \]
+
+
+\begin{solution}
+\[\begin{split}
+\a (x+1)&>\b x \d \\
+\a x+\a&>\b x \d \\
+\e x&>\f \\
+x&>\c
+\end{split}
+\]
+The solution set is $(\c, \infty)$.
+\end{solution}
+\fi

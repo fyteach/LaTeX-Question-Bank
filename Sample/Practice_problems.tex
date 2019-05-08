@@ -1,0 +1,1817 @@
+\documentclass[answer,cancelspace,12pt]{exam}
+
+%%%%%%%%%%%%ams Packages%%%%%%%%%%%
+\usepackage{amsmath,amsxtra}
+\usepackage{amsthm}
+
+\usepackage{textcomp}			% adds some additional symbols
+\usepackage{microtype}   %%%%%%improves general appearance of the text
+
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}  % use this if European fonts (ec) package is installed
+
+
+\usepackage{libertine}  %%%%%The Linux Libertine font family
+\usepackage[libertine]{newtxmath}
+
+
+
+%\usepackage{charter}    %%%%%%Good for screen display
+%\usepackage[charter]{mathdesign}
+
+
+
+
+\extrawidth{.5in}
+
+\extraheadheight{.25in}
+
+
+
+
+
+%%% PAGE DIMENSIONS
+\usepackage[centering]{geometry}% to change the page dimensions
+%\geometry{hmargin={2cm,2cm}, vmargin={2cm, 3cm}, a4paper}
+\geometry{margin=1in, letterpaper}
+\usepackage{graphicx}
+
+
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+
+
+\usepackage[inline]{enumitem}
+
+
+
+%%%%%% Custemized packages %%%%%%%%%%%
+\usepackage[english]{babel}
+\usepackage{indentfirst,bm}
+
+\usepackage{latexsym}
+
+\usepackage{stmaryrd}  %%%%%%generates double grouping symbols
+
+
+
+%%%%%%%pictures and commutative diagrams%%%%%%
+\usepackage{tikz}
+
+\usepackage{pgfplots}
+
+\pgfplotsset{compat=newest, set layers=standard}
+
+\usepackage{pgfmath}
+
+\usepackage{pgffor}
+
+\usepackage{tkz-euclide}
+\usetkzobj{all}
+
+\usepackage{pgf}
+
+\usepackage{tkz-fct}
+
+\usepgfplotslibrary{fillbetween}
+
+\usetikzlibrary{
+  calc,
+  angles,
+  quotes,
+  arrows.meta,
+  decorations.markings,
+  math,
+  % backgrounds,
+  pgfplots.statistics,
+  matrix,
+  patterns,
+  shapes.geometric,
+  spy,
+  intersections,
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[colorlinks]{hyperref}
+\hypersetup{
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=cyan,          % color of internal links
+    citecolor=cyan,        % color of links to bibliography
+    urlcolor=cyan           % color of external links
+}
+
+
+
+%%%%%%%%%%%%% custermized shorthand commands%%%%%%%%%%%%%
+
+
+\newcommand{\abs}[1]{\lvert#1\rvert}
+
+
+
+% \pgfmathsetseed{\number\pdfrandomseed}
+
+
+\pgfmathsetseed{3} %%%%%%%%%random seed
+
+
+
+
+
+
+\pgfplotsset{every axis/.style={
+		            axis equal image,
+                    axis x line=middle,    % put the x axis in the middle
+                    axis y line=middle,    % put the y axis in the middle
+                    axis line style={-latex,thick}, % arrows on the axis
+                    xlabel={$x$},          % default put x on x-axis
+                    ylabel={$y$},          % default put y on y-axis
+                    xlabel style = {font=\tiny, at={(xticklabel* cs:1)}, anchor=south},
+                    ylabel style = {font=\tiny, at={(yticklabel* cs:1)}, anchor=west},
+                    scaled ticks=true,
+                    x tick label style={font=\tiny, yshift=0.4ex, inner xsep=0pt},
+                    y tick label style={font=\tiny, xshift=0.4ex, inner ysep=0pt},
+                    grid style={black}
+            }
+}
+\pgfplotsset{samples=1001}
+
+
+
+\usepackage{wrapfig}
+
+\usepackage{import}
+\usepackage{subfiles}
+
+
+
+\newcommand*\cmc[1]{\omit\hfil~$\displaystyle#1$~\hfil\ignorespaces}
+\newcommand*\ctc[1]{\omit\hfil\quad~ #1 ~\quad\hfil\ignorespaces}
+
+
+\newcommand{\bi}{\mathbf{i}}
+
+
+
+\newcommand*\centermath[1]{\omit\hfil~$\displaystyle#1$~\hfil\ignorespaces}
+
+
+
+
+%%%%%%%%The following code used to reduce a fraction %%%%%%%
+\newcommand{\reducedfraction}[2]{%
+\ifnum #2=0
+  \text{~undefined~}
+\else
+  \pgfmathsetmacro{\fract}{#1/#2}
+  \pgfmathtruncatemacro{\floorfract}{floor(#1/#2)}
+  \pgfmathtruncatemacro{\reducednumabs}{abs(#1/gcd(#1,#2))}
+  \pgfmathtruncatemacro{\reduceddenabs}{abs(#2/gcd(#1,#2))}
+  \ifdim\fract pt=\floorfract pt
+    \floorfract
+  \else
+    \ifdim\fract pt>0 pt
+      \frac{\reducednumabs}{\reduceddenabs}
+    \else
+      \ifdim\fract pt<0pt
+        -\frac{\reducednumabs}{\reduceddenabs}
+      \fi
+    \fi
+  \fi
+\fi
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%Shortend reduce fraction command%%%%%%%
+\newcommand{\rdfrac}{\reducedfraction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%Display fraction simplification%%%%%%%%%%
+\newcommand{\simplyfrac}[2]{
+\pgfmathtruncatemacro{\mgcd}{gcd(#1,#2)}
+\ifnum \mgcd>1 \frac{#1}{#2}= \fi \rdfrac{#1}{#2}
+}
+%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%add () to negative numbers %%%%%%%%%%%
+\newcommand{\display}[1]{\ifnum#1<0 (#1)\else #1\fi}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%% change adding negative numbers to minus %%%%%%%%%%%
+\newcommand{\plusminus}[1]{\ifnum#1<0 \ifnum#1=-1 -\else #1\fi \else \ifnum#1=1 +\else +#1\fi \fi}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%% hide power 1 %%%%%%%%%%%%%%
+\newcommand{\invisibleoneinpower}[1]{\ifnum#1=1 \else #1\fi}
+%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%% hide coef 1 or -1 %%%%%%%%%%%%%%
+\newcommand{\invisibleoneincoef}[1]{\ifnum#1=1 \else \ifnum#1=-1 - \else #1 \fi \fi}
+%%%%%%%%%%%%%%%%
+
+
+\newcommand{\constdisplay}[1]{\ifnum#1>0 + #1\else #1\fi}
+
+
+%%%%%%%%%%%%%%%%Change equation label style
+\renewcommand{\theequation}{\text{Eq}-\arabic{equation}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%define the display of coefficients
+\newcommand*{\displayaone}{\ifnum\aone=1 \else \ifnum \aone=-1 -\else \aone\fi\fi}
+\newcommand*{\displaybone}{\ifnum\bone=1 \else \bone\fi}
+\newcommand*{\displayatwo}{\ifnum\atwo=1 \else \ifnum \atwo=-1 -\else \atwo\fi\fi}
+\newcommand*{\displaybtwo}{\ifnum\btwo=1 \else \btwo\fi}
+\newcommand*{\displaycoefx}{\ifnum\coefx=1 \else \ifnum \coefx=-1 -\else \coefx \fi \fi}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%  Uncomment the following line to print answers  %%%
+
+
+ \printanswers
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\begin{document}
+
+% \lhead{}
+\chead{
+	\parbox{0.8\textwidth}{\centering \bf
+		Practic Problems	
+		}
+}
+
+
+\headrule
+\vspace*{-1.25\baselineskip}
+
+\begin{questions}
+\fullwidth
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%% Linear Inequalities %%%%%%%%%%%%%%%%%%
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-I-001.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-I-001.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Interval-notation-I-001.tex}
+% \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-I-002.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-I-002.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Interval-notation-I-002.tex}
+%  \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-I-003.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-I-003.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Interval-notation-I-003.tex}
+%  \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-I-004.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-I-004.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Interval-notation-I-004.tex}
+%  \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-and-I-001.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-and-I-001.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Interval-notation-and-I-001.tex}
+%  \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-and-I-002.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-and-I-002.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Interval-notation-and-I-002.tex}
+%  \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-and-I-003.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-and-I-003.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Interval-notation-and-I-003.tex}
+%  \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-and-I-004.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-and-I-004.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Interval-notation-and-I-004.tex}
+%  \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-and-I-005.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-and-I-005.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Interval-notation-and-I-005.tex}
+%  \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-or-I-001.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-or-I-001.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Interval-notation-or-I-001.tex}
+%  \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-or-I-002.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-or-I-002.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Interval-notation-or-I-002.tex}
+%  \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-or-I-003.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-or-I-003.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Interval-notation-or-I-003.tex}
+%  \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-or-I-004.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-or-I-004.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Interval-notation-or-I-004.tex}
+%  \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-and-I-006.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-and-I-006.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Interval-notation-and-I-006.tex}
+%  \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-and-I-007.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-and-I-007.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Interval-notation-and-I-007.tex}
+%  \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-and-I-008.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-and-I-008.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Interval-notation-and-I-008.tex}
+%  \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-and-I-009.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-and-I-009.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Interval-notation-and-I-009.tex}
+%  \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-II-001.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-II-001.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Interval-notation-II-001.tex}
+%  \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-II-002.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-II-002.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Interval-notation-II-002.tex}
+%  \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-and-II-001.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-and-II-001.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Interval-notation-and-II-001.tex}
+%  \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-and-II-002.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-and-II-002.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Interval-notation-and-II-002.tex}
+%  \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-and-II-003.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-and-II-003.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Interval-notation-and-II-003.tex}
+%  \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-and-II-004.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-and-II-004.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Interval-notation-and-II-004.tex}
+%  \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-and-II-005.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-and-II-005.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Interval-notation-and-II-005.tex}
+%  \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-or-II-001.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-or-II-001.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Interval-notation-or-II-001.tex}
+%  \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-or-II-002.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-or-II-002.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Interval-notation-or-II-002.tex}
+%  \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-or-II-003.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Interval-notation-or-II-003.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Interval-notation-or-II-003.tex}
+%  \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-I-001.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-I-001.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Inequality-I-001.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-I-002.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-I-002.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Inequality-I-002.tex}
+% \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-I-003.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-I-003.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Inequality-I-003.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-I-004.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-I-004.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Inequality-I-004.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-I-005.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-I-005.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Inequality-I-005.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-I-006.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-I-006.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Inequality-I-006.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-I-007.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-I-007.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Inequality-I-007.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-I-008.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-I-008.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Inequality-I-008.tex}
+% \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-I-009.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-I-009.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Inequality-I-009.tex}
+% \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-I-010.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-I-010.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Inequality-I-010.tex}
+% \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-I-011.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-I-011.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Inequality-I-011.tex}
+% \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-I-012.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-I-012.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Inequality-I-012.tex}
+% \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-I-013.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-I-013.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Inequality-I-013.tex}
+% \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-I-014.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-I-014.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Inequality-I-014.tex}
+% \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-II-001.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-II-001.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Inequality-II-001.tex}
+% \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-II-002.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-II-002.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Inequality-II-002.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-II-003.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-II-003.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Inequality-II-003.tex}
+% \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-II-004.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-II-004.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Inequality-II-004.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-II-005.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-II-005.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Inequality-II-005.tex}
+%  \vspace*{\stretch{1}}
+
+
+% \question
+% \href{}{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-II-006(ran.texd).tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Inequality-II-006(rand).tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{}{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-II-007(ran.texd).tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Inequality-II-007(rand).tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{}{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-II-008(ran.texd).tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Inequality-II-008(rand).tex}
+% \vspace*{\stretch{1}}
+
+% \question
+% \href{}{../Individual-Questions-by-Topics/Linear-Inequalities/Inequality-II-009(ran.texd).tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Inequality-II-009(rand).tex}
+% \vspace*{\stretch{1}}
+
+% \question
+% \href{}{../Individual-Questions-by-Topics/Linear-Inequalities/Compound-Ineq-I-001(ran.texd).tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Compound-Ineq-I-001(rand).tex}
+%  \vspace*{\stretch{1}}
+
+
+% \question
+% \href{}{../Individual-Questions-by-Topics/Linear-Inequalities/Compound-Ineq-I-002(ran.texd).tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Compound-Ineq-I-002(rand).tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{}{../Individual-Questions-by-Topics/Linear-Inequalities/Compound-Ineq-I-003(ran.texd).tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Compound-Ineq-I-003(rand).tex}
+%  \vspace*{\stretch{1}}
+
+
+% \question
+% \href{}{../Individual-Questions-by-Topics/Linear-Inequalities/Compound-Ineq-I-004(ran.texd).tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Compound-Ineq-I-004(rand).tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{}{../Individual-Questions-by-Topics/Linear-Inequalities/Compound-Ineq-I-005(ran.texd).tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Compound-Ineq-I-005(rand).tex}
+%  \vspace*{\stretch{1}}
+
+
+% \question
+% \href{}{../Individual-Questions-by-Topics/Linear-Inequalities/Compound-Ineq-I-006(ran.texd).tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Compound-Ineq-I-006(rand).tex}
+%  \vspace*{\stretch{1}}
+
+
+
+% \question
+% \href{}{../Individual-Questions-by-Topics/Linear-Inequalities/Compound-Ineq-II-001(ran.texd).tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Compound-Ineq-II-001(rand).tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{}{../Individual-Questions-by-Topics/Linear-Inequalities/Compound-Ineq-II-002(ran.texd).tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Compound-Ineq-II-002(rand).tex}
+% \vspace*{\stretch{1}}
+
+% \question
+% \href{}{../Individual-Questions-by-Topics/Linear-Inequalities/Compound-Ineq-II-003(ran.texd).tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Compound-Ineq-II-003(rand).tex}
+%  \vspace*{\stretch{1}}
+
+% \question
+% \href{}{../Individual-Questions-by-Topics/Linear-Inequalities/Compound-Ineq-II-004(ran.texd).tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Compound-Ineq-II-004(rand).tex}
+%  \vspace*{\stretch{1}}
+
+
+% \question
+% \href{}{../Individual-Questions-by-Topics/Linear-Inequalities/Compound-Ineq-or-I-001(ran.texd).tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Compound-Ineq-or-I-001(rand).tex}
+%  \vspace*{\stretch{1}}
+
+
+
+% \question
+% \href{}{../Individual-Questions-by-Topics/Linear-Inequalities/Compound-Ineq-or-I-002(ran.texd).tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Compound-Ineq-or-I-002(rand).tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{}{../Individual-Questions-by-Topics/Linear-Inequalities/Compound-Ineq-or-I-003(ran.texd).tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Compound-Ineq-or-I-003(rand).tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{}{../Individual-Questions-by-Topics/Linear-Inequalities/Compound-Ineq-or-I-004(ran.texd).tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Compound-Ineq-or-I-004(rand).tex}
+%  \vspace*{\stretch{1}}
+
+
+% \question
+% \href{}{../Individual-Questions-by-Topics/Linear-Inequalities/Compound-Ineq-or-II-001(ran.texd).tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Compound-Ineq-or-II-001(rand).tex}
+%  \vspace*{\stretch{1}}
+
+
+% \question
+% \href{}{../Individual-Questions-by-Topics/Linear-Inequalities/Compound-Ineq-or-II-002(ran.texd).tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Compound-Ineq-or-II-002(rand).tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{}{../Individual-Questions-by-Topics/Linear-Inequalities/Compound-Ineq-or-II-003(ran.texd).tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Compound-Ineq-or-II-003(rand).tex}
+%  \vspace*{\stretch{1}}
+
+
+% \question
+% \href{}{../Individual-Questions-by-Topics/Linear-Inequalities/Compound-Ineq-or-III-001(ran.texd).tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Compound-Ineq-or-III-001(rand).tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{}{../Individual-Questions-by-Topics/Linear-Inequalities/Compound-Ineq-or-III-002(ran.texd).tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Compound-Ineq-or-III-002(rand).tex}
+%  \vspace*{\stretch{1}}
+
+
+% \question
+% \href{}{../Individual-Questions-by-Topics/Linear-Inequalities/Compound-Ineq-or-III-003(ran.texd).tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Compound-Ineq-or-III-003(rand).tex}
+%  \vspace*{\stretch{1}}
+
+
+% \question
+% \href{}{../Individual-Questions-by-Topics/Linear-Inequalities/Compound-Ineq-between-I-001(ran.texd).tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Compound-Ineq-between-I-001(rand).tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{}{../Individual-Questions-by-Topics/Linear-Inequalities/Compound-Ineq-between-I-002(ran.texd).tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Compound-Ineq-between-I-002(rand).tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{}{../Individual-Questions-by-Topics/Linear-Inequalities/Compound-Ineq-between-I-003(ran.texd).tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Compound-Ineq-between-I-003(rand).tex}
+%  \vspace*{\stretch{1}}
+
+
+% \question
+% \href{}{../Individual-Questions-by-Topics/Linear-Inequalities/Compound-Ineq-between-I-004(ran.texd).tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Compound-Ineq-between-I-004(rand).tex}
+%  \vspace*{\stretch{1}}
+
+
+% \question
+% \href{}{../Individual-Questions-by-Topics/Linear-Inequalities/Compound-Ineq-between-I-005(ran.texd).tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Compound-Ineq-between-I-005(rand).tex}
+% \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Inequalities/Compound-Ineq-between-I-005-b.tex}{../Individual-Questions-by-Topics/Linear-Inequalities/Compound-Ineq-between-I-005-b.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Inequalities/}{Compound-Ineq-between-I-005-b.tex}
+% \vspace*{\stretch{1}}
+
+
+% %%%%%%%%%%%%%%%%%%Absolute Value Equations%%%%%%%%%%%%%%%%%%%%%%%%
+% \question
+% \href{../Individual-Questions-by-Topics/Absolute-Value-Equations/Absolute-Value-Eq-I-001.tex}{../Individual-Questions-by-Topics/Absolute-Value-Equations/Absolute-Value-Eq-I-001.tex}
+% \import{../Individual-Questions-by-Topics/Absolute-Value-Equations/}{Absolute-Value-Eq-I-001.tex}
+% \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Absolute-Value-Equations/Absolute-Value-Eq-I-002.tex}{../Individual-Questions-by-Topics/Absolute-Value-Equations/Absolute-Value-Eq-I-002.tex}
+% \import{../Individual-Questions-by-Topics/Absolute-Value-Equations/}{Absolute-Value-Eq-I-002.tex}
+%  \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Absolute-Value-Equations/Absolute-Value-Eq-I-003-a.tex}{../Individual-Questions-by-Topics/Absolute-Value-Equations/Absolute-Value-Eq-I-003-a.tex}
+% \import{../Individual-Questions-by-Topics/Absolute-Value-Equations/}{Absolute-Value-Eq-I-003-a.tex}
+% \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Absolute-Value-Equations/Absolute-Value-Eq-I-003.tex}{../Individual-Questions-by-Topics/Absolute-Value-Equations/Absolute-Value-Eq-I-003.tex}
+% \import{../Individual-Questions-by-Topics/Absolute-Value-Equations/}{Absolute-Value-Eq-I-003.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Absolute-Value-Equations/Absolute-Value-Eq-I-004.tex}{../Individual-Questions-by-Topics/Absolute-Value-Equations/Absolute-Value-Eq-I-004.tex}
+% \import{../Individual-Questions-by-Topics/Absolute-Value-Equations/}{Absolute-Value-Eq-I-004.tex}
+%  \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Absolute-Value-Equations/Absolute-Value-Eq-I-005.tex}{../Individual-Questions-by-Topics/Absolute-Value-Equations/Absolute-Value-Eq-I-005.tex}
+% \import{../Individual-Questions-by-Topics/Absolute-Value-Equations/}{Absolute-Value-Eq-I-005.tex}
+%  \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Absolute-Value-Equations/Absolute-Value-Eq-I-006.tex}{../Individual-Questions-by-Topics/Absolute-Value-Equations/Absolute-Value-Eq-I-006.tex}
+% \import{../Individual-Questions-by-Topics/Absolute-Value-Equations/}{Absolute-Value-Eq-I-006.tex}
+% \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Absolute-Value-Equations/Absolute-Value-Eq-I-006-b.tex}{../Individual-Questions-by-Topics/Absolute-Value-Equations/Absolute-Value-Eq-I-006-b.tex}
+% \import{../Individual-Questions-by-Topics/Absolute-Value-Equations/}{Absolute-Value-Eq-I-006-b.tex}
+% \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Absolute-Value-Equations/Absolute-Value-Eq-I-007.tex}{../Individual-Questions-by-Topics/Absolute-Value-Equations/Absolute-Value-Eq-I-007.tex}
+% \import{../Individual-Questions-by-Topics/Absolute-Value-Equations/}{Absolute-Value-Eq-I-007.tex}
+%  \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Absolute-Value-Equations/Absolute-Value-Eq-I-008.tex}{../Individual-Questions-by-Topics/Absolute-Value-Equations/Absolute-Value-Eq-I-008.tex}
+% \import{../Individual-Questions-by-Topics/Absolute-Value-Equations/}{Absolute-Value-Eq-I-008.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Absolute-Value-Equations/Absolute-Value-Eq-I-009.tex}{../Individual-Questions-by-Topics/Absolute-Value-Equations/Absolute-Value-Eq-I-009.tex}
+% \import{../Individual-Questions-by-Topics/Absolute-Value-Equations/}{Absolute-Value-Eq-I-009.tex}
+%  \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Absolute-Value-Equations/Absolute-Value-Eq-I-009-b.tex}{../Individual-Questions-by-Topics/Absolute-Value-Equations/Absolute-Value-Eq-I-009-b.tex}
+% \import{../Individual-Questions-by-Topics/Absolute-Value-Equations/}{Absolute-Value-Eq-I-009-b.tex}
+%  \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Absolute-Value-Equations/Absolute-Value-Eq-I-010.tex}{../Individual-Questions-by-Topics/Absolute-Value-Equations/Absolute-Value-Eq-I-010.tex}
+% \import{../Individual-Questions-by-Topics/Absolute-Value-Equations/}{Absolute-Value-Eq-I-010.tex}
+% \vspace*{\stretch{1}}
+
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Absolute-Value-Equations/Absolute-Value-Eq-I-011.tex}{../Individual-Questions-by-Topics/Absolute-Value-Equations/Absolute-Value-Eq-I-011.tex}
+% \import{../Individual-Questions-by-Topics/Absolute-Value-Equations/}{Absolute-Value-Eq-I-011.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Absolute-Value-Equations/Absolute-Value-Eq-I-012.tex}{../Individual-Questions-by-Topics/Absolute-Value-Equations/Absolute-Value-Eq-I-012.tex}
+% \import{../Individual-Questions-by-Topics/Absolute-Value-Equations/}{Absolute-Value-Eq-I-012.tex}
+% \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Absolute-Value-Equations/Absolute-Value-Eq-I-013.tex}{../Individual-Questions-by-Topics/Absolute-Value-Equations/Absolute-Value-Eq-I-013.tex}
+% \import{../Individual-Questions-by-Topics/Absolute-Value-Equations/}{Absolute-Value-Eq-I-013.tex}
+% \vspace*{\stretch{1}}
+
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Integral-Exponents/Integral-Exponents-I-001.tex}{../Individual-Questions-by-Topics/Integral-Exponents/Integral-Exponents-I-001.tex}
+% \import{../Individual-Questions-by-Topics/Integral-Exponents/}{Integral-Exponents-I-001.tex}
+% \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Integral-Exponents/Integral-Exponents-I-001-b.tex}{../Individual-Questions-by-Topics/Integral-Exponents/Integral-Exponents-I-001-b.tex}
+% \import{../Individual-Questions-by-Topics/Integral-Exponents/}{Integral-Exponents-I-001-b.tex}
+% \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Integral-Exponents/Integral-Exponents-I-001-c.tex}{../Individual-Questions-by-Topics/Integral-Exponents/Integral-Exponents-I-001-c.tex}
+% \import{../Individual-Questions-by-Topics/Integral-Exponents/}{Integral-Exponents-I-001-c.tex}
+% \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Integral-Exponents/Integral-Exponents-I-002.tex}{../Individual-Questions-by-Topics/Integral-Exponents/Integral-Exponents-I-002.tex}
+% \import{../Individual-Questions-by-Topics/Integral-Exponents/}{Integral-Exponents-I-002.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Integral-Exponents/Integral-Exponents-I-003.tex}{../Individual-Questions-by-Topics/Integral-Exponents/Integral-Exponents-I-003.tex}
+% \import{../Individual-Questions-by-Topics/Integral-Exponents/}{Integral-Exponents-I-003.tex}
+% \vspace*{\stretch{1}}
+
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Integral-Exponents/Integral-Exponents-I-004.tex}{../Individual-Questions-by-Topics/Integral-Exponents/Integral-Exponents-I-004.tex}
+% \import{../Individual-Questions-by-Topics/Integral-Exponents/}{Integral-Exponents-I-004.tex}
+% \vspace*{\stretch{1}}
+
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Functions-General/Evaluate-Function-I-001.tex}{../Individual-Questions-by-Topics/Functions-General/Evaluate-Function-I-001.tex}
+% \import{../Individual-Questions-by-Topics/Functions-General/}{Evaluate-Function-I-001.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Functions-General/Evaluate-Function-I-002.tex}{../Individual-Questions-by-Topics/Functions-General/Evaluate-Function-I-002.tex}
+% \import{../Individual-Questions-by-Topics/Functions-General/}{Evaluate-Function-I-002.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Functions-General/Function-graph-I-001.tex}{../Individual-Questions-by-Topics/Functions-General/Function-graph-I-001.tex}
+% \import{../Individual-Questions-by-Topics/Functions-General/}{Function-graph-I-001.tex}
+% \vspace*{\stretch{1}}
+
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Functions-General/Function-graph-I-002.tex}{../Individual-Questions-by-Topics/Functions-General/Function-graph-I-002.tex}
+% \import{../Individual-Questions-by-Topics/Functions-General/}{Function-graph-I-002.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Functions-General/Function-graph-I-003.tex}{../Individual-Questions-by-Topics/Functions-General/Function-graph-I-003.tex}
+% \import{../Individual-Questions-by-Topics/Functions-General/}{Function-graph-I-003.tex}
+% \vspace*{\stretch{1}}
+
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Functions-General/Function-graph-I-004.tex}{../Individual-Questions-by-Topics/Functions-General/Function-graph-I-004.tex}
+% \import{../Individual-Questions-by-Topics/Functions-General/}{Function-graph-I-004.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Functions-General/Function-graph-I-005.tex}{../Individual-Questions-by-Topics/Functions-General/Function-graph-I-005.tex}
+% \import{../Individual-Questions-by-Topics/Functions-General/}{Function-graph-I-005.tex}
+% \vspace*{\stretch{1}}
+
+
+
+
+
+%  \question
+%  \href{../Individual-Questions-by-Topics/Linear-Functions/}{Find-the-Slope-I-001.tex}
+%  \import{../Individual-Questions-by-Topics/Linear-Functions/}{Find-the-Slope-I-001.tex}
+%  \vspace*{\stretch{1}}
+
+
+%  \question
+%  \href{../Individual-Questions-by-Topics/Linear-Functions/}{Find-the-Slope-I-002.tex}
+%  \import{../Individual-Questions-by-Topics/Linear-Functions/}{Find-the-Slope-I-002.tex}
+%  \vspace*{\stretch{1}}
+
+
+%  \question
+%  \href{../Individual-Questions-by-Topics/Linear-Functions/}{Find-the-Slope-I-003.tex}
+%  \import{../Individual-Questions-by-Topics/Linear-Functions/}{Find-the-Slope-I-003.tex}
+%  \vspace*{\stretch{1}}
+
+
+%  \question
+%  \href{../Individual-Questions-by-Topics/Linear-Functions/}{Find-the-Slope-I-004.tex}
+%  \import{../Individual-Questions-by-Topics/Linear-Functions/}{Find-the-Slope-I-004.tex}
+%  \vspace*{\stretch{1}}
+
+
+%  \question
+%  \href{../Individual-Questions-by-Topics/Linear-Functions/}{Find-the-Slope-I-005.tex}
+%  \import{../Individual-Questions-by-Topics/Linear-Functions/}{Find-the-Slope-I-005.tex}
+%  \vspace*{\stretch{1}}
+
+
+%  \question
+%  \href{../Individual-Questions-by-Topics/Linear-Functions/}{Find-the-Slope-I-006.tex}
+%  \import{../Individual-Questions-by-Topics/Linear-Functions/}{Find-the-Slope-I-006.tex}
+%  \vspace*{\stretch{1}}
+
+
+
+%  \question
+%  \href{../Individual-Questions-by-Topics/Linear-Functions/}{Negative-slope-int-from-general-form-I-001.tex}
+%  \import{../Individual-Questions-by-Topics/Linear-Functions/}{Negative-slope-int-from-general-form-I-001.tex}
+%  \vspace*{\stretch{1}}
+
+
+%  \question
+%  \href{../Individual-Questions-by-Topics/Linear-Functions/}{Positive-slope-int-from-general-form-I-001.tex}
+%  \import{../Individual-Questions-by-Topics/Linear-Functions/}{Positive-slope-int-from-general-form-I-001.tex}
+%  \vspace*{\stretch{1}}
+
+
+%  \question
+%  \href{../Individual-Questions-by-Topics/Linear-Functions/}{Positive-slope-int-from-general-form-I-002.tex}
+%  \import{../Individual-Questions-by-Topics/Linear-Functions/}{Positive-slope-int-from-general-form-I-002.tex}
+%  \vspace*{\stretch{1}}
+
+
+
+%  \question
+%  \href{../Individual-Questions-by-Topics/Linear-Functions/}{Slope-int-form-I-001.tex}
+%  \import{../Individual-Questions-by-Topics/Linear-Functions/}{Slope-int-form-I-001.tex}
+%  \vspace*{\stretch{1}}
+
+
+%  \question
+%  \href{../Individual-Questions-by-Topics/Linear-Functions/}{Slope-int-form-I-002.tex}
+%  \import{../Individual-Questions-by-Topics/Linear-Functions/}{Slope-int-form-I-002.tex}
+%  \vspace*{\stretch{1}}
+
+%  \question
+%  \href{../Individual-Questions-by-Topics/Linear-Functions/}{Slope-int-form-I-003.tex}
+%  \import{../Individual-Questions-by-Topics/Linear-Functions/}{Slope-int-form-I-003.tex}
+%  \vspace*{\stretch{1}}
+
+
+%  \question
+%  \href{../Individual-Questions-by-Topics/Linear-Functions/}{Slope-int-form-I-004.tex}
+%  \import{../Individual-Questions-by-Topics/Linear-Functions/}{Slope-int-form-I-004.tex}
+%  \vspace*{\stretch{1}}
+
+
+
+%  \question
+%  \href{../Individual-Questions-by-Topics/Linear-Functions/}{Vertical-line-I-001.tex}
+%  \import{../Individual-Questions-by-Topics/Linear-Functions/}{Vertical-line-I-001.tex}
+%  \vspace*{\stretch{1}}
+
+
+%  \question
+%  \href{../Individual-Questions-by-Topics/Linear-Functions/}{Vertical-line-I-002.tex}
+%  \import{../Individual-Questions-by-Topics/Linear-Functions/}{Vertical-line-I-002.tex}
+%  \vspace*{\stretch{1}}
+
+%  \question
+%  \href{../Individual-Questions-by-Topics/Linear-Functions/}{Horizontal-line-I-001.tex}
+%  \import{../Individual-Questions-by-Topics/Linear-Functions/}{Horizontal-line-I-001.tex}
+%  \vspace*{\stretch{1}}
+
+
+%  \question
+%  \href{../Individual-Questions-by-Topics/Linear-Functions/}{Horizontal-line-I-002.tex}
+%  \import{../Individual-Questions-by-Topics/Linear-Functions/}{Horizontal-line-I-002.tex}
+%  \vspace*{\stretch{1}}
+
+
+
+%  \question
+%  \href{../Individual-Questions-by-Topics/Linear-Functions/}{Perp-line-m-perp-positive-integer-I-001.tex}
+%  \import{../Individual-Questions-by-Topics/Linear-Functions/}{Perp-line-m-perp-positive-integer-I-001.tex}
+%  \vspace*{\stretch{1}}
+
+
+%  \question
+%  \href{../Individual-Questions-by-Topics/Linear-Functions/}{Perp-line-m-perp-negative-integer-I-001.tex}
+%  \import{../Individual-Questions-by-Topics/Linear-Functions/}{Perp-line-m-perp-negative-integer-I-001.tex}
+%  \vspace*{\stretch{1}}
+
+
+%  \question
+%  \href{../Individual-Questions-by-Topics/Linear-Functions/}{Perp-line-m-original-positive-integer-I-001.tex}
+%  \import{../Individual-Questions-by-Topics/Linear-Functions/}{Perp-line-m-original-positive-integer-I-001.tex}
+%  \vspace*{\stretch{1}}
+
+
+%  \question
+%  \href{../Individual-Questions-by-Topics/Linear-Functions/}{Perp-line-m-original-negative-integer-I-001.tex}
+%  \import{../Individual-Questions-by-Topics/Linear-Functions/}{Perp-line-m-original-negative-integer-I-001.tex}
+%  \vspace*{\stretch{1}}
+
+
+%  \question
+%  \href{../Individual-Questions-by-Topics/Linear-Functions/}{Perp-line-m-original-positive-fraction-I-001}
+%  \import{../Individual-Questions-by-Topics/Linear-Functions/}{Perp-line-m-original-positive-fraction-I-001}
+%  \vspace*{\stretch{1}}
+
+
+%  \question
+%  \href{../Individual-Questions-by-Topics/Linear-Functions/}{Perp-line-m-original-negative-fraction-I-001}
+%  \import{../Individual-Questions-by-Topics/Linear-Functions/}{Perp-line-m-original-negative-fraction-I-001}
+%  \vspace*{\stretch{1}}
+
+
+%  \question
+%  \href{../Individual-Questions-by-Topics/Linear-Functions/}{Parallel-line-m-original-positive-I-001}
+%  \import{../Individual-Questions-by-Topics/Linear-Functions/}{Parallel-line-m-original-positive-I-001}
+%  \vspace*{\stretch{1}}
+
+
+%  \question
+%  \href{../Individual-Questions-by-Topics/Linear-Functions/}{Parallel-line-m-original-negative-I-001}
+%  \import{../Individual-Questions-by-Topics/Linear-Functions/}{Parallel-line-m-original-negative-I-001}
+%  \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Functions/Equation-from-Line-I-001}{../Individual-Questions-by-Topics/Linear-Functions/Equation-from-Line-I-001}
+% \import{../Individual-Questions-by-Topics/Linear-Functions/}{Equation-from-Line-I-001}
+% \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Functions/Equation-Perp-from-Line-I-001}{../Individual-Questions-by-Topics/Linear-Functions/Equation-Perp-from-Line-I-001}
+% \import{../Individual-Questions-by-Topics/Linear-Functions/}{Equation-Perp-from-Line-I-001}
+% \vspace*{\stretch{1}}
+
+
+
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Systems/Linear-system-one-solution-I-001.tex}{../Individual-Questions-by-Topics/Linear-Systems/Linear-system-one-solution-I-001.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Systems/}{Linear-system-one-solution-I-001.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Systems/Linear-system-one-solution-I-002.tex}{../Individual-Questions-by-Topics/Linear-Systems/Linear-system-one-solution-I-002.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Systems/}{Linear-system-one-solution-I-002.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Systems/Linear-system-one-solution-I-003.tex}{../Individual-Questions-by-Topics/Linear-Systems/Linear-system-one-solution-I-003.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Systems/}{Linear-system-one-solution-I-003.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Systems/Linear-system-one-solution-I-004.tex}{../Individual-Questions-by-Topics/Linear-Systems/Linear-system-one-solution-I-004.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Systems/}{Linear-system-one-solution-I-004.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Systems/Linear-system-one-solution-I-005.tex}{../Individual-Questions-by-Topics/Linear-Systems/Linear-system-one-solution-I-005.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Systems/}{Linear-system-one-solution-I-005.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Systems/Linear-system-NO-solution-I-001.tex}{../Individual-Questions-by-Topics/Linear-Systems/Linear-system-NO-solution-I-001.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Systems/}{Linear-system-NO-solution-I-001.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Linear-Systems/Linear-system-infinite-solutions-I-001.tex}{../Individual-Questions-by-Topics/Linear-Systems/Linear-system-infinite-solutions-I-001.tex}
+% \import{../Individual-Questions-by-Topics/Linear-Systems/}{Linear-system-infinite-solutions-I-001.tex}
+% \vspace*{\stretch{1}}
+
+
+
+
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Factor-out-GCF-I-001.tex}{../Individual-Questions-by-Topics/Factoring/Factor-out-GCF-I-001.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Factor-out-GCF-I-001.tex}
+% \vspace*{\stretch{1}}
+
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Factor-out-GCF-I-002.tex}{../Individual-Questions-by-Topics/Factoring/Factor-out-GCF-I-002.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Factor-out-GCF-I-002.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Factor-out-GCF-I-003.tex}{../Individual-Questions-by-Topics/Factoring/Factor-out-GCF-I-003.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Factor-out-GCF-I-003.tex}
+% \vspace*{\stretch{1}}
+
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Factor-Grouping-I-001.tex}{../Individual-Questions-by-Topics/Factoring/Factor-Grouping-I-001.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Factor-Grouping-I-001.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Factor-Grouping-I-002.tex}{../Individual-Questions-by-Topics/Factoring/Factor-Grouping-I-002.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Factor-Grouping-I-002.tex}
+% \vspace*{\stretch{1}}
+
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Factor-Grouping-I-003.tex}{../Individual-Questions-by-Topics/Factoring/Factor-Grouping-I-003.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Factor-Grouping-I-003.tex}
+% \vspace*{\stretch{1}}
+
+
+
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Factor-Grouping-I-004.tex}{../Individual-Questions-by-Topics/Factoring/Factor-Grouping-I-004.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Factor-Grouping-I-004.tex}
+% \vspace*{\stretch{1}}
+
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Factor-Grouping-I-005.tex}{../Individual-Questions-by-Topics/Factoring/Factor-Grouping-I-005.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Factor-Grouping-I-005.tex}
+% \vspace*{\stretch{1}}
+
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Factor-Grouping-II-001.tex}{../Individual-Questions-by-Topics/Factoring/Factor-Grouping-II-001.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Factor-Grouping-II-001.tex}
+% \vspace*{\stretch{1}}
+
+
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Factor-Diff-Squares-I-001.tex}{../Individual-Questions-by-Topics/Factoring/Factor-Diff-Squares-I-001.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Factor-Diff-Squares-I-001.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Factor-Diff-Cubes-I-001.tex}{../Individual-Questions-by-Topics/Factoring/Factor-Diff-Cubes-I-001.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Factor-Diff-Cubes-I-001.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Factor-Sum-Cubes-I-001.tex}{../Individual-Questions-by-Topics/Factoring/Factor-Sum-Cubes-I-001.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Factor-Sum-Cubes-I-001.tex}
+% \vspace*{\stretch{1}}
+
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Factor-Completely-I-001.tex}{../Individual-Questions-by-Topics/Factoring/Factor-Completely-I-001.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Factor-Completely-I-001.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Factor-Completely-I-002.tex}{../Individual-Questions-by-Topics/Factoring/Factor-Completely-I-002.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Factor-Completely-I-002.tex}
+% \vspace*{\stretch{1}}
+
+
+
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Factor-Trinomial-Leading-one-I-001.tex}{../Individual-Questions-by-Topics/Factoring/Factor-Trinomial-Leading-one-I-001.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Factor-Trinomial-Leading-one-I-001.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Factor-Trinomial-Leading-one-I-002.tex}{../Individual-Questions-by-Topics/Factoring/Factor-Trinomial-Leading-one-I-002.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Factor-Trinomial-Leading-one-I-002.tex}
+% \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Factor-Trinomial-Leading-one-I-003.tex}{../Individual-Questions-by-Topics/Factoring/Factor-Trinomial-Leading-one-I-003.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Factor-Trinomial-Leading-one-I-003.tex}
+% \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Factor-Trinomial-I-001.tex}{../Individual-Questions-by-Topics/Factoring/Factor-Trinomial-I-001.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Factor-Trinomial-I-001.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Factor-Trinomial-I-002.tex}{../Individual-Questions-by-Topics/Factoring/Factor-Trinomial-I-002.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Factor-Trinomial-I-002.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Factor-Trinomial-I-003.tex}{../Individual-Questions-by-Topics/Factoring/Factor-Trinomial-I-003.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Factor-Trinomial-I-003.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Factor-Trinomial-I-004.tex}{../Individual-Questions-by-Topics/Factoring/Factor-Trinomial-I-004.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Factor-Trinomial-I-004.tex}
+% \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Factor-Trinomial-I-005.tex}{../Individual-Questions-by-Topics/Factoring/Factor-Trinomial-I-005.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Factor-Trinomial-I-005.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Factor-Trinomial-II-001.tex}{../Individual-Questions-by-Topics/Factoring/Factor-Trinomial-II-001.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Factor-Trinomial-II-001.tex}
+% \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Factor-Trinomial-II-002.tex}{../Individual-Questions-by-Topics/Factoring/Factor-Trinomial-II-002.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Factor-Trinomial-II-002.tex}
+% \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Factor-Trinomial-II-003.tex}{../Individual-Questions-by-Topics/Factoring/Factor-Trinomial-II-003.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Factor-Trinomial-II-003.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Factor-Completely-II-001.tex}{../Individual-Questions-by-Topics/Factoring/Factor-Completely-II-001.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Factor-Completely-II-001.tex}
+% \vspace*{\stretch{1}}
+
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Solve-by-Factoring-I-002.tex}{../Individual-Questions-by-Topics/Factoring/Solve-by-Factoring-I-002.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Solve-by-Factoring-I-002.tex}
+% \vspace*{\stretch{1}}
+
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Solve-by-Factoring-I-003.tex}{../Individual-Questions-by-Topics/Factoring/Solve-by-Factoring-I-003.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Solve-by-Factoring-I-003.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Solve-by-Factoring-I-001.tex}{../Individual-Questions-by-Topics/Factoring/Solve-by-Factoring-I-001.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Solve-by-Factoring-I-001.tex}
+% \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Solve-by-Factoring-I-004.tex}{../Individual-Questions-by-Topics/Factoring/Solve-by-Factoring-I-004.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Solve-by-Factoring-I-004.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Solve-by-Factoring-II-001.tex}{../Individual-Questions-by-Topics/Factoring/Solve-by-Factoring-II-001.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Solve-by-Factoring-II-001.tex}
+% \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Solve-by-Factoring-III-001.tex}{../Individual-Questions-by-Topics/Factoring/Solve-by-Factoring-III-001.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Solve-by-Factoring-III-001.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Solve-by-Factoring-III-002.tex}{../Individual-Questions-by-Topics/Factoring/Solve-by-Factoring-III-002.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Solve-by-Factoring-III-002.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Quadratic-Application-by-Factoring-I-001.tex}{../Individual-Questions-by-Topics/Factoring/Quadratic-Application-by-Factoring-I-001.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Quadratic-Application-by-Factoring-I-001.tex}
+% \vspace*{\stretch{1}}
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Width-of-Frame-I-001.tex}{../Individual-Questions-by-Topics/Factoring/Width-of-Frame-I-001.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Width-of-Frame-I-001.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Right-Triangle-I-001.tex}{../Individual-Questions-by-Topics/Factoring/Right-Triangle-I-001.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Right-Triangle-I-001.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Two-Consecutive-Numbers-I-001.tex}{../Individual-Questions-by-Topics/Factoring/Two-Consecutive-Numbers-I-001.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Two-Consecutive-Numbers-I-001.tex}
+% \vspace*{\stretch{1}}
+
+
+% \question
+% \href{../Individual-Questions-by-Topics/Factoring/Volume-of-cube.tex}{../Individual-Questions-by-Topics/Factoring/Volume-of-cube.tex}
+% \import{../Individual-Questions-by-Topics/Factoring/}{Volume-of-cube.tex}
+% \vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Rational-Expressions/Simplify-Rational-Expression-I-001.tex}{../Individual-Questions-by-Topics/Rational-Expressions/Simplify-Rational-Expression-I-001.tex}
+\import{../Individual-Questions-by-Topics/Rational-Expressions/}{Simplify-Rational-Expression-I-001.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Rational-Expressions/Simplify-Rational-Expression-I-002.tex}{../Individual-Questions-by-Topics/Rational-Expressions/Simplify-Rational-Expression-I-002.tex}
+\import{../Individual-Questions-by-Topics/Rational-Expressions/}{Simplify-Rational-Expression-I-002.tex}
+\vspace*{\stretch{1}}
+
+\question
+\href{../Individual-Questions-by-Topics/Rational-Expressions/Simplify-Rational-Expression-I-003.tex}{../Individual-Questions-by-Topics/Rational-Expressions/Simplify-Rational-Expression-I-003.tex}
+\import{../Individual-Questions-by-Topics/Rational-Expressions/}{Simplify-Rational-Expression-I-003.tex}
+\vspace*{\stretch{1}}
+
+\question
+\href{../Individual-Questions-by-Topics/Rational-Expressions/Multiply-Simplify-I-001.tex}{../Individual-Questions-by-Topics/Rational-Expressions/Multiply-Simplify-I-001.tex}
+\import{../Individual-Questions-by-Topics/Rational-Expressions/}{Multiply-Simplify-I-001.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Rational-Expressions/Multiply-Simplify-I-002.tex}{../Individual-Questions-by-Topics/Rational-Expressions/Multiply-Simplify-I-002.tex}
+\import{../Individual-Questions-by-Topics/Rational-Expressions/}{Multiply-Simplify-I-002.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Rational-Expressions/Divide-Simplify-I-001.tex}{../Individual-Questions-by-Topics/Rational-Expressions/Divide-Simplify-I-001.tex}
+\import{../Individual-Questions-by-Topics/Rational-Expressions/}{Divide-Simplify-I-001.tex}
+\vspace*{\stretch{1}}
+
+\question
+\href{../Individual-Questions-by-Topics/Rational-Expressions/Divide-Simplify-I-002.tex}{../Individual-Questions-by-Topics/Rational-Expressions/Divide-Simplify-I-002.tex}
+\import{../Individual-Questions-by-Topics/Rational-Expressions/}{Divide-Simplify-I-002.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Rational-Expressions/Divide-Simplify-I-003.tex}{../Individual-Questions-by-Topics/Rational-Expressions/Divide-Simplify-I-003.tex}
+\import{../Individual-Questions-by-Topics/Rational-Expressions/}{Divide-Simplify-I-003.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Rational-Expressions/Add-Subtract-Same-Denominator-I-001.tex}{../Individual-Questions-by-Topics/Rational-Expressions/Add-Subtract-Same-Denominator-I-001.tex}
+\import{../Individual-Questions-by-Topics/Rational-Expressions/}{Add-Subtract-Same-Denominator-I-001.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Rational-Expressions/Add-Subtract-Diff-Denominator-I-001.tex}{../Individual-Questions-by-Topics/Rational-Expressions/Add-Subtract-Diff-Denominator-I-001.tex}
+\import{../Individual-Questions-by-Topics/Rational-Expressions/}{Add-Subtract-Diff-Denominator-I-001.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Rational-Expressions/Add-Subtract-Diff-Denominator-I-002.tex}{../Individual-Questions-by-Topics/Rational-Expressions/Add-Subtract-Diff-Denominator-I-002.tex}
+\import{../Individual-Questions-by-Topics/Rational-Expressions/}{Add-Subtract-Diff-Denominator-I-002.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Rational-Expressions/Add-Subtract-Diff-Denominator-I-003.tex}{../Individual-Questions-by-Topics/Rational-Expressions/Add-Subtract-Diff-Denominator-I-003.tex}
+\import{../Individual-Questions-by-Topics/Rational-Expressions/}{Add-Subtract-Diff-Denominator-I-003.tex}
+\vspace*{\stretch{1}}
+
+
+
+\question
+\href{../Individual-Questions-by-Topics/Rational-Expressions/Add-Subtract-Diff-Denominator-I-004.tex}{../Individual-Questions-by-Topics/Rational-Expressions/Add-Subtract-Diff-Denominator-I-004.tex}
+\import{../Individual-Questions-by-Topics/Rational-Expressions/}{Add-Subtract-Diff-Denominator-I-004.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Rational-Expressions/Add-Subtract-Diff-Denominator-I-005.tex}{../Individual-Questions-by-Topics/Rational-Expressions/Add-Subtract-Diff-Denominator-I-005.tex}
+\import{../Individual-Questions-by-Topics/Rational-Expressions/}{Add-Subtract-Diff-Denominator-I-005.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Rational-Expressions/Complex-Rational-Expressions-I-001.tex}{../Individual-Questions-by-Topics/Rational-Expressions/Complex-Rational-Expressions-I-001.tex}
+\import{../Individual-Questions-by-Topics/Rational-Expressions/}{Complex-Rational-Expressions-I-001.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Rational-Expressions/Complex-Rational-Expressions-I-002.tex}{../Individual-Questions-by-Topics/Rational-Expressions/Complex-Rational-Expressions-I-002.tex}
+\import{../Individual-Questions-by-Topics/Rational-Expressions/}{Complex-Rational-Expressions-I-002.tex}
+\vspace*{\stretch{1}}
+
+\question
+\href{../Individual-Questions-by-Topics/Rational-Expressions/Complex-Rational-Expressions-I-003.tex}{../Individual-Questions-by-Topics/Rational-Expressions/Complex-Rational-Expressions-I-003.tex}
+\import{../Individual-Questions-by-Topics/Rational-Expressions/}{Complex-Rational-Expressions-I-003.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Rational-Expressions/Rational-Equation-I-001.tex}{../Individual-Questions-by-Topics/Rational-Expressions/Rational-Equation-I-001.tex}
+\import{../Individual-Questions-by-Topics/Rational-Expressions/}{Rational-Equation-I-001.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Rational-Expressions/Rational-Equation-I-002.tex}{../Individual-Questions-by-Topics/Rational-Expressions/Rational-Equation-I-002.tex}
+\import{../Individual-Questions-by-Topics/Rational-Expressions/}{Rational-Equation-I-002.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Rational-Expressions/Rational-Equation-I-003.tex}{../Individual-Questions-by-Topics/Rational-Expressions/Rational-Equation-I-003.tex}
+\import{../Individual-Questions-by-Topics/Rational-Expressions/}{Rational-Equation-I-003.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Rational-Expressions/Rational-Equation-I-004.tex}{../Individual-Questions-by-Topics/Rational-Expressions/Rational-Equation-I-004.tex}
+\import{../Individual-Questions-by-Topics/Rational-Expressions/}{Rational-Equation-I-004.tex}
+\vspace*{\stretch{1}}
+
+
+
+\question
+\href{../Individual-Questions-by-Topics/Rational-Expressions/Rational-Equation-I-005.tex}{../Individual-Questions-by-Topics/Rational-Expressions/Rational-Equation-I-005.tex}
+\import{../Individual-Questions-by-Topics/Rational-Expressions/}{Rational-Equation-I-005.tex}
+\vspace*{\stretch{1}}
+
+
+
+\question
+\href{../Individual-Questions-by-Topics/Radicals/Simplify-Radicals-I-001.tex}{../Individual-Questions-by-Topics/Radicals/Simplify-Radicals-I-001.tex}
+\import{../Individual-Questions-by-Topics/Radicals/}{Simplify-Radicals-I-001.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Radicals/Simplify-Radicals-I-002.tex}{../Individual-Questions-by-Topics/Radicals/Simplify-Radicals-I-002.tex}
+\import{../Individual-Questions-by-Topics/Radicals/}{Simplify-Radicals-I-002.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Radicals/Simplify-Radicals-I-003.tex}{../Individual-Questions-by-Topics/Radicals/Simplify-Radicals-I-003.tex}
+\import{../Individual-Questions-by-Topics/Radicals/}{Simplify-Radicals-I-003.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Radicals/Simplify-Radicals-I-004.tex}{../Individual-Questions-by-Topics/Radicals/Simplify-Radicals-I-004.tex}
+\import{../Individual-Questions-by-Topics/Radicals/}{Simplify-Radicals-I-004.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Radicals/Multiply-Simplify-Radicals-I-001.tex}{../Individual-Questions-by-Topics/Radicals/Multiply-Simplify-Radicals-I-001.tex}
+\import{../Individual-Questions-by-Topics/Radicals/}{Multiply-Simplify-Radicals-I-001.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Radicals/Divide-Simplify-Radicals-I-001.tex}{../Individual-Questions-by-Topics/Radicals/Divide-Simplify-Radicals-I-001.tex}
+\import{../Individual-Questions-by-Topics/Radicals/}{Divide-Simplify-Radicals-I-001.tex}
+\vspace*{\stretch{1}}
+
+
+
+
+\question
+\href{../Individual-Questions-by-Topics/Radicals/Radical-to-Rational-Exponent-I-001.tex}{../Individual-Questions-by-Topics/Radicals/Radical-to-Rational-Exponent-I-001.tex}
+\import{../Individual-Questions-by-Topics/Radicals/}{Radical-to-Rational-Exponent-I-001.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Radicals/Rational-Exponent-to-Radical-I-001.tex}{../Individual-Questions-by-Topics/Radicals/Rational-Exponent-to-Radical-I-001.tex}
+\import{../Individual-Questions-by-Topics/Radicals/}{Rational-Exponent-to-Radical-I-001.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Radicals/Rational-Exponent-to-Radical-I-002.tex}{../Individual-Questions-by-Topics/Radicals/Rational-Exponent-to-Radical-I-002.tex}
+\import{../Individual-Questions-by-Topics/Radicals/}{Rational-Exponent-to-Radical-I-002.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Radicals/Simplify-Radicals-II-001.tex}{../Individual-Questions-by-Topics/Radicals/Simplify-Radicals-II-001.tex}
+\import{../Individual-Questions-by-Topics/Radicals/}{Simplify-Radicals-II-001.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Radicals/Simplify-Radicals-II-002.tex}{../Individual-Questions-by-Topics/Radicals/Simplify-Radicals-II-002.tex}
+\import{../Individual-Questions-by-Topics/Radicals/}{Simplify-Radicals-II-002.tex}
+\vspace*{\stretch{1}}
+
+\question
+\href{../Individual-Questions-by-Topics/Radicals/Divide-Simplify-Radicals-II-001.tex}{../Individual-Questions-by-Topics/Radicals/Divide-Simplify-Radicals-II-001.tex}
+\import{../Individual-Questions-by-Topics/Radicals/}{Divide-Simplify-Radicals-II-001.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Radicals/Divide-Simplify-Radicals-II-002.tex}{../Individual-Questions-by-Topics/Radicals/Divide-Simplify-Radicals-II-002.tex}
+\import{../Individual-Questions-by-Topics/Radicals/}{Divide-Simplify-Radicals-II-002.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Radicals/Simplify-Rational-Exponent-I-001.tex}{../Individual-Questions-by-Topics/Radicals/Simplify-Rational-Exponent-I-001.tex}
+\import{../Individual-Questions-by-Topics/Radicals/}{Simplify-Rational-Exponent-I-001.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Radicals/Simplify-Rational-Exponent-I-002.tex}{../Individual-Questions-by-Topics/Radicals/Simplify-Rational-Exponent-I-002.tex}
+\import{../Individual-Questions-by-Topics/Radicals/}{Simplify-Rational-Exponent-I-002.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Radicals/Simplify-Rational-Exponent-I-003.tex}{../Individual-Questions-by-Topics/Radicals/Simplify-Rational-Exponent-I-003.tex}
+\import{../Individual-Questions-by-Topics/Radicals/}{Simplify-Rational-Exponent-I-003.tex}
+\vspace*{\stretch{1}}
+
+\question
+\href{../Individual-Questions-by-Topics/Radicals/Combining-Like-Radicals-I-001.tex}{../Individual-Questions-by-Topics/Radicals/Combining-Like-Radicals-I-001.tex}
+\import{../Individual-Questions-by-Topics/Radicals/}{Combining-Like-Radicals-I-001.tex}
+\vspace*{\stretch{1}}
+
+
+
+\question
+\href{../Individual-Questions-by-Topics/Radicals/Combining-Like-Radicals-I-002.tex}{../Individual-Questions-by-Topics/Radicals/Combining-Like-Radicals-I-002.tex}
+\import{../Individual-Questions-by-Topics/Radicals/}{Combining-Like-Radicals-I-002.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Radicals/Multiply-Simplify-Radicals-I-002.tex}{../Individual-Questions-by-Topics/Radicals/Multiply-Simplify-Radicals-I-002.tex}
+\import{../Individual-Questions-by-Topics/Radicals/}{Multiply-Simplify-Radicals-I-002.tex}
+\vspace*{\stretch{1}}
+
+\question
+\href{../Individual-Questions-by-Topics/Radicals/Multiply-Simplify-Radicals-II-001.tex}{../Individual-Questions-by-Topics/Radicals/Multiply-Simplify-Radicals-II-001.tex}
+\import{../Individual-Questions-by-Topics/Radicals/}{Multiply-Simplify-Radicals-II-001.tex}
+\vspace*{\stretch{1}}
+
+
+
+\question
+\href{../Individual-Questions-by-Topics/Radicals/Rationalize-Denominator-I-001.tex}{../Individual-Questions-by-Topics/Radicals/Rationalize-Denominator-I-001.tex}
+\import{../Individual-Questions-by-Topics/Radicals/}{Rationalize-Denominator-I-001.tex}
+\vspace*{\stretch{1}}
+
+\question
+\href{../Individual-Questions-by-Topics/Radicals/Rationalize-Denominator-I-002.tex}{../Individual-Questions-by-Topics/Radicals/Rationalize-Denominator-I-002.tex}
+\import{../Individual-Questions-by-Topics/Radicals/}{Rationalize-Denominator-I-002.tex}
+\vspace*{\stretch{1}}
+
+\question
+\href{../Individual-Questions-by-Topics/Radicals/Rationalize-Denominator-I-003.tex}{../Individual-Questions-by-Topics/Radicals/Rationalize-Denominator-I-003.tex}
+\import{../Individual-Questions-by-Topics/Radicals/}{Rationalize-Denominator-I-003.tex}
+\vspace*{\stretch{1}}
+
+\question
+\href{../Individual-Questions-by-Topics/Radicals/Divide-Complex-Numbers-I-001.tex}{../Individual-Questions-by-Topics/Radicals/Divide-Complex-Numbers-I-001.tex}
+\import{../Individual-Questions-by-Topics/Radicals/}{Divide-Complex-Numbers-I-001.tex}
+\vspace*{\stretch{1}}
+
+\question
+\href{../Individual-Questions-by-Topics/Radicals/Divide-Complex-Numbers-I-002.tex}{../Individual-Questions-by-Topics/Radicals/Divide-Complex-Numbers-I-002.tex}
+\import{../Individual-Questions-by-Topics/Radicals/}{Divide-Complex-Numbers-I-002.tex}
+\vspace*{\stretch{1}}
+
+\question
+\href{../Individual-Questions-by-Topics/Radicals/Divide-Complex-Numbers-II-001.tex}{../Individual-Questions-by-Topics/Radicals/Divide-Complex-Numbers-II-001.tex}
+\import{../Individual-Questions-by-Topics/Radicals/}{Divide-Complex-Numbers-II-001.tex}
+\vspace*{\stretch{1}}
+
+\question
+\href{../Individual-Questions-by-Topics/Radicals/Solve-Radical-Equations-I-001.tex}{../Individual-Questions-by-Topics/Radicals/Solve-Radical-Equations-I-001.tex}
+\import{../Individual-Questions-by-Topics/Radicals/}{Solve-Radical-Equations-I-001.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Radicals/Solve-Radical-Equations-I-002.tex}{../Individual-Questions-by-Topics/Radicals/Solve-Radical-Equations-I-002.tex}
+\import{../Individual-Questions-by-Topics/Radicals/}{Solve-Radical-Equations-I-002.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Radicals/Solve-Radical-Equations-I-003.tex}{../Individual-Questions-by-Topics/Radicals/Solve-Radical-Equations-I-003.tex}
+\import{../Individual-Questions-by-Topics/Radicals/}{Solve-Radical-Equations-I-003.tex}
+\vspace*{\stretch{1}}
+
+\question
+\href{../Individual-Questions-by-Topics/Radicals/Solve-Radical-Equations-I-004.tex}{../Individual-Questions-by-Topics/Radicals/Solve-Radical-Equations-I-004.tex}
+\import{../Individual-Questions-by-Topics/Radicals/}{Solve-Radical-Equations-I-004.tex}
+\vspace*{\stretch{1}}
+
+\question
+\href{../Individual-Questions-by-Topics/Radicals/Solve-Radical-Equations-I-005.tex}{../Individual-Questions-by-Topics/Radicals/Solve-Radical-Equations-I-005.tex}
+\import{../Individual-Questions-by-Topics/Radicals/}{Solve-Radical-Equations-I-005.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Rat-Rad-Functions/Domain-Rational-Function-I-001.tex}{../Individual-Questions-by-Topics/Rat-Rad-Functions/Domain-Rational-Function-I-001.tex}
+\import{../Individual-Questions-by-Topics/Rat-Rad-Functions/}{Domain-Rational-Function-I-001.tex}
+\vspace*{\stretch{1}}
+
+\question
+\href{../Individual-Questions-by-Topics/Rat-Rad-Functions/Domain-Rational-Function-I-002.tex}{../Individual-Questions-by-Topics/Rat-Rad-Functions/Domain-Rational-Function-I-002.tex}
+\import{../Individual-Questions-by-Topics/Rat-Rad-Functions/}{Domain-Rational-Function-I-002.tex}
+\vspace*{\stretch{1}}
+
+\question
+\href{../Individual-Questions-by-Topics/Rat-Rad-Functions/Domain-Radical-Function-I-001.tex}{../Individual-Questions-by-Topics/Rat-Rad-Functions/Domain-Radical-Function-I-001.tex}
+\import{../Individual-Questions-by-Topics/Rat-Rad-Functions/}{Domain-Radical-Function-I-001.tex}
+\vspace*{\stretch{1}}
+
+\question
+\href{../Individual-Questions-by-Topics/Rat-Rad-Functions/Domain-Radical-Function-I-002.tex}{../Individual-Questions-by-Topics/Rat-Rad-Functions/Domain-Radical-Function-I-002.tex}
+\import{../Individual-Questions-by-Topics/Rat-Rad-Functions/}{Domain-Radical-Function-I-002.tex}
+\vspace*{\stretch{1}}
+
+\question
+\href{../Individual-Questions-by-Topics/Rat-Rad-Functions/Domain-Rational-Radical-Function-I-001.tex}{../Individual-Questions-by-Topics/Rat-Rad-Functions/Domain-Rational-Radical-Function-I-001.tex}
+\import{../Individual-Questions-by-Topics/Rat-Rad-Functions/}{Domain-Rational-Radical-Function-I-001.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Quadratic/Completing-Square-I-001.tex}{../Individual-Questions-by-Topics/Quadratic/Completing-Square-I-001.tex}
+\import{../Individual-Questions-by-Topics/Quadratic/}{Completing-Square-I-001.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Quadratic/Completing-Square-I-002.tex}{../Individual-Questions-by-Topics/Quadratic/Completing-Square-I-002.tex}
+\import{../Individual-Questions-by-Topics/Quadratic/}{Completing-Square-I-002.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Quadratic/Solve-by-Completing-Square-I-001.tex}{../Individual-Questions-by-Topics/Quadratic/Solve-by-Completing-Square-I-001.tex}
+\import{../Individual-Questions-by-Topics/Quadratic/}{Solve-by-Completing-Square-I-001.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Quadratic/Solve-by-Completing-Square-I-002.tex}{../Individual-Questions-by-Topics/Quadratic/Solve-by-Completing-Square-I-002.tex}
+\import{../Individual-Questions-by-Topics/Quadratic/}{Solve-by-Completing-Square-I-002.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Quadratic/Solve-by-Quadratic-Formula-I-001.tex}{../Individual-Questions-by-Topics/Quadratic/Solve-by-Quadratic-Formula-I-001.tex}
+\import{../Individual-Questions-by-Topics/Quadratic/}{Solve-by-Quadratic-Formula-I-001.tex}
+\vspace*{\stretch{1}}
+
+\question
+\href{../Individual-Questions-by-Topics/Quadratic/Quadratic-Formula-Application-I-001.tex}{../Individual-Questions-by-Topics/Quadratic/Quadratic-Formula-Application-I-001.tex}
+\import{../Individual-Questions-by-Topics/Quadratic/}{Quadratic-Formula-Application-I-001.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Quadratic/Quadratic-Formula-Application-I-002.tex}{../Individual-Questions-by-Topics/Quadratic/Quadratic-Formula-Application-I-002.tex}
+\import{../Individual-Questions-by-Topics/Quadratic/}{Quadratic-Formula-Application-I-002.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Quadratic/Quadratic-Formula-Application-I-003.tex}{../Individual-Questions-by-Topics/Quadratic/Quadratic-Formula-Application-I-003.tex}
+\import{../Individual-Questions-by-Topics/Quadratic/}{Quadratic-Formula-Application-I-003.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Quadratic/Quadratic-Formula-Application-I-004.tex}{../Individual-Questions-by-Topics/Quadratic/Quadratic-Formula-Application-I-004.tex}
+\import{../Individual-Questions-by-Topics/Quadratic/}{Quadratic-Formula-Application-I-004.tex}
+\vspace*{\stretch{1}}
+
+
+
+\question
+\href{../Individual-Questions-by-Topics/Quadratic/Graph-Quadratic-Function-I-001.tex}{../Individual-Questions-by-Topics/Quadratic/Graph-Quadratic-Function-I-001.tex}
+\import{../Individual-Questions-by-Topics/Quadratic/}{Graph-Quadratic-Function-I-001.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Quadratic/Graph-Quadratic-Function-I-002.tex}{../Individual-Questions-by-Topics/Quadratic/Graph-Quadratic-Function-I-002.tex}
+\import{../Individual-Questions-by-Topics/Quadratic/}{Graph-Quadratic-Function-I-002.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Quadratic/Graph-Quadratic-Function-I-003.tex}{../Individual-Questions-by-Topics/Quadratic/Graph-Quadratic-Function-I-003.tex}
+\import{../Individual-Questions-by-Topics/Quadratic/}{Graph-Quadratic-Function-I-003.tex}
+\vspace*{\stretch{1}}
+
+\question
+\href{../Individual-Questions-by-Topics/Quadratic/Quadratic-Function-I-001.tex}{../Individual-Questions-by-Topics/Quadratic/Quadratic-Function-I-001.tex}
+\import{../Individual-Questions-by-Topics/Quadratic/}{Quadratic-Function-I-001.tex}
+\vspace*{\stretch{1}}
+
+\question
+\href{../Individual-Questions-by-Topics/Exp-Log-Equations/Investment-Exponential-Function-I-001.tex}{../Individual-Questions-by-Topics/Exp-Log-Equations/Investment-Exponential-Function-I-001.tex}
+\import{../Individual-Questions-by-Topics/Exp-Log-Equations/}{Investment-Exponential-Function-I-001.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Exp-Log-Equations/Investment-Exponential-Function-I-002.tex}{../Individual-Questions-by-Topics/Exp-Log-Equations/Investment-Exponential-Function-I-002.tex}
+\import{../Individual-Questions-by-Topics/Exp-Log-Equations/}{Investment-Exponential-Function-I-002.tex}
+\vspace*{\stretch{1}}
+
+\question
+\href{../Individual-Questions-by-Topics/Exp-Log-Equations/Exponential-Equation-I-001.tex}{../Individual-Questions-by-Topics/Exp-Log-Equations/Exponential-Equation-I-001.tex}
+\import{../Individual-Questions-by-Topics/Exp-Log-Equations/}{Exponential-Equation-I-001.tex}
+\vspace*{\stretch{1}}
+
+\question
+\href{../Individual-Questions-by-Topics/Exp-Log-Equations/Exponential-Equation-I-002.tex}{../Individual-Questions-by-Topics/Exp-Log-Equations/Exponential-Equation-I-002.tex}
+\import{../Individual-Questions-by-Topics/Exp-Log-Equations/}{Exponential-Equation-I-002.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Exp-Log-Equations/Solve-log-equation-I-001.tex}{../Individual-Questions-by-Topics/Exp-Log-Equations/Solve-log-equation-I-001.tex}
+\import{../Individual-Questions-by-Topics/Exp-Log-Equations/}{Solve-log-equation-I-001.tex}
+\vspace*{\stretch{1}}
+
+\question
+\href{../Individual-Questions-by-Topics/Exp-Log-Equations/Solve-log-equation-I-002.tex}{../Individual-Questions-by-Topics/Exp-Log-Equations/Solve-log-equation-I-002.tex}
+\import{../Individual-Questions-by-Topics/Exp-Log-Equations/}{Solve-log-equation-I-002.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Exp-Log-Equations/Solve-log-equation-I-003.tex}{../Individual-Questions-by-Topics/Exp-Log-Equations/Solve-log-equation-I-003.tex}
+\import{../Individual-Questions-by-Topics/Exp-Log-Equations/}{Solve-log-equation-I-003.tex}
+\vspace*{\stretch{1}}
+
+
+\question
+\href{../Individual-Questions-by-Topics/Exp-Log-Equations/Solve-log-equation-I-004.tex}{../Individual-Questions-by-Topics/Exp-Log-Equations/Solve-log-equation-I-004.tex}
+\import{../Individual-Questions-by-Topics/Exp-Log-Equations/}{Solve-log-equation-I-004.tex}
+\vspace*{\stretch{1}}
+
+\question
+\href{../Individual-Questions-by-Topics/Exp-Log-Equations/Solve-log-equation-I-005.tex}{../Individual-Questions-by-Topics/Exp-Log-Equations/Solve-log-equation-I-005.tex}
+\import{../Individual-Questions-by-Topics/Exp-Log-Equations/}{Solve-log-equation-I-005.tex}
+\vspace*{\stretch{1}}
+
+\question
+\href{../Individual-Questions-by-Topics/Exp-Log-Equations/Domain-Log-Function-I-001.tex}{../Individual-Questions-by-Topics/Exp-Log-Equations/Domain-Log-Function-I-001.tex}
+\import{../Individual-Questions-by-Topics/Exp-Log-Equations/}{Domain-Log-Function-I-001.tex}
+\vspace*{\stretch{1}}
+
+
+\vspace*{\fill}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\vfill
+\mbox{}
+\end{questions}
+% \hrule
+% \vskip 0.2truecm
+% {\centerline{\bf $*******$\ END OF PAPER\ $*******$}}
+% \vspace*{-1.5\baselineskip}
+\end{document}

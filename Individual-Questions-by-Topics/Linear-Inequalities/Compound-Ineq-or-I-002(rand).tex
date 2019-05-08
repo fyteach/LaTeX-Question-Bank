@@ -1,0 +1,46 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+\pgfmathtruncatemacro{\a}{random(2,8)-11} %%%% left bound	
+\pgfmathtruncatemacro{\b}{random(2,9)}    %%%% right bound
+
+\pgfmathtruncatemacro{\c}{random(2,11)}
+\pgfmathtruncatemacro{\d}{random(1,11) }
+
+\pgfmathtruncatemacro{\e}{random(3,12)}
+\pgfmathtruncatemacro{\f}{random(1,11) }
+
+
+\pgfmathtruncatemacro{\m}{\c*(\a)+\d}
+\pgfmathtruncatemacro{\n}{\e*(\b)-\f}
+
+
+
+
+
+
+\pgfmathtruncatemacro{\s}{\m-\d}
+\pgfmathtruncatemacro{\t}{\n+\f}
+
+
+
+
+Solve the compound linear inequality and write the solution set in interval notation. 
+
+\[\c x+\d < \m   \text{\quad\quad or\quad\quad} \e x-\f\geq \n.\]
+
+\begin{solution}
+
+\begin{center}
+\begin{align*}
+\c x+\d&< \m &&\text{or} & \e x-\f&\geq \n\\
+\c x&<  \s&&  & \e x&\geq \t\\
+x&< \a  &&\text{or}  &  x&\geq \b
+\end{align*}
+\end{center}
+
+The solution set is $(-\infty, \a)\cup [\b,\infty)$.
+\end{solution}
+
+

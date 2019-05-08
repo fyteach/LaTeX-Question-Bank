@@ -1,0 +1,87 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+\pgfmathtruncatemacro{\a}{random(2,8)} 
+\pgfmathtruncatemacro{\b}{random(2,9)} 
+%\pgfmathtruncatemacro{\d}{random(5,8)}
+\pgfmathtruncatemacro{\lbound}{-random(2,7)}
+\pgfmathtruncatemacro{\lnumber}{random(1,5)}
+
+\pgfmathtruncatemacro{\c}{-\a*\lbound+\lnumber*\b}
+
+
+\pgfmathtruncatemacro{\rnumber}{random(6,13)}
+
+%%%%%solve for rbound
+
+\pgfmathtruncatemacro{\rden}{\a/gcd((\b*\rnumber-\c),\a)}
+\pgfmathtruncatemacro{\rnum}{(\b*\rnumber-\c)/gcd((\b*\rnumber-\c),\a)}
+
+\pgfmathsetmacro{\detr}{\rnum/\rden-\lbound} 
+%%%use to determine if the set is empty.
+
+
+
+
+
+
+\pgfmathtruncatemacro{\lclear}{\lnumber*\b}
+\pgfmathtruncatemacro{\rclear}{\rnumber*\b}
+
+\pgfmathtruncatemacro{\ll}{\lclear-\c}
+\pgfmathtruncatemacro{\rr}{\rclear-\c}
+
+
+% \pgfmathtruncatemacro{\s}{\m-\d}
+% \pgfmathtruncatemacro{\t}{\n+\f}
+
+
+
+
+Solve the compound linear inequality 
+\[\lnumber\leq
+\ifnum\c>0
+\frac{\a x+\c}{\b}
+\else
+\frac{\a x \c}{\b}
+\fi
+< \rnumber.\]
+
+
+
+\begin{solution}
+	\begin{center}
+		\begin{alignat*}{2}
+			\lnumber
+			\leq  &&
+			\centermath{ 
+				\ifnum\c>0
+					\frac{\a x+\c}{\b}
+				\else
+					\frac{\a x \c}{\b} 
+				\fi
+			}
+			& < \rnumber\\
+			\lclear \leq  && 
+			\centermath{ 
+				\ifnum\c>0
+					{\a x+\c}
+				\else
+					{\a x \c}
+				\fi
+			}
+		&<\rclear \\
+		\ll\leq  &&\centermath{ \a x } & <\rr\\
+		\lbound\leq  &&\centermath{ x } & <
+			\ifnum\rden=1 
+				\rnum 
+			\else 
+				\frac{\rnum}{\rden}
+			\fi \\
+	\end{alignat*}
+\end{center}
+
+So the solution set is \ifdim\detr pt>0 pt $[\lbound, \ifnum\rden=1 \rnum \else \frac{\rnum}{\rden}\fi)$ \else $\emptyset$ \fi.
+
+\end{solution}

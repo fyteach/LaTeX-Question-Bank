@@ -1,0 +1,38 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+
+%%%%%%%%%% Euclid's formula to generate Pythagorean triples %%%%%%%%
+%%% m>n>0, a=m^2-n^2, b=2mn, c=m^2+n^2 %%%%
+
+
+\pgfmathtruncatemacro{\mm}{2*random(1,6)}
+
+\pgfmathtruncatemacro{\nn}{\mm+2}
+
+\pgfmathtruncatemacro{\mn}{\mm*\nn}
+
+
+%%%%%% c^2-s^2=c^2-(a-b)^2=2ab %%%%
+\pgfmathtruncatemacro{\ab}{\cs/2}
+
+
+The production of two \textbf{consecutive even \textit{negative} } numbers is $\mn$. Find the two numbers.
+
+
+\begin{solution}
+
+Suppose the smaller number is $n$. The consecutive even number is $n+2$. We then have an equation
+\[ n(n+2)=\mn \] 
+Solve the equation to find $n$.
+\[
+\begin{split}
+	n(n+2)&=\mn \\
+	n^2+2n&=\mn\\
+	n^2+2n-\mn&=0\\
+	(n+\nn)(n-\mm)&=0\\
+\end{split}
+\]
+Then $n=-\nn$ or $n=\mm$. Since the numbers are negative, we conclude the two numbers are $-\nn$ and $-\mm$.
+\end{solution}

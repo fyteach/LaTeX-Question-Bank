@@ -1,0 +1,63 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+%%%%%%The solution (x, y)
+% \pgfmathtruncatemacro{\x}{random(1,5)-3} 
+% \pgfmathtruncatemacro{\y}{-random(1,7)+4}
+
+
+%%%%Coeff of equation 1
+\pgfmathtruncatemacro{\aone}{random(1,3)} %%coef of x
+\pgfmathtruncatemacro{\bone}{random(2,3)}
+\pgfmathtruncatemacro{\cone}{-random(1,10)}
+
+
+\pgfmathtruncatemacro{\m}{random(2,4)}
+
+\pgfmathtruncatemacro{\mcone}{\m*\cone}
+
+
+\pgfmathtruncatemacro{\n}{-random(1,5)}
+
+%%%%Coeff of equation 2
+\pgfmathtruncatemacro{\atwo}{\m*\aone} %%coef of x
+\pgfmathtruncatemacro{\btwo}{\m*\bone}
+\pgfmathtruncatemacro{\ctwo}{\mcone+\n}
+
+
+
+
+
+\setcounter{equation}{0}
+
+% \newcommand*{\displayaone}{\ifnum\aone=1 \else \ifnum \aone=-1 -\else \aone\fi\fi}
+% \newcommand*{\displaybone}{\ifnum\bone=1 \else \bone\fi}
+% \newcommand*{\displayatwo}{\ifnum\atwo=1 \else \ifnum \atwo=-1 -\else \atwo\fi\fi}
+% \newcommand*{\displaybtwo}{\ifnum\btwo=1 \else \btwo\fi}
+
+
+Solve the following system of linear equations.
+\begin{align}
+\displayaone x + \displaybone y &= \cone  \label{eq-NO-I001-1}\\
+\displayatwo x + \displaybtwo y &= \ctwo  \label{eq-NO-I001-2}
+\end{align}
+
+\begin{solution}
+		Multiply \eqref{eq-NO-I001-1} by $\m$.
+		\begin{align}
+		\m(\displayaone x) + \m(\displaybone y) &=\m\cdot(\cone) \nonumber \\
+		\atwo x + \btwo y &= \mcone \label{eq-NO-I001-3}
+		\end{align}
+		
+		Subtraction equations to eliminate $y$: \eqref{eq-NO-I001-2}$-$\eqref{eq-NO-I001-3} 
+
+\begin{align}
+&& \atwo x + \btwo y &= \ctwo \nonumber \\
+-&& \atwo x + \btwo y &= \mcone  \nonumber\\[-0.5em]
+\cline{1-4}
+&& 0+0 &=\n \nonumber\\
+&& 0&=\n \nonumber
+\end{align}
+
+This is impossible. So the linear system has no solution.
+\end{solution}

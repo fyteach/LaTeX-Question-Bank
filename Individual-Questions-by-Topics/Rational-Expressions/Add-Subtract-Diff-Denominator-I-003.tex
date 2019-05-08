@@ -1,0 +1,104 @@
+% !TEX root = ../MA119-Question-Bank.tex
+
+
+
+% \pgfmathdeclarerandomlist{varx}{{x}{y}{p}{q}{z}}
+\pgfmathdeclarerandomlist{varx}{{x}}
+\pgfmathrandomitem{\varx}{varx}
+\edef\varx{\varx}
+
+\pgfmathdeclarerandomlist{vary}{{y}}
+\pgfmathrandomitem{\vary}{vary}
+\edef\vary{\vary}
+
+
+% \pgfmathsetmacro{\a}{int(random(2,3))}
+\pgfmathsetmacro{\a}{int(1)}
+
+ \pgfmathsetmacro{\c}{int(1)}
+
+
+  \pgfmathsetmacro{\e}{int(1)}
+
+\pgfmathsetmacro{\b}{int(random(2, 3))}
+
+\pgfmathsetmacro{\d}{int(1)}
+
+\pgfmathsetmacro{\f}{int(random(4, 5))}
+
+ \pgfmathtruncatemacro{\A}{\a*\c}
+ \pgfmathtruncatemacro{\C}{(-\b)*(-\d)}
+ \pgfmathtruncatemacro{\B}{\a*(-\d)+(-\b)*(\c)}
+
+
+ \pgfmathtruncatemacro{\E}{\a*\e}
+ \pgfmathtruncatemacro{\G}{(-\b)*(-\f)}
+ \pgfmathtruncatemacro{\F}{\a*(-\f)+(-\b)*(\e)}
+
+ 
+
+
+\pgfmathtruncatemacro{\r}{((-\d)-(-\b))/gcd( ((-\d)-(-\b)), ((-\b)^2-(-\b)*(-\f)) )}
+\pgfmathtruncatemacro{\s}{((-\b)^2-(-\b)*(-\f))/gcd( ((-\d)-(-\b)), ((-\b)^2-(-\b)*(-\f)) )}
+
+ \pgfmathtruncatemacro{\S}{\r*(-\f)-\s}
+\pgfmathtruncatemacro{\T}{-\s*(-\d)}
+\pgfmathtruncatemacro{\g}{\T/(-\b)}
+
+Simplify the rational expression.
+\[
+    \dfrac
+      {\invisibleoneincoef{\r}\varx}
+      {\invisibleoneincoef{\A}\varx^2  \plusminus{\B}\varx \ifnum\C>0 +\C\else \C\fi}
+    -
+    \dfrac
+    {\s}
+    {\invisibleoneincoef{\E}\varx^2  \plusminus{\F}\varx \ifnum\G>0 +\G\else \G\fi}
+  .
+\]
+
+\begin{solution}
+\[
+	\begin{split}
+		& 
+    \dfrac
+      {\invisibleoneincoef{\r}\varx}
+      {\invisibleoneincoef{\A}\varx^2  \plusminus{\B}\varx \ifnum\C>0 +\C\else \C\fi}
+    -
+    \dfrac
+    {\s}
+    {\invisibleoneincoef{\E}\varx^2  \plusminus{\F}\varx \ifnum\G>0 +\G\else \G\fi}
+  .
+\\
+	=	&
+    \dfrac
+      {\invisibleoneincoef{\r}\varx}
+      {( \invisibleoneincoef{\a}\varx- \b )( \invisibleoneincoef{\c}\varx - \d )}
+    -
+    \dfrac
+      {\s}
+      {( \invisibleoneincoef{\a}\varx- \b )( \invisibleoneincoef{\e}\varx - \f )}
+\\
+	=	&
+  \dfrac
+    {\invisibleoneincoef{\r}\varx(\invisibleoneincoef{\e}\varx - \f)-\display{\s}( \invisibleoneincoef{\c}\varx - \d )}
+    {( \invisibleoneincoef{\a}\varx- \b )( \invisibleoneincoef{\c}\varx - \d )(\invisibleoneincoef{\e}\varx  - \f) }
+  \\
+  = &
+  \dfrac
+    {\invisibleoneincoef{\r}\varx^2 \plusminus{\S}\varx \ifnum\T>0 +\T\else \T\fi}
+    {( \invisibleoneincoef{\a}\varx- \b )( \invisibleoneincoef{\c}\varx - \d )(\invisibleoneincoef{\e}\varx - \f) }
+\\
+  = &
+  \dfrac
+    {( \invisibleoneincoef{\a}\varx- \b )(\invisibleoneincoef{\r}\varx   \ifnum\g>0 +\g\else \g\fi)}
+    {( \invisibleoneincoef{\a}\varx- \b )( \invisibleoneincoef{\c}\varx - \d )(\invisibleoneincoef{\e}\varx - \f) }
+\\
+  = &
+  \dfrac
+    {(\invisibleoneincoef{\r}\varx   \ifnum\g>0 +\g\else \g\fi)}
+    {( \invisibleoneincoef{\c}\varx - \d )(\invisibleoneincoef{\e}\varx - \f) }  
+	\end{split}
+\]
+
+\end{solution}
